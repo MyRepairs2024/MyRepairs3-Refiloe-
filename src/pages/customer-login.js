@@ -27,7 +27,7 @@ import React, { useState } from 'react';
     },
     
     logo: {
-      width: '50px', // Adjusted logo width
+      width: '170px', // Adjusted logo width
       height: 'auto', // Adjusted logo height to maintain aspect ratio
       borderRadius: '50%',
       backgroundColor: 'none',
@@ -109,8 +109,8 @@ function LoginPage() {
 
     // Check if verification code is correct
     if (verificationSent && formData.verificationKey === '123456') {
-      console.log('Verification successful! Redirecting to provider-dashboard');
-      window.location.href = '/provider-dashboard';
+      console.log('Verification successful! Redirecting to the Customer dashboard');
+      window.location.href = '/user-dashboard';
     } else {
       console.log('Incorrect verification code.');
     }
@@ -123,7 +123,7 @@ function LoginPage() {
           <img src="/logo-w.png" alt="My Repairs" style={styles.logo} />
         </div>
       </div>
-      <h1>Login Here!</h1>
+      <h1>Welcome Back!</h1>
       <div style={styles.formContainer}>
         <form style={styles.form} onSubmit={verificationSent ? handleLogin : handleSendVerification}>
           <label>
@@ -141,13 +141,9 @@ function LoginPage() {
           {!verificationSent && (
             <>
               <button type="submit" style={styles.button}>
-                Send Code
+                Password
               </button>
-              <p style={styles.links}>
-                <button type="button" onClick={handleResendVerification}>
-                  Resend Code
-                </button>
-              </p>
+              
             </>
           )}
 
@@ -157,7 +153,7 @@ function LoginPage() {
                 <input
                   type="text"
                   name="verificationKey"
-                  placeholder="Verification Key"
+                  placeholder="password"
                   value={formData.verificationKey}
                   onChange={handleChange}
                   required
@@ -171,7 +167,7 @@ function LoginPage() {
           )}
 
           <div style={styles.links}>
-            <p>Don't have an account? <a href="/provider_homepage">Register</a></p>
+            <p>Don't have an account? <a href="/customer-register">Register</a></p>
           </div>
         </form>
       </div>

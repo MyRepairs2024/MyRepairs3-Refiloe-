@@ -264,7 +264,7 @@ const Header = () => {
     <ul className="nav-links">
         <li><a href="/Login-Page">How it works</a></li>
         <li><a href="/provider_homepage">Become a partner</a></li>
-        <li><a href="/provider_homepage">Apps</a></li>
+        <li><a href="/customer-login">Apps</a></li>
     </ul>
 </div>
 
@@ -273,14 +273,13 @@ const Header = () => {
         </div>
         <div className="navigation">
           
-              <button className="btn-login" onClick={toggleLoginPopup}>
-                Login
-              </button>
-            
+        <button className="btn-login" onClick={() => window.location.href = '/customer-login'}>
+  Login
+</button>
       
-              <button className="btn-register" onClick={toggleRegistrationPopup}>
-                Get Started
-              </button>
+              <button className="btn-register" onClick={() => window.location.href = '/customer-register'}>
+  Get Started
+</button>
         
         </div>
       </div>

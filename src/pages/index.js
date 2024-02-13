@@ -99,9 +99,8 @@ const HomePage = () => {
     };
   }, []);
   const handleCardClick = (index) => {
-    setExpandedCard(index === expandedCard ? null : index);
+    setExpandedCard((prevExpandedCard) => (prevExpandedCard === index ? null : index));
   };
-
   return (
     <div className="home-page">
    <a id="top"></a>
@@ -165,22 +164,22 @@ and inconvenience to the consumer as possible.
                   </div>
                   <div className="card-title">{card.title}</div>
                   {index === expandedCard && (
-                    <div className="expanded-content">
-                      <div className="long-description-container">
-                      {card.longDescription && typeof card.longDescription === 'string' ? (
-      <React.Fragment>
-        {card.longDescription.split('\n').map((line, index) => (
-          <div key={index}>{line}</div>
-        ))}
-      </React.Fragment>
-    ) : (
-      "No description available"
-    )}
+  <div className="expanded-content-container">
+    <div className="expanded-content">
+      <div className="long-description-container">
+        {card.longDescription && typeof card.longDescription === 'string' ? (
+          <React.Fragment>
+            {card.longDescription.split('\n').map((line, index) => (
+              <div key={index}>{line}</div>
+            ))}
+          </React.Fragment>
+        ) : (
+          "No description available"
+        )}
+      </div>
+    </div>
   </div>
-</div>
-                
-  
-              )}
+)}
 </div>
  ))}
 </div>
@@ -346,54 +345,68 @@ Opposite Grand Central International Airport<br/>
         transform: translateY(-10px);
       }
     }
-
-    .card:hover::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 10px;
-      
+    .card {
+      position: relative;
+      overflow: hidden;
+      height: auto;
+      width: auto;
+      padding: 5px;
+      border-style: none;
+      z-index: 1;
     }
-
-.expanded {
-  position: relative;
-  
-
-}
-.expanded-content {
-  font-size: 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150%;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #ff0068;
-  animation: slideInFromTop 0.5s ease-in-out, bounce 0.2s ease-in-out 0.5s;
-  font-weight: bold;
-  font-family: poppins;
-  box-shadow: 0 0 10px rgba(255, 0, 104, 0.7);
-  transition:box-shadow 0.5s ease;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-  overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-/* Hide scrollbar for Webkit-based browsers (e.g., Chrome, Safari) */
-.expanded-content::-webkit-scrollbar {
-  width: 0;
-  background: transparent; /* Set the background color to match your container's background */
-}
-
-
-
+    
+    .card:hover .expanded-content-container,
+    .card:hover + .long-description-container .expanded-content-container {
+      display: block; /* Show the container on hover */
+    }
+    
+    .expanded-content-container {
+      border: 5px solid #ff0068;
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 20px;
+      width: 150%; /* Set a fixed width or adjust as needed */
+      max-width: 800px; /* Set a maximum width */
+      max-height: 300px; /* Set a maximum height */
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 1001; /* Adjust the z-index to be higher than the description box */
+      position: absolute;
+      display: none; /* Initially hide the container */
+    }
+    
+    .long-description-container {
+      position: relative; /* Make sure the position is relative */
+      z-index: 1000; /* Set a z-index for the description box */
+    }
+    
+    .expanded-content {
+      font-size: 20px;
+      position: relative;
+      color: #ff0068;
+      font-weight: bold;
+      font-family: poppins;
+      box-shadow: 0 0 10px rgba(255, 0, 104, 0.7);
+      transition: box-shadow 0.5s ease;
+      display: flex;
+      justify-content: center;
+      z-index: 1;
+      overflow: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    .expanded-content::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+    
+    .long-description-container div {
+      margin-bottom: 10px;
+    }
+    
+    .long-description-container strong {
+      margin-right: 5px;
+    }
       label{
       margin-left: 40px;
       font-family: poppins;

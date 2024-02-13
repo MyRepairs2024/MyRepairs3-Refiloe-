@@ -126,6 +126,16 @@ const [displayedimage, setDisplayedImage] = useState('');
     setActiveTabOrders(tabName);
     // Fetch the respective orders based on the selected tab if needed
   };
+  const handleSave = () => {
+    console.log('Services to be saved:', services);
+    // You can perform additional actions if needed
+  };
+  const handleAddNewService = () => {
+    setServices((prevServices) => [
+      ...prevServices,
+      { serviceName: '', description: '', availability: 'available', hourlyRate: '' },
+    ]);
+  };
 
    const acceptServiceRequest = async (requestId) => {
     try {
@@ -158,6 +168,7 @@ const [displayedimage, setDisplayedImage] = useState('');
     acceptServiceRequest(requestId);
     // You can also perform other actions here, if needed
   };
+  
   
 
    const handleRedoFileSelection = (fileType) => {
@@ -1393,10 +1404,20 @@ const [displayedimage, setDisplayedImage] = useState('');
   {activeTab2 === 'My Services' &&(
   <div className='mainpage'>
     <Dashheader/>
-<div className='myserviceheader'><h3>My Services</h3><button>Add New Service</button></div>
+    
+    <div className='myserviceheader'><h3>My Services</h3><button onClick={handleAddNewService}>Add New Service</button></div>
+    
 <div className='AddingConatiner'>
 <div className='service1'><div className='imgsev1'></div><div className='descrip1'>
-<div className='input_servicename'><label htmlFor="serviceName">Service Name:</label> <input type="text" id="serviceName" name="serviceName" /></div>
+<div className='input_servicename'>
+  <label htmlFor="serviceName">Service Name:</label>
+  <select id="serviceName" name="serviceName">
+    <option value="Electrician">Electrician</option>
+    <option value="Plumbing">Plumbing</option>
+    <option value="Fridge Repairs">Fridge Repairs </option>
+    {/* Add more options as needed */}
+  </select>
+</div>
 
 <div className='input_servicedescrip'> <label htmlFor="description">Description:</label>
   <textarea id="description" name="description"></textarea></div>
@@ -1412,8 +1433,15 @@ const [displayedimage, setDisplayedImage] = useState('');
   </div>
 </div></div>
 <div className='service2'><div className='imgsev1'></div><div className='descrip2'>
-<div className='input_servicename'><label htmlFor="serviceName">Service Name:</label> <input type="text" id="serviceName" name="serviceName" /></div>
-
+<div className='input_servicename'>
+  <label htmlFor="serviceName">Service Name:</label>
+  <select id="serviceName" name="serviceName">
+    <option value="Electicity Installation">Electicity Installation</option>
+    <option value="Electrical Repair">Electrical Repair</option>
+    <option value="Apliance Services">Apliance Services</option>
+    {/* Add more options as needed */}
+  </select>
+</div>
 <div className='input_servicedescrip'> <label htmlFor="description">Description:</label>
   <textarea id="description" name="description"></textarea></div>
 
@@ -1426,14 +1454,19 @@ const [displayedimage, setDisplayedImage] = useState('');
   <label htmlFor="hourlyRate">Hourly Rate:</label>
   <input type="text" id="hourlyRate" name="hourlyRate" />
   </div>
+ 
 
 
+  <button onClick={handleSave}>Save</button>
   
-  
-  </div></div>
+  </div>
+   </div>
+   
 
 </div>
+
   </div>
+  
   
 
  )}
@@ -2403,6 +2436,16 @@ background-color: #0056b3;
           
          
           
+        }
+        .myserviceheader button {
+          font-size: 18px;
+          padding: 10px 20px;
+        }
+        .save-button {
+          /* Add any specific styles for the Save button */
+          font-size: 20px; /* You can adjust the font size as needed */
+          padding: 12px 24px; /* You can adjust the padding as needed */
+          width: 20px;
         }
         .pending-request{
           background: #f5f5f5;
