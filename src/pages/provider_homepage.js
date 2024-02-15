@@ -3,6 +3,7 @@ import { FaUser } from 'react-icons/fa';
 import { createClient } from '@supabase/supabase-js';
 import TermsAndConditionsModal from './TermsAndConditionsModal'; 
 import axios from 'axios';
+import { GoogleLogin } from 'react-google-login';
 
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co'; 
 const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw'; // Replace with your Supabase API key
@@ -121,6 +122,14 @@ function App() {
       ...prevData,
       [name]: value,
     }));
+  };const responseGoogleSuccess = (response) => {
+    console.log('Google Login Response:', response);
+    // Use the response to extract user information and update your state or perform any other actions
+  };
+  
+  const responseGoogleFailure = (response) => {
+    console.log('Google Login Failed:', response);
+    // Handle failed Google Sign-In
   };
 
   const handleSubmit = async (e) => {
@@ -242,6 +251,13 @@ function App() {
               style={styles.input}
             />
           </label>
+          <GoogleLogin
+  clientId="YOUR_GOOGLE_CLIENT_ID"
+  buttonText="Sign up with Google"
+  onSuccess={responseGoogleSuccess}
+  onFailure={responseGoogleFailure}
+  cookiePolicy={'single_host_origin'}
+/>
           <div style={styles.checkboxContainer}>
             
           

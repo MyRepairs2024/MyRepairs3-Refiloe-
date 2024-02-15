@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { GoogleLogin } from 'react-google-login';
 
 
   const styles = {
@@ -83,6 +84,15 @@ function LoginPage() {
       [name]: value,
     }));
   };
+  const responseGoogleSuccess = (response) => {
+    console.log('Google Login Response:', response);
+    // Use the response to extract user information and update your state or perform any other actions
+  };
+  
+  const responseGoogleFailure = (response) => {
+    console.log('Google Login Failed:', response);
+    // Handle failed Google Sign-In
+  };
 
   const handleSendVerification = async (e) => {
     e.preventDefault();
@@ -165,6 +175,13 @@ function LoginPage() {
               </button>
             </>
           )}
+          <GoogleLogin
+  clientId="YOUR_GOOGLE_CLIENT_ID"
+  buttonText="Log in  with Google"
+  onSuccess={responseGoogleSuccess}
+  onFailure={responseGoogleFailure}
+  cookiePolicy={'single_host_origin'}
+/>
 
           <div style={styles.links}>
             <p>Don't have an account? <a href="/customer-register">Register</a></p>
