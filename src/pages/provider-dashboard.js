@@ -18,6 +18,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
+
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co';
 const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw';
 
@@ -110,6 +111,19 @@ const [displayedimage, setDisplayedImage] = useState('');
     console.log(`Downloading invoice for ${customerEmail}`);
   };
 
+  const [newService, setNewService] = useState({
+    serviceName: '',
+    description: '',
+    availability: 'available',
+    hourlyRate: '',
+    servicePhoto: null,
+  });
+
+  const handlePhotoChange = (e) => {
+    const photoFile = e.target.files[0];
+    setNewService({ ...newService, servicePhoto: photoFile });
+  };
+
 
 
 
@@ -136,6 +150,7 @@ const [displayedimage, setDisplayedImage] = useState('');
       { serviceName: '', description: '', availability: 'available', hourlyRate: '' },
     ]);
   };
+  
 
    const acceptServiceRequest = async (requestId) => {
     try {
@@ -1270,137 +1285,164 @@ const [displayedimage, setDisplayedImage] = useState('');
   </div>
   )}
  
- {activeTab2 === 'orders' &&(
+ {activeTab2 === 'orders' && (
   <div className='mainpage'>
     <Dashheader/>
     <div></div>
-<div className='orders_container'>
-<a href="#" onClick={() => handleTabChangeOrders('current')}>Current Orders</a>
-          <a href="#" onClick={() => handleTabChangeOrders('pending')}>Pending Orders</a>
-          <a href="#" onClick={() => handleTabChangeOrders('total')}>Total Orders</a>
-  {activeTabOrders === 'current' && (
-    <>
-      <div className='countedorders'><div className='ordersummary_title'><h1>Current Orders</h1></div><div className='ordersummary_number'>{numberOfDisplayedcurrentOrders}</div></div>
+    <div className='orders_container'>
+      <a href="#" onClick={() => handleTabChangeOrders('current')}>Current Orders</a>
+      <a href="#" onClick={() => handleTabChangeOrders('pending')}>Pending Orders</a>
+      <a href="#" onClick={() => handleTabChangeOrders('total')}>Total Orders</a>
 
-        <div className='orderslist'>
-        <div className="grid-container">
-        <div className="item1">Customer Name</div>
-        <div className="item2">Service Description</div>
-        <div className="item3">Service Information</div>
-        </div>
+      {activeTabOrders === 'current' && (
+        <>
+          <div className='countedorders'>
+            <div className='ordersummary_title'><h1>Current Orders</h1></div>
+            <div className='ordersummary_number'>{numberOfDisplayedcurrentOrders}</div>
+          </div>
+
+          <div className='orderslist'>
+            <div className="grid-container">
+              <div className="item1">Customer Name</div>
+              
+              <div className="item2">Service Description</div>
+              <div className="item3">Service Information</div>
+            </div>
+
             {currentorders.map((order, index) => (
               <div className='orders_container1' key={index}>
-                {order.cus_email && (
-                  <div className='customerName'>{order.cus_email}</div>
-                )}
-                {order.sevice_description&& (
-                  <div className='serviceDescription'>{order.sevice_description}</div>
-                )}
-                {order.date && (
-                  <div className='orderDate'>
-      <div className='orderdate_price'>R{order.price}</div>
-                    <div className='orderdate_date'>{order.date}</div>
-                   <div className='orderdate_button'> <button onClick={() => handleAcceptOrder(order.id)}>Accept Order</button></div>
+                <div className='customerName'>{order.cus_email}</div>
+                <div className='serviceDescription'>{order.sevice_description}</div>
+                <div className='serviceInfo'>
+                  <div>R{order.price}</div>
+                  <div>{order.date}</div>
+                  <div>
+                    <button onClick={() => handleAcceptOrder(order.id)}>Accept Order</button>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
-          </>
+        </>
       )}
 
       {activeTabOrders === 'pending' && (
         <>
-         <div className='countedorders'><div className='ordersummary_title'><h1>Pending Orders</h1></div><div className='ordersummary_number'>{numberOfDisplayedpendingOrders}</div></div>
+          <div className='countedorders'>
+            <div className='ordersummary_title'><h1>Pending Orders</h1></div>
+            <div className='ordersummary_number'>{numberOfDisplayedpendingOrders}</div>
+          </div>
 
-         <div className='orderslist'>
-         <div className="grid-container">
-         <div className="item1">Customer Name</div>
-         <div className="item2">Service Description</div>
-         <div className="item3">Service Information</div>
-         </div>
-             {pendingorders.map((order, index) => (
-               <div className='orders_container1' key={index}>
-                 {order.cus_email && (
-                   <div className='customerName'>{order.cus_email}</div>
-                 )}
-                 {order.sevice_description&& (
-                   <div className='serviceDescription'>{order.sevice_description}</div>
-                 )}
-                 {order.date && (
-                   <div className='orderDate'>
-       <div className='orderdate_price'>R{order.price}</div>
-                     <div className='orderdate_date'>{order.date}</div>
-                    <div className='orderdate_button'> <button onClick={() => handleAcceptOrder(order.id)}>Accept Order</button></div>
-                   </div>
-                 )}
-               </div>
-             ))}
-           </div>
+          <div className='orderslist'>
+            <div className="grid-container">
+              <div className="item1">Customer Name</div>
+              <div className="item2">Service Description</div>
+              <div className="item3">Service Information</div>
+            </div>
+
+            {pendingorders.map((order, index) => (
+              <div className='orders_container1' key={index}>
+                <div className='customerName'>{order.cus_email}</div>
+                <div className='serviceDescription'>{order.sevice_description}</div>
+                <div className='serviceInfo'>
+                  <div>R{order.price}</div>
+                  <div>{order.date}</div>
+                  <div>
+                    <button onClick={() => handleAcceptOrder(order.id)}>Accept Order</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </>
       )}
 
       {activeTabOrders === 'total' && (
         <>
-      
-          </>
+          {/* Your content for the "Total Orders" tab goes here */}
+        </>
       )}
-  
-</div>
+    </div>
   </div>
- )}
-  
-  {activeTab2 === 'Customers' &&(
+)}
+ {activeTab2 === 'Customers' && (
   <div className='mainpage'>
-    <Dashheader/>
-    <a href="#" onClick={() => handleTabChangeCustomers('current1')}>Current Customers</a>
-          <a href="#" onClick={() => handleTabChangeCustomers('pending1')}>Pending Customers</a>
-{activeTabCustomers === 'current1' &&(
-<>
-<div className='customers1'>
-        {Customers.map((order, index) => (
-          <div className='customer_card' key={index}>
-            <div className='firstsection'>
-            <div className='profileimagename'><h3>Current Customer</h3></div>
+    <Dashheader />
+    <a href="#" onClick={() => handleTabChangeCustomers('current1')}>
+      Current Customers
+    </a>
+    <a href="#" onClick={() => handleTabChangeCustomers('pending1')}>
+      Pending Customers
+    </a>
 
-            <div className='profileimage'>
-
-            {displayedimage && <img src={displayedimage} alt="Profile" />}
-            </div>
-            <div className='cusnameheading'><h3>Customer Email</h3></div>
-            <div className='cus_email'>{order.cus_email}</div>
-<div  className='contactcubutton'><button>Contact Customer</button></div>
-            </div>
-            <div className='invoice_container'>
-              <div className='invoice'>
-               <div className='custotalinvoices'><p>Total Invoices</p><h4>****</h4></div>
-               <div className='cuservices'><p>Progress</p></div>
-               <div className='cusallinvoices'><p>All Invoices</p><button onClick={() => handleDownloadInvoice(order.cus_email)}>View Invoices</button></div>
-
-              
+    {activeTabCustomers === 'current1' && (
+      <div className='customers-container current-container'>
+        <h2>Customer Name</h2>
+        <div className='customers1'>
+          {Customers.map((customer, index) => (
+            <div className='customer-card' key={index}>
+              <div className='customer-column'>
+                <div className='customer-name'>{customer.name}</div>
+              </div>
+              <div className='customer-column'>
+                <div className='customer-description'>{customer.description}</div>
+              </div>
+              <div className='customer-column'>
+                <div className='service-information'>
+                  <p>Service Name: {customer.serviceName}</p>
+                  <p>Availability: {customer.availability}</p>
+                  <p>Hourly Rate: {customer.hourlyRate}</p>
+                </div>
+              </div>
+              <div className='customer-columns-container'>
+                {/* Six smaller containers inside each customer card */}
+                <div className='small-container'>1</div>
+                <div className='small-container'>2</div>
+                <div className='small-container'>3</div>
+                <div className='small-container'>4</div>
+                <div className='small-container'>5</div>
+                <div className='small-container'>6</div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      {Customers.length > customersPerPage && (
-        <div className='pagination'>
-          {/* Render pagination buttons for navigating to the next page */}
-          <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <button onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastCustomer >= Customers.length}>
-            Next
-          </button>
+          ))}
         </div>
-      )}
+        {Customers.length > customersPerPage && (
+          <div className='pagination'>
+            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+              Previous
+            </button>
+            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastCustomer >= Customers.length}>
+              Next
+            </button>
+          </div>
+        )}
+      </div>
+    )}
 
-
-</>
-)}
+    {activeTabCustomers === 'pending1' && (
+      <div className='customers-container pending-container'>
+        <h2>Pending Customers</h2>
+        <div className='pending-customers'>
+          {/* Your pending customers rendering logic */}
+          {/* ... */}
+        </div>
+        {PendingCustomers.length > customersPerPage && (
+          <div className='pagination'>
+            <button onClick={() => setPendingCurrentPage(pendingCurrentPage - 1)} disabled={pendingCurrentPage === 1}>
+              Previous
+            </button>
+            <button
+              onClick={() => setPendingCurrentPage(pendingCurrentPage + 1)}
+              disabled={indexOfLastPendingCustomer >= PendingCustomers.length}
+            >
+              Next
+            </button>
+          </div>
+        )}
+      </div>
+    )}
   </div>
- )}
-  
+)}
   {activeTab2 === 'My Services' &&(
   <div className='mainpage'>
     <Dashheader/>
@@ -1408,7 +1450,20 @@ const [displayedimage, setDisplayedImage] = useState('');
     <div className='myserviceheader'><h3>My Services</h3><button onClick={handleAddNewService}>Add New Service</button></div>
     
 <div className='AddingConatiner'>
-<div className='service1'><div className='imgsev1'></div><div className='descrip1'>
+<div className='service1'><div className='imgsev1'>
+{newService.servicePhoto && (
+      <img src={URL.createObjectURL(newService.servicePhoto)} alt="Service" />
+    )}
+    <div className='input_servicephoto'>
+  <button type="button" id="servicePhotoButton" onClick={() => document.getElementById('servicePhoto').click()}>
+  <i className="fas fa-camera"></i> {/* FontAwesome camera icon */}
+    Upload Service Photo
+  </button>
+  <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
+</div>
+
+</div>
+<div className='descrip1'>
 <div className='input_servicename'>
   <label htmlFor="serviceName">Service Name:</label>
   <select id="serviceName" name="serviceName">
@@ -1416,7 +1471,9 @@ const [displayedimage, setDisplayedImage] = useState('');
     <option value="Plumbing">Plumbing</option>
     <option value="Fridge Repairs">Fridge Repairs </option>
     {/* Add more options as needed */}
+    
   </select>
+  <button onClick={handleSave}>Save</button>
 </div>
 
 <div className='input_servicedescrip'> <label htmlFor="description">Description:</label>
@@ -1432,7 +1489,17 @@ const [displayedimage, setDisplayedImage] = useState('');
   <input type="text" id="hourlyRate" name="hourlyRate" />
   </div>
 </div></div>
-<div className='service2'><div className='imgsev1'></div><div className='descrip2'>
+<div className='service2'><div className='imgsev1'>
+{newService.servicePhoto && (
+      <img src={URL.createObjectURL(newService.servicePhoto)} alt="Service" />
+    )}
+    <div className='input_servicephoto'>
+  <button type="button" id="servicePhotoButton" onClick={() => document.getElementById('servicePhoto').click()}>
+    Upload Service Photo
+  </button>
+  <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
+</div>
+  </div><div className='descrip2'>
 <div className='input_servicename'>
   <label htmlFor="serviceName">Service Name:</label>
   <select id="serviceName" name="serviceName">
@@ -1440,7 +1507,9 @@ const [displayedimage, setDisplayedImage] = useState('');
     <option value="Electrical Repair">Electrical Repair</option>
     <option value="Apliance Services">Apliance Services</option>
     {/* Add more options as needed */}
+    
   </select>
+  <button onClick={handleSave}>Save</button>
 </div>
 <div className='input_servicedescrip'> <label htmlFor="description">Description:</label>
   <textarea id="description" name="description"></textarea></div>
@@ -1454,22 +1523,28 @@ const [displayedimage, setDisplayedImage] = useState('');
   <label htmlFor="hourlyRate">Hourly Rate:</label>
   <input type="text" id="hourlyRate" name="hourlyRate" />
   </div>
+  
  
 
 
-  <button onClick={handleSave}>Save</button>
+ 
   
   </div>
    </div>
+
    
 
 </div>
 
+
   </div>
+  
   
   
 
  )}
+ 
+ 
   
   {activeTab2 === 'Analytics' &&(
   <div className='mainpage'>
@@ -1904,6 +1979,86 @@ font-size: 18px;
 
 
   }
+  .input_servicephoto {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 110px;
+  color: #fff;
+  
+ 
+}
+.input_servicephoto img {
+  max-width: 100%; /* Ensure the image does not exceed its container's width */
+  max-height: 200px; /* Set the maximum height as needed */
+  margin-top: 10px; /* Add margin for spacing */
+}
+    
+    
+  }
+  .input_servicephoto button {
+    
+    width: 50px;
+    height: 50px; 
+    padding: 10px;
+    background-color: #008080;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 150px;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50%; /* Set border-radius to 50% for a circular shape */
+ 
+ 
+  }
+  
+  .input_servicephoto input[type="PNG"] {
+    /* Your styles for the file input */
+    display: none; /* Hide the file input */
+  }
+  
+  .input_servicephoto .uploaded-photo {
+    margin-top: 10px;
+  }
+  
+  .input_servicephoto .uploaded-image {
+    width: 2px; /* Set your desired width */
+    height: 1px; /* Set your desired height */
+   
+  }
+  .customers-container {
+    width: 900px; /* Set the desired width */
+    height: 450px; /* Set the desired height */
+    background-color: #fff; /* Set the background color to white */
+    border: 2px solid  #ff0068; /* Set the border color to pink */
+    margin: 10px; /* Add margin for spacing */
+    padding: 10px; /* Add padding for content spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .current-container,
+  .pending-container {
+    /* Add specific styles for the current and pending containers if needed */
+  }
+  .customers1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .customer-card {
+    width: 30%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  
+  
 
  .orderDate {
   border-bottom: 2px solid #ff0068;
@@ -2446,6 +2601,7 @@ background-color: #0056b3;
           font-size: 20px; /* You can adjust the font size as needed */
           padding: 12px 24px; /* You can adjust the padding as needed */
           width: 20px;
+          margin-top: 1000 px; /* Adjust the margin-top value to create space below the border */
         }
         .pending-request{
           background: #f5f5f5;
