@@ -1365,44 +1365,49 @@ const [displayedimage, setDisplayedImage] = useState('');
     </div>
   </div>
 )}
- {activeTab2 === 'Customers' && (
+{activeTab2 === 'Customers' && (
   <div className='mainpage'>
     <Dashheader />
-    <a href="#" onClick={() => handleTabChangeCustomers('current1')}>
-      Current Customers
-    </a>
-    <a href="#" onClick={() => handleTabChangeCustomers('pending1')}>
-      Pending Customers
-    </a>
+    <div>
+      <a href="#" onClick={(event) => { event.preventDefault(); handleTabChangeCustomers('current1'); }}>
+        Current Customers
+      </a>
+      <a href="#" onClick={(event) => { event.preventDefault(); handleTabChangeCustomers('pending1'); }}>
+        Pending Customers
+      </a>
+    </div>
 
     {activeTabCustomers === 'current1' && (
-      <div className='customers-container current-container'>
-        <h2>Customer Name</h2>
+       
+      <div className='customers-container current-container pink-border'>
+        
+        <div className='info'>
+          {/* Container for customer name */}
+          <div className='info-item pink'>
+            <p>Current Customer</p>
+            <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>
+            <div className='small-container'>Container 7</div>
+            
+          </div>
+          {/* Container for service description */}
+          <div className='info-item pink'>
+            <p>Current Customer</p>
+            <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>
+            <div className='small-container'>Container 7</div>
+          </div>
+          {/* Container for information description */}
+          <div className='info-item pink'>
+            <p>Current Customer</p>
+            <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>
+            <div className='small-container'>Container 7</div>
+            
+          </div>
+          
+        </div>
         <div className='customers1'>
           {Customers.map((customer, index) => (
             <div className='customer-card' key={index}>
-              <div className='customer-column'>
-                <div className='customer-name'>{customer.name}</div>
-              </div>
-              <div className='customer-column'>
-                <div className='customer-description'>{customer.description}</div>
-              </div>
-              <div className='customer-column'>
-                <div className='service-information'>
-                  <p>Service Name: {customer.serviceName}</p>
-                  <p>Availability: {customer.availability}</p>
-                  <p>Hourly Rate: {customer.hourlyRate}</p>
-                </div>
-              </div>
-              <div className='customer-columns-container'>
-                {/* Six smaller containers inside each customer card */}
-                <div className='small-container'>1</div>
-                <div className='small-container'>2</div>
-                <div className='small-container'>3</div>
-                <div className='small-container'>4</div>
-                <div className='small-container'>5</div>
-                <div className='small-container'>6</div>
-              </div>
+              
             </div>
           ))}
         </div>
@@ -1420,7 +1425,7 @@ const [displayedimage, setDisplayedImage] = useState('');
     )}
 
     {activeTabCustomers === 'pending1' && (
-      <div className='customers-container pending-container'>
+      <div className='customers-container pending-container pink-border'>
         <h2>Pending Customers</h2>
         <div className='pending-customers'>
           {/* Your pending customers rendering logic */}
@@ -2028,17 +2033,6 @@ font-size: 18px;
     height: 1px; /* Set your desired height */
    
   }
-  .customers-container {
-    width: 900px; /* Set the desired width */
-    height: 450px; /* Set the desired height */
-    background-color: #fff; /* Set the background color to white */
-    border: 2px solid  #ff0068; /* Set the border color to pink */
-    margin: 10px; /* Add margin for spacing */
-    padding: 10px; /* Add padding for content spacing */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   
   .current-container,
   .pending-container {
@@ -2048,6 +2042,8 @@ font-size: 18px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    flex-direction: row;
+
   }
   
   .customer-card {
@@ -2057,8 +2053,73 @@ font-size: 18px;
     margin: 10px;
   }
   
+  }
+  .container {
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Distribute space between the containers */
+  }
+  
+  .pink {
+    display: flex;
+    background-color: #fff;
+    border: 3px solid #ff0068; /* Set the border color to dark pink */
+    width: 300px;
+    height: 200px;
+    flex-direction: row;
+    margin-top: 30px;
+
+  }
+  .pink-border {
+
+    display: column; /* Use flexbox */
+    display: grid;
+
+  }
+  .info {
+    display: flex;
+    justify-content: space-between; /* Optional: Adjust this based on your layout preferences */
+  }
   
   
+
+  .info-item pink {
+   
+    color: #fff; /* Set the text color to white */
+    padding: 10px; /* Add padding */
+    margin-bottom: 10px; /* Add margin on the bottom */
+   
+     
+  }
+  .info-item p {
+  color: black; /* Set the text color of paragraphs inside .info-item to black */
+  font-size: 20px;
+  font-weight: bold; /* Make the font bold */
+
+}
+.icon1 img {
+  width: 3px; /* Adjust the width as needed */
+  height: 3px; /* Adjust the height as needed */
+  
+}
+
+.icon {
+  width: 300px; /* Set the width of the icon */
+  height: 300px; /* Set the height of the icon */
+  padding: 100px;
+}
+.small-container {
+  background-color: #fff; /* Set the background color to pink */
+  color: #ff0068; /* Set the text color to white, or adjust as needed */
+  padding: 5px; /* Add padding for better visibility */
+  margin: 50px 0; /* Add margin for spacing */
+  margin-top: 300px;
+  border: 3px solid #ff0068; /* Set the border color to dark pink */
+  width: 300px;
+    height: 80px;
+  
+}
+
+
 
  .orderDate {
   border-bottom: 2px solid #ff0068;
