@@ -183,6 +183,11 @@ const [displayedimage, setDisplayedImage] = useState('');
     acceptServiceRequest(requestId);
     // You can also perform other actions here, if needed
   };
+  const handleContactCustomer = () => {
+    // Your logic for handling the contact customer action
+    console.log("Contacting customer...");
+    // Add more logic as needed
+  };
   
   
 
@@ -348,6 +353,8 @@ const [displayedimage, setDisplayedImage] = useState('');
       providertype: formData.providertype.toUpperCase(),
       // Convert other form fields to uppercase if needed
     };
+   
+   
   
     console.log('Submit button clicked');
 
@@ -1380,30 +1387,47 @@ const [displayedimage, setDisplayedImage] = useState('');
     {activeTabCustomers === 'current1' && (
        
       <div className='customers-container current-container pink-border'>
-        
-        <div className='info'>
+       <div className='info'>
           {/* Container for customer name */}
           <div className='info-item pink'>
-            <p>Current Customer</p>
-            <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>
-            <div className='small-container'>Container 7</div>
-            
-          </div>
+            <p>CurrentCustomer</p>
+            <button className='small-button' onClick={handleContactCustomer}>
+          Contact Customer
+        </button>
+           {/*<img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>*/}
+             </div>
+           
+          
+          
+          
           {/* Container for service description */}
           <div className='info-item pink'>
-            <p>Current Customer</p>
-            <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>
-            <div className='small-container'>Container 7</div>
+            <p>CurrentCustomer</p>
+            <button className='small-button' onClick={handleContactCustomer}>
+          Contact Customer
+        </button>
+             {/* <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>*/}
+            
           </div>
+         
           {/* Container for information description */}
           <div className='info-item pink'>
-            <p>Current Customer</p>
-            <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>
-            <div className='small-container'>Container 7</div>
+            <p>CurrentCustomer</p>
+            <button className='small-button' onClick={handleContactCustomer}>
+          Contact Customer
+        </button>
+           {/* <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>*/}
+           <div className='small-container'>Container 7</div> 
+        <div className='small-container'>Container 7</div>
+        <div className='small-container'>Container 7</div>
+          
+           
             
           </div>
           
+          
         </div>
+        
         <div className='customers1'>
           {Customers.map((customer, index) => (
             <div className='customer-card' key={index}>
@@ -1445,6 +1469,7 @@ const [displayedimage, setDisplayedImage] = useState('');
           </div>
         )}
       </div>
+      
     )}
   </div>
 )}
@@ -1627,6 +1652,7 @@ padding: 5px;
 }
 .info-item{
 margin-bottom: 5px;
+
 }
  
   .AddingConatiner{
@@ -2064,9 +2090,10 @@ font-size: 18px;
     background-color: #fff;
     border: 3px solid #ff0068; /* Set the border color to dark pink */
     width: 300px;
-    height: 200px;
+    height: 330px;
     flex-direction: row;
     margin-top: 30px;
+    display: flex; /* Use flexbox */
 
   }
   .pink-border {
@@ -2078,6 +2105,7 @@ font-size: 18px;
   .info {
     display: flex;
     justify-content: space-between; /* Optional: Adjust this based on your layout preferences */
+    
   }
   
   
@@ -2088,42 +2116,46 @@ font-size: 18px;
     padding: 10px; /* Add padding */
     margin-bottom: 10px; /* Add margin on the bottom */
    
+   
      
   }
   .info-item p {
-  color: black; /* Set the text color of paragraphs inside .info-item to black */
-  font-size: 20px;
-  font-weight: bold; /* Make the font bold */
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+  }
 
-}
-.icon1{
-  height: 5px;
-  width: 5px;
-}
 
 
 
 .small-container {
   background-color: #fff; /* Set the background color to pink */
   color: #ff0068; /* Set the text color to white, or adjust as needed */
-  padding: 10px; /* Add padding for better visibility and space in between */
-  margin: 50px 0; /* Add margin for spacing */
-  margin-top: 100px;
+  margin-top: 400px;
   border: 3px solid #ff0068; /* Set the border color to dark pink */
-  height: 300px;
-  width: 100px; 
-  text-align: center; /* Center the text within the container */
-  transform: rotate(90deg); /* Rotate the container by 45 degrees */
-  transform-origin: center; /* Set the rotation origin to the center */
-  padding-left: 50px;
-  padding-top: 300px;
-  
-  
+  height: 100px;
+  width: 300px;
+  display: flex; /* Use flexbox */
+  display: grid;
 
- 
- 
   
+    
 }
+.small-button {
+  font-size: 14px;
+  padding: 5px 10px;
+  height: 40px;
+  width: 150px;
+  margin-top: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #027777; /* Set the background color to blue */
+  white-space: nowrap; 
+  color: #fff;
+}
+
 
 
 
