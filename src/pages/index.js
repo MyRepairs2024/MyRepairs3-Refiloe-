@@ -941,7 +941,7 @@ margin-top: -30px;
       }
       .header1{
        width: 100vw;
-       background: #ff3386;
+       background: #fff;
       }
       .paragraph1{
         padding-top: 5px;
@@ -964,10 +964,10 @@ margin-top: -30px;
         margin: 0 auto;
        
 line-height: 5px;
-        background: #ff3386;
+        background: #fff;
         
         font-weight: bold;
-        color: #fffd;
+        color: #ff0068;
 
      
        

@@ -2096,26 +2096,32 @@ font-size: 18px;
   font-weight: bold; /* Make the font bold */
 
 }
-.icon1 img {
-  width: 3px; /* Adjust the width as needed */
-  height: 3px; /* Adjust the height as needed */
-  
+.icon1{
+  height: 5px;
+  width: 5px;
 }
 
-.icon {
-  width: 300px; /* Set the width of the icon */
-  height: 300px; /* Set the height of the icon */
-  padding: 100px;
-}
+
+
 .small-container {
   background-color: #fff; /* Set the background color to pink */
   color: #ff0068; /* Set the text color to white, or adjust as needed */
-  padding: 5px; /* Add padding for better visibility */
+  padding: 10px; /* Add padding for better visibility and space in between */
   margin: 50px 0; /* Add margin for spacing */
-  margin-top: 300px;
+  margin-top: 100px;
   border: 3px solid #ff0068; /* Set the border color to dark pink */
-  width: 300px;
-    height: 80px;
+  height: 300px;
+  width: 100px; 
+  text-align: center; /* Center the text within the container */
+  transform: rotate(90deg); /* Rotate the container by 45 degrees */
+  transform-origin: center; /* Set the rotation origin to the center */
+  padding-left: 50px;
+  padding-top: 300px;
+  
+  
+
+ 
+ 
   
 }
 
