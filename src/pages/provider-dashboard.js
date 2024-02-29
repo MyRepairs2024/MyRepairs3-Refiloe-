@@ -19,6 +19,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
+
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co';
 const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw';
 
@@ -778,6 +779,7 @@ const [displayedimage, setDisplayedImage] = useState('');
   onClick={() => {
     setExpandedPendingServices(!expandedPendingServices);
     // Perform the database search here
+    
  
   }}
 >
@@ -790,6 +792,64 @@ const [displayedimage, setDisplayedImage] = useState('');
       <progress className="circle-progress" value={pendingServicesProgress} max="100"></progress>
       <span>{pendingServicesProgress}%</span>
     </div>
+    <div className="container">
+      {/* First Set of Containers */}
+      <div className="set">
+        <div className='updates-Container'>Service Description
+        <h2>Service Description</h2>
+      <p>Description of the service...</p>
+        
+        </div>
+        <div className='updates-Container'>Service Description
+        <h2>Service Description</h2>
+      <p>Description of the service...</p>
+        
+        </div>
+        
+        
+      </div>
+
+      {/* Second Set of Containers */}
+      <div className="set">
+        <div className='updates-Container'>Client
+        <p>Name: Jane Smith</p>
+      <p>Address: 456 Oak Avenue</p>
+      <p>Service Date: 20|05|2024</p>
+        </div>
+        <div className='updates-Container'>Client
+        <p>Name: Jane Smith</p>
+      <p>Address: 456 Oak Avenue</p>
+      <p>Service Date: 10|02|2024</p>
+        </div>
+        
+      </div>
+
+
+      <div className="set">
+      <div className='updates-Container'>Services Rating
+      <div class="stars">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <p>Service Price:<br></br>R350</p>
+      </div>
+      </div>
+      <div className='updates-Container'>Services Rating
+      <div class="stars">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <p>Service Price:<br></br>R350</p>
+      </div>
+      </div>
+
+      </div>
+      </div>
+       
     
 </div>
 
@@ -812,6 +872,7 @@ const [displayedimage, setDisplayedImage] = useState('');
     <p className='popular_heading'>Current Services</p>
        </div>
        
+      
      
   </div>
   
@@ -828,18 +889,43 @@ const [displayedimage, setDisplayedImage] = useState('');
           
         )}
        
-        {activeTab === 'services' && (
-         
-<div style={{ height: '400px', overflow: 'auto', width: '900px', padding: '30px', marginLeft: '40px'}}>
-   
+       {activeTab === 'services' && (
+  <div className="services-wrapper">
+    <div className="services-container">
+      {/* Your services content goes here */}
+      <p>This is where your services content will be placed.</p>
+    </div>
+    <div className="days-container">
+      {/* Days content goes here */}
+      <p>Days</p>
+
       
-      </div>
-        )}
+    </div>
+  </div>
+)}
        
         {activeTab === 'accounts' && (
           <div>
-            {/* Add content for the Accounts tab here */}
+              <div className='countedorders'>
+            <div className='ordersummary_title'><h1>Total Earnings</h1></div>
+            <div className='ordersummary_number'>{numberOfDisplayedcurrentOrders}</div>
+            <button className="button">View Invoices</button>
           </div>
+
+          <div className='orderslist'>
+            <div className="grid-container1">
+              <div className="item3">Client</div>
+          <div className="item3">Service</div>
+          <div className="item3">Transaction Type</div>
+          <div className="item3">Balance change</div>
+          <div className="item3">Order</div>
+          <div className="item3">Date</div>
+         
+          </div>
+          </div>
+          
+          </div>
+          
         )}
         
         {activeTab === 'payments' && (
@@ -1311,9 +1397,19 @@ const [displayedimage, setDisplayedImage] = useState('');
           <div className='orderslist'>
             <div className="grid-container">
               <div className="item1">Customer Name</div>
-              
-              <div className="item2">Service Description</div>
-              <div className="item3">Service Information</div>
+          <div className="item2">Service Description</div>
+          <div className="item3">Service Information</div>
+          <div className="item1">Reggie</div>
+          <div className="item2">Repairing a Sumsung Refrigirator</div>
+          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br>
+          </br> 
+          <button className="contact-customer">Contact Customer</button>
+          
+          </div>
+          
+          
+         
+          
             </div>
 
             {currentorders.map((order, index) => (
@@ -1343,8 +1439,12 @@ const [displayedimage, setDisplayedImage] = useState('');
           <div className='orderslist'>
             <div className="grid-container">
               <div className="item1">Customer Name</div>
-              <div className="item2">Service Description</div>
-              <div className="item3">Service Information</div>
+          <div className="item2">Service Description</div>
+          <div className="item3">Service Information</div>
+          <div className="item1">Joe</div>
+          <div className="item2">Fixing an Ottimo Microwave</div>
+          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br></br> <button className="contact-customer">Contact Customer</button></div>
+          
             </div>
 
             {pendingorders.map((order, index) => (
@@ -1365,8 +1465,37 @@ const [displayedimage, setDisplayedImage] = useState('');
       )}
 
       {activeTabOrders === 'total' && (
-        <>
-          {/* Your content for the "Total Orders" tab goes here */}
+        <>  <div className='countedorders'>
+        <div className='ordersummary_title'><h1>Total Orders</h1></div>
+        <div className='ordersummary_number'>{numberOfDisplayedpendingOrders}</div>
+      </div>
+
+      <div className='orderslist'>
+        <div className="grid-container">
+          <div className="item1">Customer Name</div>
+          <div className="item2">Service Description</div>
+          <div className="item3">Service Information</div>
+          <div className="item1">Matthew</div>
+          <div className="item2">Repairing a Washing Machine</div>
+          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br></br> <button className="contact-customer">Contact Customer</button></div>
+          
+        </div>
+
+        {pendingorders.map((order, index) => (
+          <div className='orders_container1' key={index}>
+            <div className='customerName'>{order.cus_email}</div>
+            <div className='serviceDescription'>{order.sevice_description}</div>
+            <div className='serviceInfo'>
+              <div>R{order.price}</div>
+              <div>{order.date}</div>
+              <div>
+                <button onClick={() => handleAcceptOrder(order.id)}>Accept Order</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+          
         </>
       )}
     </div>
@@ -1383,6 +1512,8 @@ const [displayedimage, setDisplayedImage] = useState('');
         Pending Customers
       </a>
     </div>
+    
+    
 
     {activeTabCustomers === 'current1' && (
        
@@ -1391,11 +1522,13 @@ const [displayedimage, setDisplayedImage] = useState('');
           {/* Container for customer name */}
           <div className='info-item pink'>
             <p>CurrentCustomer</p>
-            <button className='small-button' onClick={handleContactCustomer}>
+            <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+        <button className='small-button' onClick={handleContactCustomer}>
           Contact Customer
         </button>
-           {/*<img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>*/}
-             </div>
+        <p className="customer-name">Customer Name</p>
+
+              </div>
            
           
           
@@ -1403,32 +1536,49 @@ const [displayedimage, setDisplayedImage] = useState('');
           {/* Container for service description */}
           <div className='info-item pink'>
             <p>CurrentCustomer</p>
-            <button className='small-button' onClick={handleContactCustomer}>
+           <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+           <button className='small-button' onClick={handleContactCustomer}>
           Contact Customer
         </button>
-             {/* <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>*/}
-            
-          </div>
+        <p className="customer-name">Customer Name</p>
+
+             </div>
          
           {/* Container for information description */}
           <div className='info-item pink'>
             <p>CurrentCustomer</p>
-            <button className='small-button' onClick={handleContactCustomer}>
+            <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+             <button className='small-button' onClick={handleContactCustomer}>
           Contact Customer
-        </button>
-           {/* <img src="person_Icon1.png" alt="Picture Icon" class="icon1"></img>*/}
-           <div className='small-container'>Container 7</div> 
-        <div className='small-container'>Container 7</div>
-        <div className='small-container'>Container 7</div>
-          
+          </button>
+           <p className="customer-name">Customer Name</p>
+            <div className='small-container'>
+  <div class='content'>
+    <div class='title'>Total Services  01</div>
+    <div class='line'></div>
+    <button className='container-button'>View Invoices</button>
+  </div>
+</div>
+
+<div className='small-container'>
+  <div class='content'>
+    <div class='title'>Total Services  02</div>
+    <div class='line'></div>
+    <button className='container-button'>View Invoices</button>
+  </div>
+</div>
+<div className='small-container'>
+  <div class='content'>
+    <div class='title'>Total Services  03</div>
+    <div class='line'></div>
+    <button className='container-button'>View Invoices</button>
+  </div>
+</div>
            
             
-          </div>
-          
-          
+          </div>  
         </div>
-        
-        <div className='customers1'>
+         <div className='customers1'>
           {Customers.map((customer, index) => (
             <div className='customer-card' key={index}>
               
@@ -2094,70 +2244,244 @@ font-size: 18px;
     flex-direction: row;
     margin-top: 30px;
     display: flex; /* Use flexbox */
+    border-radius: 10px;
 
   }
   .pink-border {
-
     display: column; /* Use flexbox */
     display: grid;
+    
 
   }
   .info {
     display: flex;
     justify-content: space-between; /* Optional: Adjust this based on your layout preferences */
     
+    
+    
+  }
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
   }
   
   
-
-  .info-item pink {
-   
-    color: #fff; /* Set the text color to white */
-    padding: 10px; /* Add padding */
-    margin-bottom: 10px; /* Add margin on the bottom */
-   
-   
-     
-  }
+  
   .info-item p {
     color: black;
     font-size: 20px;
     font-weight: bold;
     text-align: right;
+    font-family: 'Arial', sans-serif;
   }
-
-
-
+  
+  .info-item img {
+      width: 80px; /* Set the desired width for the image */
+      height: 80px; /* Set the desired height for the image */
+      object-fit: cover; /* Adjust the object-fit property as needed (e.g., 'contain', 'fill') */
+      margin-right: 10px; /* Add some margin to separate the image from other content */
+      display: block; /* Ensure the image is a block element for centering */
+      margin-left: auto; /* Auto margin to center the image within its container */
+      margin-right: auto; /* Auto margin to center the image within its container */
+      margin-top: 50px;
+    }
+    
+    
+  
 
 .small-container {
   background-color: #fff; /* Set the background color to pink */
-  color: #ff0068; /* Set the text color to white, or adjust as needed */
-  margin-top: 400px;
+  color: #000000; /* Set the text color to white, or adjust as needed */
+  font-weight: bold;   
+  margin-top: 20px;
   border: 3px solid #ff0068; /* Set the border color to dark pink */
   height: 100px;
   width: 300px;
-  display: flex; /* Use flexbox */
-  display: grid;
-
+  position: relative; /* Position the container absolutely */
+  border-radius: 10px;
+  display: flex;
   
-    
 }
+.small-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  border-top: 3px solid #ff0068;
+  transform: translateY(-50%);
+}
+
+
+
 .small-button {
   font-size: 14px;
   padding: 5px 10px;
   height: 40px;
   width: 150px;
-  margin-top: 270px;
+  margin-top: 90px;
+  align-items: left; /* Center items vertically */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #027777; /* Set the background color to blue */
+  background-color: #027777; /* Set the background color to light green */
   white-space: nowrap; 
   color: #fff;
+  margin-left: -100px;
+  
+  
+}
+.customer-name {
+  text-align: center;
+  margin-top: -50px;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+
+}
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  
+}
+.set {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: #fff;
+  margin-right: auto; /* Push updates container to the left */
+}
+
+.updates-Container {
+  border: 3px solid #ff0068;
+  padding: 10px;
+  margin: 5px;
+  width: 280px; /* Adjust width */
+  height: 150px; /* Adjust height */
+  margin-top: 30px;
+  border-radius: 10px; /* Adjust the value to change the roundness */ 
+  font-family: Arial, sans-serif; /* Set font family to Arial */
+  font-weight: bold; /* Set font weight to bold */
+  color: black; /* Set text color to black */
+  font-size: 20px; /* Set font size to 20 pixels */
+  position: relative;
+}
+
+.updates-Container::before,
+.updates-Container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #ff0068;
+}
+
+.updates-Container::after {
+  top: 50%;
+}
+
+.updates-Container::before {
+  bottom: 50%;
+}
+
+.set:nth-child(2) .updates-Container {
+  width: 400px; /* Width of the containers in the middle */
+}
+
+.set:nth-child(1) .updates-Container,
+.set:nth-child(3) .updates-Container {
+  width: 200px; /* Width of the containers on the left and right */
+}
+.services-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  height: 385px;
+  border: 3px solid #ff0068;
+  height: 400px;
+  overflow: auto;
+  width: 900px;
+  padding: 30px;
+  margin-left: 40px;
+}
+.services-wrapper {
+  display: flex;
 }
 
 
 
+.days-container {
+  margin-left: 10px; /* Adjust as needed */
+}
+.days-container p {
+  margin: 5px 0;
+  color: #ff0068;
+}
+
+
+
+.grid-container1 {
+  display: flex;
+}
+.button {
+  background-color: #40E0D0; /* Blue color, change as needed */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  padding: 5px 10px; /* Adjust padding */
+  font-size: 16px; /* Adjust font size */
+  cursor: pointer; /* Add cursor pointer on hover */
+  border-radius: 5px; /* Add border radius */
+  margin-top: 25px; /* Adjust margin top */
+  height: 40px;
+}
+
+.button:hover {
+  background-color: #ff0068; /* Darker blue color on hover */
+}
+.contact-customer {
+  background-color: #ff0068; /* Pink color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Adjust padding */
+  font-size: 14px; /* Adjust font size */
+  cursor: pointer; /* Add cursor pointer on hover */
+  border-radius: 5px; /* Add border radius */
+  margin-top: 10px; /* Adjust margin top */
+  height: 40px;
+  font-size: 15px;
+}
+
+.contact-customer:hover {
+  background-color: #40E0D0; /* Darker pink color on hover */
+}
+
+.title {
+  margin-bottom: 5px; /* Adjust the margin between title and line */
+}
+
+.line {
+  width: 100%;
+  border-top: 1px solid #ff0068;
+  margin: 10px 0; /* Adjust the margin above and below the line */
+}
+
+.container-button {
+  margin-top: 40px;
+  padding: 8px 16px;
+  background-color: #027777;;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 85px;
+ 
+  
+  
+}
+
+.container-button:hover {
+  background-color: #cc004d;
+}
 
  .orderDate {
   border-bottom: 2px solid #ff0068;
