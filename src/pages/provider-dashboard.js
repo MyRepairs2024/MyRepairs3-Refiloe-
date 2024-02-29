@@ -355,6 +355,9 @@ const [displayedimage, setDisplayedImage] = useState('');
       // Convert other form fields to uppercase if needed
     };
    
+
+    
+   
    
   
     console.log('Submit button clicked');
@@ -597,6 +600,29 @@ const [displayedimage, setDisplayedImage] = useState('');
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+  const handleDownloadpdf = () => {
+    // Create a new Blob object with the text content
+    const blob = new Blob(['Your PDF content here'], { type: 'application/pdf' });
+
+    // Create a link element
+    const link = document.createElement('a');
+
+    // Set the href attribute of the link to the Blob object
+    link.href = URL.createObjectURL(blob);
+
+    // Set the download attribute to specify the filename
+    link.download = 'filename.pdf';
+
+    // Append the link to the document body
+    document.body.appendChild(link);
+
+    // Click the link to trigger the download
+    link.click();
+
+    // Remove the link from the document body
+    document.body.removeChild(link);
+  };
+  
   return (
 <div className='UserDashboard'>
 
@@ -1092,7 +1118,7 @@ const [displayedimage, setDisplayedImage] = useState('');
        
           <div className="info-item">
                 <div className="label">Name:</div>
-                <div className="data">{fetchedUserInfo.name || 'N/A'}</div>
+               <div className="data">{fetchedUserInfo?.name || 'N/A'}</div>
               </div>
               <div className="info-item">
                 <div className="label">Surname:</div>
@@ -1726,12 +1752,73 @@ const [displayedimage, setDisplayedImage] = useState('');
  
  
   
-  {activeTab2 === 'Analytics' &&(
+ {activeTab2 === 'Analytics' && (
   <div className='mainpage'>
     <Dashheader/>
+    <div className="totals">
+        <p
+          onClick={() => handleTabChangeOrders('Total Requests')}
+          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Requests' ? 'underline' : 'none' }}
+        >
+          Total Requests
+        </p>
+        <p
+          onClick={() => handleTabChangeOrders('Successful Orders')}
+          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Successful Orders' ? 'underline' : 'none' }}
+        >
+          Successful Orders
+        </p>
+        <p
+          onClick={() => handleTabChangeOrders('Total Revenue')}
+          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Revenue' ? 'underline' : 'none' }}
+        >
+          Total Revenue
+        </p>
+        <p
+          onClick={() => handleTabChangeOrders('Total Expenses')}
+          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Expenses' ? 'underline' : 'none' }}
+        >
+          Total Expenses
+        </p>
+      </div>
+    <div className='analytics-container'>
+    <select>
+      <option value="2022">2020</option>
+      <option value="2023">2021</option>
+      <option value="2024">2022</option>
+      <option value="2022">2023</option>
+      <option value="2023">2024</option>
+      <option value="2024">2025</option>
+      {/* Add more options as needed */}
+    </select>
+  
+      <div className="set-of-containers">
+        <div className="smallanalytics-container">January | R1000</div>
+        <div className="smallanalytics-container">February | R2500</div>
+        <div className="smallanalytics-container">March | R 2000</div>
+      </div>
+      <div className="set-of-containers">
+        <div className="smallanalytics-container">April | R 1500</div>
+        <div className="smallanalytics-container">May | R 3000</div>
+        <div className="smallanalytics-container">June | R2000</div>
+      </div>
+      <div className="set-of-containers">
+        <div className="smallanalytics-container">July | R3000</div>
+        <div className="smallanalytics-container">August | R1000</div>
+        <div className="smallanalytics-container">September | R1000</div>
+      </div>
+      <div className="set-of-containers">
+        <div className="smallanalytics-container">October | R1000</div>
+        <div className="smallanalytics-container">November | R1000</div>
+        <div className="smallanalytics-container">December | R1000</div>
+      </div>
+      </div>
+      <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
 
+    
   </div>
- )}
+)}
+  
       </div>
   
     
@@ -2418,6 +2505,48 @@ font-size: 18px;
   margin: 5px 0;
   color: #ff0068;
 }
+.analytics-container {
+  background-color: #fff;
+  padding: 20px; /* Adjust padding as needed */
+  height:430px;
+  border: 3px solid #ff0068;
+  border-radius: 10px;
+
+
+}
+.smallanalytics-container {
+  width: calc(50% - 10px); /* Adjust width as needed */
+  height: 80px; /* Adjust height as needed */
+  width: 300px;
+  margin: 5px; /* Adjust margin as needed */
+  background-color: #fff;/* Adjust background color as needed */
+  border: 3px solid #40E0D0;
+  color: #ff0068;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  
+
+
+}
+.set-of-containers {
+  display: flex;
+  flex-direction: row; /* Arrange items horizontally */
+}
+.year-dropdown {
+  width: 100%; /* Adjust width as needed */
+  padding: 5px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  border: 1px solid #ccc; /* Add border as needed */
+  border-radius: 5px; /* Add border radius as needed */
+  background-color: pink; /* Add background color as needed */
+}
+.totals {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-family: Arial, sans-serif; /* Use Arial font */
+  font-weight: bold; /
+}
 
 
 
@@ -2439,6 +2568,7 @@ font-size: 18px;
 .button:hover {
   background-color: #ff0068; /* Darker blue color on hover */
 }
+
 .contact-customer {
   background-color: #ff0068; /* Pink color */
   color: white; /* Text color */
