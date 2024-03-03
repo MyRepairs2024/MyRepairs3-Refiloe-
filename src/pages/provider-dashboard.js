@@ -20,6 +20,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
+
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co';
 const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw';
 
@@ -602,7 +603,7 @@ const [displayedimage, setDisplayedImage] = useState('');
   };
   const handleDownloadpdf = () => {
     // Create a new Blob object with the text content
-    const blob = new Blob(['Your PDF content here'], { type: 'application/pdf' });
+    const blob = new Blob(['.analytics-container'], { type: 'application/pdf' });
 
     // Create a link element
     const link = document.createElement('a');
@@ -772,6 +773,7 @@ const [displayedimage, setDisplayedImage] = useState('');
   </div>
 )}
         {activeTab2 === 'dashboard' &&(
+          
           <div>
       <Dashheader />
       <hr/>
@@ -798,6 +800,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 
         </nav>
         {activeTab === 'overview' && (
+          
           <div className='Dash-Container'>
          <div className="metrics">
          <div
@@ -965,6 +968,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 
 {activeTab2 === 'profile' &&(
 <div className='mainpage'>
+
 
 
 <Dashheader />
@@ -1406,6 +1410,7 @@ const [displayedimage, setDisplayedImage] = useState('');
  
  {activeTab2 === 'orders' && (
   <div className='mainpage'>
+    <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
     <Dashheader/>
     <div></div>
     <div className='orders_container'>
@@ -1526,9 +1531,14 @@ const [displayedimage, setDisplayedImage] = useState('');
       )}
     </div>
   </div>
+  </div>
+
+ 
+  
 )}
 {activeTab2 === 'Customers' && (
   <div className='mainpage'>
+    <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
     <Dashheader />
     <div>
       <a href="#" onClick={(event) => { event.preventDefault(); handleTabChangeCustomers('current1'); }}>
@@ -1646,11 +1656,15 @@ const [displayedimage, setDisplayedImage] = useState('');
         )}
       </div>
       
+      
     )}
+  </div>
   </div>
 )}
   {activeTab2 === 'My Services' &&(
-  <div className='mainpage'>
+    <div className='mainpage'>
+      <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
+    
     <Dashheader/>
     
     <div className='myserviceheader'><h3>My Services</h3><button onClick={handleAddNewService}>Add New Service</button></div>
@@ -1744,6 +1758,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 
 
   </div>
+  </div>
   
   
   
@@ -1753,14 +1768,14 @@ const [displayedimage, setDisplayedImage] = useState('');
  
   
  {activeTab2 === 'Analytics' && (
-  <div className='mainpage'>
+  <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
     <Dashheader/>
     <div className="totals">
         <p
           onClick={() => handleTabChangeOrders('Total Requests')}
           style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Requests' ? 'underline' : 'none' }}
         >
-          Total Requests
+          Total Requests  
         </p>
         <p
           onClick={() => handleTabChangeOrders('Successful Orders')}
@@ -1812,10 +1827,58 @@ const [displayedimage, setDisplayedImage] = useState('');
         <div className="smallanalytics-container">November | R1000</div>
         <div className="smallanalytics-container">December | R1000</div>
       </div>
-      </div>
-      <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
-
+    </div>
+    <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
     
+   
+  
+    <div className="analytics-container">
+    <select>
+      <option value="2022">2020</option>
+      <option value="2023">2021</option>
+      <option value="2024">2022</option>
+      <option value="2022">2023</option>
+      <option value="2023">2024</option>
+      <option value="2024">2025</option>
+      {/* Add more options as needed */}
+    </select>
+    <p>Year</p>
+    <div className="tiny-container">
+      January|R 2000
+   
+
+
+</div>
+    <div className="totalrevenue-container">
+      <p>Total Revenues: 52</p>
+      <p>Total Order: 25</p>
+      <p>Successful Order: 15</p>
+      <p>Total Expenses: R1000</p>
+      <p>Total Revenue: R100000</p>
+      <p>Total Points: 05</p>
+   
+  </div>
+  <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+
+    </div>
+    
+    <div className="analytics-container">
+    
+              <div className="item1">Customer Name</div>
+          <div className="item2">Expenses Description</div>
+          <div className="item3">Service Information</div>
+          <div className="item1">Order No</div>
+          <div className="item3">Expenses Information</div>
+          <div className="item2">Repairing a Sumsung Refrigirator</div>
+          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br>
+          </br>  
+          </div>
+          <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+          
+          
+         
+          
+            </div>
   </div>
 )}
   
@@ -2528,6 +2591,31 @@ font-size: 18px;
 
 
 }
+
+.totalrevenue-container {
+  background-color: #fff;
+  padding: 20px;
+  height: 200px;
+  width: 500px;
+  border: 3px solid #ff0068;
+  border-radius: 10px;
+  margin-left: 350px;
+  margin-top: -90px;
+}
+
+.tiny-container {
+  width: calc(35% - 5px); /* Adjust width as needed */
+  height: 80px; /* Adjust height as needed */
+  margin: 5px; /* Adjust margin as needed */
+  background-color: #fff;
+  border: 3px solid #40E0D0;
+  color: #ff0068;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  
+}
+
 .set-of-containers {
   display: flex;
   flex-direction: row; /* Arrange items horizontally */
