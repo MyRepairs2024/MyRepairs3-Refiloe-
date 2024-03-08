@@ -21,6 +21,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
+
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co';
 const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw';
 
@@ -99,6 +100,8 @@ const currentCustomers = Customers.slice(indexOfFirstCustomer, indexOfLastCustom
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState([]); // State to store uploaded file names
   const [uploading, setUploading] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+
 
   const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw';
@@ -142,15 +145,29 @@ const [displayedimage, setDisplayedImage] = useState('');
     setActiveTabOrders(tabName);
     // Fetch the respective orders based on the selected tab if needed
   };
-  const handleSave = () => {
-    console.log('Services to be saved:', services);
-    // You can perform additional actions if needed
-  };
+  
+  const [showAddingContainer, setShowAddingContainer] = useState(false);
+
   const handleAddNewService = () => {
-    setServices((prevServices) => [
-      ...prevServices,
-      { serviceName: '', description: '', availability: 'available', hourlyRate: '' },
-    ]);
+    console.log('Adding service...');
+    setShowAddingContainer(true); // Set the state to true when clicking "Add New Service" button
+  };
+
+  const handleSave = () => {
+    // Logic for saving new service
+    setShowAddingContainer(false); // Close the adding container after saving
+  };
+  const handleEdit = () => {
+    setShowAddingContainer(!showAddingContainer);
+  };
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleContactCustomer = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
   
 
@@ -185,11 +202,10 @@ const [displayedimage, setDisplayedImage] = useState('');
     acceptServiceRequest(requestId);
     // You can also perform other actions here, if needed
   };
-  const handleContactCustomer = () => {
-    // Your logic for handling the contact customer action
-    console.log("Contacting customer...");
-    // Add more logic as needed
+  const toggleEdit = () => {
+    setEditMode(!editMode);
   };
+ 
   
   
 
@@ -354,6 +370,10 @@ const [displayedimage, setDisplayedImage] = useState('');
       businesstype: formData.businesstype.toUpperCase(),
       providertype: formData.providertype.toUpperCase(),
       // Convert other form fields to uppercase if needed
+    };
+    const AnalyticsOverview = () => {
+      const activeTab = 'analyticsoverview';
+      
     };
    
 
@@ -596,6 +616,7 @@ const [displayedimage, setDisplayedImage] = useState('');
       console.error('Error populating paid requests:', error);
     }
   };
+  
 
   
   const handleTabChange = (tab) => {
@@ -800,6 +821,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 
         </nav>
         {activeTab === 'overview' && (
+          <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
           
           <div className='Dash-Container'>
          <div className="metrics">
@@ -826,12 +848,12 @@ const [displayedimage, setDisplayedImage] = useState('');
       <div className="set">
         <div className='updates-Container'>Service Description
         <h2>Service Description</h2>
-      <p>Description of the service...</p>
+        <p style={{ fontWeight: 'normal' }}>Repairing a Samsung fridge</p>
         
         </div>
         <div className='updates-Container'>Service Description
         <h2>Service Description</h2>
-      <p>Description of the service...</p>
+        <p style={{ fontWeight: 'normal' }}>Repairing a Microwave</p>
         
         </div>
         
@@ -841,14 +863,14 @@ const [displayedimage, setDisplayedImage] = useState('');
       {/* Second Set of Containers */}
       <div className="set">
         <div className='updates-Container'>Client
-        <p>Name: Jane Smith</p>
-      <p>Address: 456 Oak Avenue</p>
-      <p>Service Date: 20|05|2024</p>
+        <p style={{ fontWeight: 'normal', color: 'black' }}>Name: <span style={{ color: '#40E0D0' }}>Jane Smith</span></p>
+    <p style={{ fontWeight: 'normal',color: 'black'  }}>Address: <span style={{ color: '#40E0D0' }}>456 Oak Avenue</span></p>
+    <p style={{ fontWeight: 'normal' ,color: 'black' }}>Service Date: <span style={{ color: '#40E0D0' }}>20|05|2024</span></p>
         </div>
         <div className='updates-Container'>Client
-        <p>Name: Jane Smith</p>
-      <p>Address: 456 Oak Avenue</p>
-      <p>Service Date: 10|02|2024</p>
+        <p style={{ fontWeight: 'normal', color: 'black' }}>Name: <span style={{ color: '#40E0D0' }}>Jane Smith</span></p>
+    <p style={{ fontWeight: 'normal',color: 'black'  }}>Address: <span style={{ color: '#40E0D0' }}>456 Oak Avenue</span></p>
+    <p style={{ fontWeight: 'normal' ,color: 'black' }}>Service Date: <span style={{ color: '#40E0D0' }}>20|05|2024</span></p>
         </div>
         
       </div>
@@ -862,7 +884,7 @@ const [displayedimage, setDisplayedImage] = useState('');
         <span class="star">&#9733;</span>
         <span class="star">&#9733;</span>
         <span class="star">&#9733;</span>
-        <p>Service Price:<br></br>R350</p>
+        <p style={{ fontWeight: 'bold' ,color: 'black' }}>Service Price:<br></br><span style={{ color: '#ff0068' }}>R350</span></p>
       </div>
       </div>
       <div className='updates-Container'>Services Rating
@@ -872,7 +894,7 @@ const [displayedimage, setDisplayedImage] = useState('');
         <span class="star">&#9733;</span>
         <span class="star">&#9733;</span>
         <span class="star">&#9733;</span>
-        <p>Service Price:<br></br>R350</p>
+        <p style={{ fontWeight: 'bold' ,color: 'black' }}>Service Price:<br></br><span style={{ color: '#ff0068' }}>R350</span></p>
       </div>
       </div>
 
@@ -904,6 +926,7 @@ const [displayedimage, setDisplayedImage] = useState('');
       
      
   </div>
+</div>
   
 
 
@@ -919,6 +942,7 @@ const [displayedimage, setDisplayedImage] = useState('');
         )}
        
        {activeTab === 'services' && (
+         <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
   <div className="services-wrapper">
     <div className="services-container">
       {/* Your services content goes here */}
@@ -931,9 +955,11 @@ const [displayedimage, setDisplayedImage] = useState('');
       
     </div>
   </div>
+  </div>
 )}
        
         {activeTab === 'accounts' && (
+           <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
           <div>
               <div className='countedorders'>
             <div className='ordersummary_title'><h1>Total Earnings</h1></div>
@@ -954,6 +980,7 @@ const [displayedimage, setDisplayedImage] = useState('');
           </div>
           
           </div>
+          </div>
           
         )}
         
@@ -967,450 +994,104 @@ const [displayedimage, setDisplayedImage] = useState('');
         )}
 
 {activeTab2 === 'profile' &&(
-<div className='mainpage'>
+<div>
 
 
-
-<Dashheader />
+      <Dashheader />
       <div></div>
-      <div className='info_container'>
-    <div className='pfp_and_files'> 
-    <div className='edit_pfp'>
+      <div className='Profiletab'>
+   <div className='edit_pfp'>
     <h4>Profile Picture</h4>
     <div className='pfp'></div>
+    <p className='Name_Surname'></p>
    <div className='edit_container1'> <button className='edit_image'>Edit</button></div>
     </div>
-
-      <div className="upload-form">
-     <div className='uploadfiles'><p className='fileheading'>Upload Documents</p><button className="upload-button" onClick={uploadFiles} disabled={uploading}>
-        {uploading ? 'Uploading...' : 'Upload'}
-      </button></div> 
-     
-      <label htmlFor="avatar-upload" className="custom-file-upload">
-    {selectedAvatarFile ? (
-      <>
-        <span>
-          <FontAwesomeIcon icon={faRedo} onClick={() => handleRedoFileSelection('avatar')} />
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          {selectedAvatarFile.name}
-        </span>
-      </>
-    ) : (
-      <span>ID/Passport</span>
-    )}
-  </label>
-  <input
-    id="avatar-upload"
-    type="file"
-    className="visually-hidden"
-    onChange={(e) => handleFileUpload('avatar', e)}
-    ref={fileInputRefs.avatar}
-  />
-
-  <label htmlFor="id-upload" className="custom-file-upload">
-    {selectedIDFile ? (
-      <>
-        <span>
-          <FontAwesomeIcon icon={faRedo} onClick={() => handleRedoFileSelection('ID')} />
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          {selectedIDFile.name}
-        </span>
-      </>
-    ) : (
-      <span>Business License</span>
-    )}
-  </label>
-  <input
-    id="id-upload"
-    type="file"
-    className="visually-hidden"
-    onChange={(e) => handleFileUpload('ID', e)}
-    ref={fileInputRefs.ID}
-  />
-
-<label htmlFor="trading-license-upload" className="custom-file-upload">
-  {selectedTradingLicenseFile ? (
-    <>
-      <span>
-        <FontAwesomeIcon icon={faRedo} onClick={() => handleRedoFileSelection('tradingLicense')} />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {selectedTradingLicenseFile.name}
-      </span>
-    </>
-  ) : (
-    <span>Trading License</span>
-  )}
-</label>
-<input
-  id="trading-license-upload"
-  type="file"
-  className="visually-hidden"
-  onChange={(e) => handleFileUpload('tradingLicense', e)}
-  ref={fileInputRefs.tradingLicense}
-/>
-
-<label htmlFor="qualifications-upload" className="custom-file-upload">
-  {selectedQualificationsFile ? (
-    <>
-      <span>
-        <FontAwesomeIcon icon={faRedo} onClick={() => handleRedoFileSelection('qualifications')} />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {selectedQualificationsFile.name}
-      </span>
-    </>
-  ) : (
-    <span>Qualifications</span>
-  )}
-</label>
-<input
-  id="qualifications-upload"
-  type="file"
-  className="visually-hidden"
-  onChange={(e) => handleFileUpload('qualifications', e)}
-  ref={fileInputRefs.qualifications}
-/>
-
-<label htmlFor="business-registration-upload" className="custom-file-upload">
-  {selectedBusinessRegistrationFile ? (
-    <>
-      <span>
-        <FontAwesomeIcon icon={faRedo} onClick={() => handleRedoFileSelection('businessRegistration')} />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        {selectedBusinessRegistrationFile.name}
-      </span>
-    </>
-  ) : (
-    <span>Business Registration</span>
-  )}
-</label>
-<input
-  id="business-registration-upload"
-  type="file"
-  className="visually-hidden"
-  onChange={(e) => handleFileUpload('businessRegistration', e)}
-  ref={fileInputRefs.businessRegistration}
-/>
-
-     
-    
-    </div>
-    </div>
-
     <div className='profile_information'>
+      <div className='personalinfo_header'><h4 className='personalinfo_heading'>Personal Information</h4> 
+      <button className='edit_personal' onClick={toggleEdit}>Edit</button>
+      </div>
+<div className='User_info'>
+<div className='fetched_salut'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='Name'>Salutation:</p></strong></div>
+              <div className='fetched_name'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='profile_name'>Name:</p></strong></div>
+              <div className='fetched_dob'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='dob'>Date of Birth</p></strong></div>
+              <div className='fetched_phone'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='phone'>Phone:</p></strong></div>
 
- 
-    <div className="user-info-container">
-  {loading ? (
-    <p>Loading...</p>
-  ) : (
-    <div className="user-info">
-      <div className="personalinfo_header">
-        <h4 className='personalinfo_heading'>Personal Information</h4>
-        {editing && (
-          <button className='back_arrow' onClick={() => setEditing(false)}>Back</button>
-        )}
-        {editing ? (
-          <button className='edit_personal' onClick={handleSaveClick}>Save</button>
-        ) : (
-          <button className='edit_personal' onClick={handleEditClick}>Edit</button>
-        )}
+              <div className='fetched_email'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='profile_email'>Email:</p></strong></div>
+              <div className='fetched_country'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='country'>Country</p></strong></div>
+              <div className='fetched_city'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='city'>City:</p></strong></div>
+              <div className='fetched_zip'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='zip'>ZIP:</p></strong></div>
+              <div className='fetched_street'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='street'>Street Name</p></strong></div>
+              <div className='fetched_building'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='building'>Building:</p></strong></div>
+
+
+</div>
+{editMode && (
+  <>
+        <div className='edit-personal-info-container'>
+        <div className='editinfo_header1'><h4 className='personalinfo_heading'>Personal Information</h4> 
+        <div className='editbuttons'>
+      <button className='edit_personal1' onClick={toggleEdit}>Save</button>
+      <button className='edit_personal2' onClick={toggleEdit}>Cancel</button>
+      </div>
+      </div>
+          <form className='edit_form'>
+            <div className='fetched_salut' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='Name'></p></strong>
+              <input type="text" name="salutation" id="edit-salutation" />
+            </div>
+            <div className='fetched_name' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='profile_name'>Name:</p></strong>
+              <input type="text" name="name" id="edit-name" />
+            </div>
+            <div className='fetched_dob' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='dob'>Date of Birth:</p></strong>
+              <input type="text" name="dob" id="edit-dob" />
+            </div>
+            <div className='fetched_phone' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='phone'>Phone:</p></strong>
+              <input type="text" name="phone" id="edit-phone" />
+            </div>
+            <div className='fetched_email' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='profile_email'>Email:</p></strong>
+              <input type="text" name="email" id="edit-email" />
+            </div>
+            <div className='fetched_country' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='country'>Country:</p></strong>
+              <input type="text" name="country" id="edit-country" />
+            </div>
+            <div className='fetched_city' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='city'>City:</p></strong>
+              <input type="text" name="city" id="edit-city" />
+            </div>
+            <div className='fetched_zip' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='zip'>ZIP:</p></strong>
+              <input type="text" name="zip" id="edit-zip" />
+            </div>
+            <div className='fetched_street' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='street'>Street Name:</p></strong>
+              <input type="text" name="street" id="edit-street" />
+            </div>
+            <div className='fetched_building' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='building'>Building:</p></strong>
+              <input type="text" name="building" id="edit-building" />
+            </div>
+          </form>
+        </div>
+          </>
+      )}
       </div>
       
-      {/* Display editable fields */}
-      {!editing ? (
-        <>
-       
-          <div className="info-item">
-                <div className="label">Name:</div>
-               <div className="data">{fetchedUserInfo?.name || 'N/A'}</div>
-              </div>
-              <div className="info-item">
-                <div className="label">Surname:</div>
-                <div className="data">{fetchedUserInfo.surname || 'N/A'}</div>
-              </div>
-              <div className="info-item">
-                <div className="label">Email:</div>
-                <div className="data">{fetchedUserInfo.email || 'N/A'}</div>
-              </div>
-              <div className="info-item">
-                <div className="label">Date of Birth:</div>
-                <div className="data">{fetchedUserInfo.dateOfBirth || 'N/A'}</div>
-              </div>
-              <div className="info-item">
-                <div className="label">Identification Type:</div>
-                <div className="data">{fetchedUserInfo.identificationType || 'N/A'}</div>
-              </div>
-
-              <div className="info-item">
-                <div className="label">Phone:</div>
-                <div className="data">{fetchedUserInfo.phone || 'N/A'}</div>
-              </div>
-              <div className="info-item">
-            <div className="label">Country:</div>
-            <div className="data">{fetchedUserInfo.country || 'N/A'}</div>
-          </div>
-          <div className="info-item">
-            <div className="label">City:</div>
-            <div className="data">{fetchedUserInfo.city || 'N/A'}</div>
-          </div>
-          <div className="info-item">
-            <div className="label">ZIP:</div>
-            <div className="data">{fetchedUserInfo.zip || 'N/A'}</div>
-          </div>
-          <div className="info-item">
-            <div className="label">Street:</div>
-            <div className="data">{fetchedUserInfo.street || 'N/A'}</div>
-          </div>
-          <div className="info-item">
-            <div className="label">Building No:</div>
-            <div className="data">{fetchedUserInfo.buildingNo || 'N/A'}</div>
-          </div>
-          <div className="info-item">
-            <div className="label">Company Name:</div>
-            <div className="data">{fetchedUserInfo.companyName || 'N/A'}</div>
-          </div>
-          <div className="info-item">
-            <div className="label">Company Registration:</div>
-            <div className="data">{fetchedUserInfo.companyRegistration || 'N/A'}</div>
-          </div>
-        </>
-      ) : (
-        <div className='editablecont'>
-        {/* Display editable fields */}
-     
-        <div className="info-item">
-                <div className="label">Name:</div>
-                <input
-                  type="text"
-                  name="name"
-                  value={editedUserInfo.name || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="info-item">
-                <div className="label">Surname:</div>
-                <input
-                  type="text"
-                  name="surname"
-                  value={editedUserInfo.surname || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="info-item">
-                <div className="label">Email:</div>
-                <div className="label-text" style={{ color: 'red', fontSize: '13px', marginTop: '2px' }}>Not allowed.</div>
-
-                <input
-                  type="text"
-                  name="email"
-                  value={editedUserInfo.email || ''}
-                  onChange={handleInputChange}
-                  readOnly
-                />
-              </div>
-              <div className="info-item">
-      <div className="label">Date of Birth:</div>
-      <div className="date-picker-container">
-        <input
-          type="text"
-          name="dateOfBirth"
-          value={textDate}
-          onChange={handleInputChange}
-          placeholder="Select date"
-        />
-        <div className="icon" onClick={() => document.getElementById('datePicker').click()}>
-          <FaCalendarAlt />
-        </div>
-        <DatePicker
-          id="datePicker"
-          selected={selectedDate}
-          onChange={handleDateChange}
-          dateFormat="MM/dd/yyyy" // Customize the date format if needed
-          showYearDropdown
-          minDate={new Date(new Date().setFullYear(new Date().getFullYear() - 70))}
-          maxDate={new Date(new Date().setFullYear(new Date().getFullYear() - 18))}
-          scrollableYearDropdown
-          className="d-none"
-        />
-      </div>
     </div>
-    <div className="info-item">
-        <div className="label">Nationality:</div>
-        <select
-        type="text"
-          name="nationality"
-          value={editedUserInfo.nationality || ''}
-          onChange={handleInputChange}
-        >
-                    <option value="Select">Select</option>
-
-          <option value="South-Africa">South Africa</option>
-        </select>
-      </div>
-      <div className="info-item">
-        <div className="label">Identification Type:</div>
-        <select
-        type="text"
-          name="identificationType"
-          value={editedUserInfo.identificationType || ''}
-          onChange={handleInputChange}
-        >
-          <option value="">Select</option>
-          <option value="ID">ID</option>
-          <option value="Passport">Passport</option>
-        </select>
-      </div>
-      <div className="info-item">
-            <div className="label">ID/Passport No:</div>
-            <input
-              type="text"
-              name="IDPassport_No"
-              value={editedUserInfo.IDPassport_No || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-      <div className="info-item">
-        <div className="label">Gender:</div>
-        <select
-          type="text"
-          name="gender"
-          value={editedUserInfo.gender || ''}
-          onChange={handleInputChange}
-        >
-                    <option value="Select">Select</option>
-
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-
-        </select>
-      </div>
-
-      <div className="info-item">
-        <div className="label">Country:</div>
-        <select
-          type="text"
-          name="country"
-          value={editedUserInfo.country|| ''}
-          onChange={handleInputChange}
-        >
-        <option value="Select">Select</option>
-         <option value="South Africa">South Africa</option>
-
-        </select>
-      </div>
-
-      <div className="info-item">
-        <div className="label">Province:</div>
-        <select
-        type="text"
-          name="province"
-          value={editedUserInfo.province || ''}
-          onChange={handleInputChange}
-        >
-         <option value="Select">Select</option>
-          <option value="Gauteng">Gauteng</option>
-        </select>
-      </div>
-
-          <div className="info-item">
-            <div className="label">City:</div>
-            <input
-              type="text"
-              name="city"
-              value={editedUserInfo.city || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="info-item">
-            <div className="label">ZIP:</div>
-            <input
-              type="text"
-              name="zip"
-              value={editedUserInfo.zip || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="info-item">
-            <div className="label">Street:</div>
-            <input
-              type="text"
-              name="street"
-              value={editedUserInfo.street || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="info-item">
-            <div className="label">Building No:</div>
-            <input
-              type="text"
-              name="buildingNo"
-              value={editedUserInfo.buildingNo || ''}
-              onChange={handleInputChange}
-              
-            />
-          </div>
-          <div className="info-item">
-            <div className="label">Phone:</div>
-            <input
-              type="text"
-              name="phone"
-              value={editedUserInfo.phone || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="info-item">
-            <div className="label">Company Name:</div>
-            <input
-              type="text"
-              name="companyName"
-              value={editedUserInfo.companyName || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="info-item">
-            <div className="label">Company Reg:</div>
-            <input
-              type="text"
-              name="companyRegistration"
-              value={editedUserInfo.companyRegistration || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-      </div>
-    )}
-  </div>
-)}
-</div>
-        <div className='Submittedfiles'>
-
-        {showWarning && (
-        <div className='warning-container'>
-          <p>Please refrain from uploading new files as this may replace your already approved files.</p>
-        </div>
-      )}
-      <div className='Submittedfiles'>
-        <h3>Uploaded File Names</h3>
-        {prouploadedFiles.length > 0 ? (
-          <ul>
-            {prouploadedFiles.map((fileName, index) => (
-              <li key={index}>{fileName}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No files uploaded yet.</p>
-        )}
-      </div>
-        
-        </div>
-    
-  </div>
-  </div>
+   
   </div>
   )}
+
  
  {activeTab2 === 'orders' && (
+   <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
+  
   <div className='mainpage'>
-    <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
+   
     <Dashheader/>
     <div></div>
     <div className='orders_container'>
@@ -1434,7 +1115,21 @@ const [displayedimage, setDisplayedImage] = useState('');
           <div className="item2">Repairing a Sumsung Refrigirator</div>
           <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br>
           </br> 
-          <button className="contact-customer">Contact Customer</button>
+          <button className="contact-customer" onClick={handleContactCustomer}>
+        Contact Customer
+      </button>
+      {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p>Text</p>
+            <p>Call</p>
+
+            <button className="close-button" onClick={handleClosePopup}>Close</button>
+          </div>
+        </div>
+      )}
           
           </div>
           
@@ -1474,7 +1169,23 @@ const [displayedimage, setDisplayedImage] = useState('');
           <div className="item3">Service Information</div>
           <div className="item1">Joe</div>
           <div className="item2">Fixing an Ottimo Microwave</div>
-          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br></br> <button className="contact-customer">Contact Customer</button></div>
+          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br></br> 
+          <button className="contact-customer" onClick={handleContactCustomer}>
+        Contact Customer
+      </button>
+      {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p>Text</p>
+            <p>Call</p>
+
+            <button className="close-button" onClick={handleClosePopup}>Close</button>
+          </div>
+        </div>
+      )}
+          </div>
           
             </div>
 
@@ -1508,7 +1219,23 @@ const [displayedimage, setDisplayedImage] = useState('');
           <div className="item3">Service Information</div>
           <div className="item1">Matthew</div>
           <div className="item2">Repairing a Washing Machine</div>
-          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br></br> <button className="contact-customer">Contact Customer</button></div>
+          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br></br> 
+          <button className="contact-customer" onClick={handleContactCustomer}>
+        Contact Customer
+      </button>
+      {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p>Text</p>
+            <p>Call</p>
+
+            <button className="close-button" onClick={handleClosePopup}>Close</button>
+          </div>
+        </div>
+      )}
+          </div>
           
         </div>
 
@@ -1557,13 +1284,26 @@ const [displayedimage, setDisplayedImage] = useState('');
        <div className='info'>
           {/* Container for customer name */}
           <div className='info-item pink'>
-            <p>CurrentCustomer</p>
+            <p>Current Customer</p>
             <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+            <p className="customer-name">Customer Name</p>
+
         <button className='small-button' onClick={handleContactCustomer}>
           Contact Customer
         </button>
-        <p className="customer-name">Customer Name</p>
+        {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p>Text</p>
+            <p>Call</p>
 
+            <button className="close-button" onClick={handleClosePopup}>Close</button>
+          </div>
+        </div>
+      )}
+       
               </div>
            
           
@@ -1571,49 +1311,56 @@ const [displayedimage, setDisplayedImage] = useState('');
           
           {/* Container for service description */}
           <div className='info-item pink'>
-            <p>CurrentCustomer</p>
+            <p>Current Customer</p>
            <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+           <p className="customer-name">Customer Name</p>
            <button className='small-button' onClick={handleContactCustomer}>
           Contact Customer
         </button>
-        <p className="customer-name">Customer Name</p>
+      
 
              </div>
          
           {/* Container for information description */}
           <div className='info-item pink'>
-            <p>CurrentCustomer</p>
+            <p>Current Customer</p>
             <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+            <p className="customer-name">Customer Name</p>
              <button className='small-button' onClick={handleContactCustomer}>
           Contact Customer
           </button>
-           <p className="customer-name">Customer Name</p>
-            <div className='small-container'>
-  <div class='content'>
-    <div class='title'>Total Services  01</div>
-    <div class='line'></div>
-    <button className='container-button'>View Invoices</button>
-  </div>
-</div>
-
-<div className='small-container'>
-  <div class='content'>
-    <div class='title'>Total Services  02</div>
-    <div class='line'></div>
-    <button className='container-button'>View Invoices</button>
-  </div>
-</div>
-<div className='small-container'>
-  <div class='content'>
-    <div class='title'>Total Services  03</div>
-    <div class='line'></div>
-    <button className='container-button'>View Invoices</button>
-  </div>
-</div>
+          
+           
+            
            
             
           </div>  
         </div>
+        <div className='small-containers-container'>
+    <div className='small-container'>
+      <div class='content'>
+        <div class='title'>Total Services 01</div>
+        <div class='line'></div>
+        <button className='container-button'>View Invoices</button>
+      </div>
+    </div>
+
+    <div className='small-container'>
+      <div class='content'>
+        <div class='title'>Total Services 02</div>
+        <div class='line'></div>
+        <button className='container-button'>View Invoices</button>
+      </div>
+    </div>
+
+    <div className='small-container'>
+      <div class='content'>
+        <div class='title'>Total Services 03</div>
+        <div class='line'></div>
+        <button className='container-button'>View Invoices</button>
+      </div>
+    </div>
+  </div>
          <div className='customers1'>
           {Customers.map((customer, index) => (
             <div className='customer-card' key={index}>
@@ -1654,233 +1401,292 @@ const [displayedimage, setDisplayedImage] = useState('');
             </button>
           </div>
         )}
+      </div>  
+    )}
+  </div>
+  </div>
+  
+)}
+{activeTab2 === 'My Services' && (
+  <div className='mainpage' style={{ height: '1000vh', overflowY: 'auto' }}>
+    <div className='mainpage'>
+      <Dashheader/>
+      <div className='myserviceheader'>
+        <h3>My Services</h3>
+        <button onClick={handleAddNewService}>Add New Service</button>
+      </div>
+      {showAddingContainer && (
+      <div className='AddingContainer'>
+        <div className='service1'>
+          <div className='imgsev1'>
+            {newService.servicePhoto && (
+              <img src={URL.createObjectURL(newService.servicePhoto)} alt="Service" />
+            )}
+            <div className='input_servicephoto'>
+              <button type="button" id="servicePhotoButton" onClick={() => document.getElementById('servicePhoto').click()}>
+                <i className="fas fa-camera"></i> {/* FontAwesome camera icon */}
+                Upload Service Photo
+              </button>
+              <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
+            </div>
+          </div>
+          <div className='descrip1'>
+            <div className='input_servicename'>
+              <label htmlFor="serviceName">Service Name:</label>
+              <select id="serviceName" name="serviceName">
+                <option value="Electrician">Electrician</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="Fridge Repairs">Fridge Repairs </option>
+                {/* Add more options as needed */}
+              </select>
+              <button onClick={handleSave}>Save</button>
+            </div>
+            <div className='input_servicedescrip'>
+              <label htmlFor="description">Description:</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+            <div className='input_serviceavail'>
+              <label htmlFor="availability">Availability:</label>
+              <select id="availability" name="availability">
+                <option value="available">Monday-Friday</option>
+                <option value="available">Monday-Sunday</option>
+                <option value="notAvailable">Unavailable</option>
+                {/* Add other availability options as needed */}
+              </select>
+              <label htmlFor="hourlyRate">Hourly Rate:</label>
+              <input type="text" id="hourlyRate" name="hourlyRate" />
+            </div>
+          </div>
+        </div>
+        <div className='service2'>
+          <div className='imgsev1'>
+            {newService.servicePhoto && (
+              <img src={URL.createObjectURL(newService.servicePhoto)} alt="Service" />
+            )}
+            <div className='input_servicephoto'>
+              <button type="button" id="servicePhotoButton" onClick={() => document.getElementById('servicePhoto').click()}>
+                Upload Service Photo
+              </button>
+              <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
+            </div>
+          </div>
+          <div className='descrip2'>
+            <div className='input_servicename'>
+              <label htmlFor="serviceName">Service Name:</label>
+              <select id="serviceName" name="serviceName">
+                <option value="Electicity Installation">Electicity Installation</option>
+                <option value="Electrical Repair">Electrical Repair</option>
+                <option value="Apliance Services">Apliance Services</option>
+                {/* Add more options as needed */}
+              </select>
+              <button onClick={handleSave}>Save</button>
+            </div>
+            <div className='input_servicedescrip'>
+              <label htmlFor="description">Description:</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+            <div className='input_serviceavail'>
+              <label htmlFor="availability">Availability:</label>
+              <select id="availability" name="availability">
+                <option value="available">Monday-Friday</option>
+                <option value="available">Monday-Sunday</option>
+                <option value="notAvailable">Not Available</option>
+                {/* Add other availability options as needed */}
+              </select>
+              <label htmlFor="hourlyRate">Hourly Rate:</label>
+              <input type="text" id="hourlyRate" name="hourlyRate" />
+            </div>
+          </div>
+        </div>
+      </div>
+      )}
+      <div className="top-containers" style={{ marginTop: '20px' }}>
+  <div className="pink-container">
+  <span className="service-name">Cleaning</span>
+  <br></br>
+  <span className="line"></span>
+  <p className="email-address">refiloemokhothotso@gmail.com</p>
+  <span className="line"></span>
+  <span className="price">Price :<br></br>R500<br></br>Monday-Friday</span>
+  <button className="edit-button" onClick={handleEdit}>Edit</button>
+  </div>
+  <div className="pink-container">
+  <span className="service-name">Electrician</span>
+  <br></br>
+  <span className="line"></span>
+  <p className="email-address">refiloemokhothotso@gmail.com</p>
+  <span className="line"></span>
+  <span className="price">Price :<br></br>R500<br></br>Monday-Friday</span>
+  <button className="edit-button" onClick={handleEdit}>Edit</button>
+  </div>
+  <div className="pink-container">
+  <span className="service-name">Painting</span>
+  <br></br>
+  <span className="line"></span>
+  <p className="email-address">refiloemokhothotso@gmail.com</p>
+  <span className="line"></span>
+  <span className="price">Price :<br></br>R500<br></br>Monday-Friday</span>
+  <button className="edit-button" onClick={handleEdit}>Edit</button>
+  </div>
+</div>
+<div className="top-containers" style={{ marginTop: '20px' }}>
+  <div className="pink-container">
+  <span className="service-name">Plumbing</span>
+  <br></br>
+  <span className="line"></span>
+  <p className="email-address">refiloemokhothotso@gmail.com</p>
+  <span className="line"></span>
+  <span className="price">Price :<br></br>R500<br></br>Monday-Friday</span>
+  <button className="edit-button" onClick={handleEdit}>Edit</button>
+  </div>
+  <div className="pink-container">
+  <span className="service-name">Electrician</span>
+  <br></br>
+  <span className="line"></span>
+  <p className="email-address">refiloemokhothotso@gmail.com</p>
+  <span className="line"></span>
+  <span className="price">Price :<br></br>R500<br></br>Monday-Friday</span>
+  <button className="edit-button" onClick={handleEdit}>Edit</button>
+  </div>
+  <div className="pink-container">
+  <span className="service-name">TV Repairing</span>
+  <br></br>
+  <span className="line"></span>
+  <p className="email-address">refiloemokhothotso@gmail.com</p>
+  <span className="line"></span>
+  <span className="price">Price :<br></br>R500<br></br>Monday-Friday</span>
+  <button className="edit-button" onClick={handleEdit}>Edit</button>
+  </div>
+
       </div>
       
-      
-    )}
-  </div>
+    </div>
   </div>
 )}
-  {activeTab2 === 'My Services' &&(
-    <div className='mainpage'>
-      <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
-    
-    <Dashheader/>
-    
-    <div className='myserviceheader'><h3>My Services</h3><button onClick={handleAddNewService}>Add New Service</button></div>
-    
-<div className='AddingConatiner'>
-<div className='service1'><div className='imgsev1'>
-{newService.servicePhoto && (
-      <img src={URL.createObjectURL(newService.servicePhoto)} alt="Service" />
-    )}
-    <div className='input_servicephoto'>
-  <button type="button" id="servicePhotoButton" onClick={() => document.getElementById('servicePhoto').click()}>
-  <i className="fas fa-camera"></i> {/* FontAwesome camera icon */}
-    Upload Service Photo
-  </button>
-  <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
-</div>
-
-</div>
-<div className='descrip1'>
-<div className='input_servicename'>
-  <label htmlFor="serviceName">Service Name:</label>
-  <select id="serviceName" name="serviceName">
-    <option value="Electrician">Electrician</option>
-    <option value="Plumbing">Plumbing</option>
-    <option value="Fridge Repairs">Fridge Repairs </option>
-    {/* Add more options as needed */}
-    
-  </select>
-  <button onClick={handleSave}>Save</button>
-</div>
-
-<div className='input_servicedescrip'> <label htmlFor="description">Description:</label>
-  <textarea id="description" name="description"></textarea></div>
-
-  <div className='input_serviceavail'> <label htmlFor="availability">Availability:</label>
-  <select id="availability" name="availability">
-    <option value="available">Available</option>
-    <option value="notAvailable">Not Available</option>
-    {/* Add other availability options as needed */}
-  </select>
-  <label htmlFor="hourlyRate">Hourly Rate:</label>
-  <input type="text" id="hourlyRate" name="hourlyRate" />
-  </div>
-</div></div>
-<div className='service2'><div className='imgsev1'>
-{newService.servicePhoto && (
-      <img src={URL.createObjectURL(newService.servicePhoto)} alt="Service" />
-    )}
-    <div className='input_servicephoto'>
-  <button type="button" id="servicePhotoButton" onClick={() => document.getElementById('servicePhoto').click()}>
-    Upload Service Photo
-  </button>
-  <input type="file" id="servicePhoto" name="servicePhoto" accept="image/*" onChange={handlePhotoChange} style={{ display: 'none' }} />
-</div>
-  </div><div className='descrip2'>
-<div className='input_servicename'>
-  <label htmlFor="serviceName">Service Name:</label>
-  <select id="serviceName" name="serviceName">
-    <option value="Electicity Installation">Electicity Installation</option>
-    <option value="Electrical Repair">Electrical Repair</option>
-    <option value="Apliance Services">Apliance Services</option>
-    {/* Add more options as needed */}
-    
-  </select>
-  <button onClick={handleSave}>Save</button>
-</div>
-<div className='input_servicedescrip'> <label htmlFor="description">Description:</label>
-  <textarea id="description" name="description"></textarea></div>
-
-  <div className='input_serviceavail'> <label htmlFor="availability">Availability:</label>
-  <select id="availability" name="availability">
-    <option value="available">Available</option>
-    <option value="notAvailable">Not Available</option>
-    {/* Add other availability options as needed */}
-  </select>
-  <label htmlFor="hourlyRate">Hourly Rate:</label>
-  <input type="text" id="hourlyRate" name="hourlyRate" />
-  </div>
-  
- 
-
-
- 
-  
-  </div>
-   </div>
-
-   
-
-</div>
-
-
-  </div>
-  </div>
-  
-  
-  
-
- )}
  
  
   
  {activeTab2 === 'Analytics' && (
   <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
     <Dashheader/>
-    <div className="totals">
-        <p
-          onClick={() => handleTabChangeOrders('Total Requests')}
-          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Requests' ? 'underline' : 'none' }}
-        >
-          Total Requests  
-        </p>
-        <p
-          onClick={() => handleTabChangeOrders('Successful Orders')}
-          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Successful Orders' ? 'underline' : 'none' }}
-        >
-          Successful Orders
-        </p>
-        <p
-          onClick={() => handleTabChangeOrders('Total Revenue')}
-          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Revenue' ? 'underline' : 'none' }}
-        >
-          Total Revenue
-        </p>
-        <p
-          onClick={() => handleTabChangeOrders('Total Expenses')}
-          style={{ cursor: 'pointer', textDecoration: selectedTab === 'Total Expenses' ? 'underline' : 'none' }}
-        >
-          Total Expenses
-        </p>
-      </div>
-    <div className='analytics-container'>
-    <select>
-      <option value="2022">2020</option>
-      <option value="2023">2021</option>
-      <option value="2024">2022</option>
-      <option value="2022">2023</option>
-      <option value="2023">2024</option>
-      <option value="2024">2025</option>
-      {/* Add more options as needed */}
-    </select>
-  
-      <div className="set-of-containers">
-        <div className="smallanalytics-container">January | R1000</div>
-        <div className="smallanalytics-container">February | R2500</div>
-        <div className="smallanalytics-container">March | R 2000</div>
-      </div>
-      <div className="set-of-containers">
-        <div className="smallanalytics-container">April | R 1500</div>
-        <div className="smallanalytics-container">May | R 3000</div>
-        <div className="smallanalytics-container">June | R2000</div>
-      </div>
-      <div className="set-of-containers">
-        <div className="smallanalytics-container">July | R3000</div>
-        <div className="smallanalytics-container">August | R1000</div>
-        <div className="smallanalytics-container">September | R1000</div>
-      </div>
-      <div className="set-of-containers">
-        <div className="smallanalytics-container">October | R1000</div>
-        <div className="smallanalytics-container">November | R1000</div>
-        <div className="smallanalytics-container">December | R1000</div>
-      </div>
-    </div>
-    <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
-    
-   
-  
-    <div className="analytics-container">
-    <select>
-      <option value="2022">2020</option>
-      <option value="2023">2021</option>
-      <option value="2024">2022</option>
-      <option value="2022">2023</option>
-      <option value="2023">2024</option>
-      <option value="2024">2025</option>
-      {/* Add more options as needed */}
-    </select>
-    <p>Year</p>
-    <div className="tiny-container">
-      January|R 2000
-   
+    <a href="#" onClick={() => handleTabChange('totalRequests')} className="tab-link">Total Requests</a>
+<a href="#" onClick={() => handleTabChange('successfulOrders')} className="tab-link">Successful Orders</a>
+<a href="#" onClick={() => handleTabChange('totalRevenue')} className="tab-link">Total Revenue</a>
+<a href="#" onClick={() => handleTabChange('totalExpenses')} className="tab-link">Total Expenses</a>
 
 
-</div>
-    <div className="totalrevenue-container">
-      <p>Total Revenues: 52</p>
-      <p>Total Order: 25</p>
-      <p>Successful Order: 15</p>
-      <p>Total Expenses: R1000</p>
-      <p>Total Revenue: R100000</p>
-      <p>Total Points: 05</p>
-   
-  </div>
-  <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+{activeTab === 'totalRequests' && (
+             <div className='analytics-container'>
+             <select>
+               <option value="2022">2020</option>
+               <option value="2023">2021</option>
+               <option value="2024">2022</option>
+               <option value="2022">2023</option>
+               <option value="2023">2024</option>
+               <option value="2024">2025</option>
+               {/* Add more options as needed */}
+             </select>
+           
+               <div className="set-of-containers">
+                 <div className="smallanalytics-container">January | R1000</div>
+                 <div className="smallanalytics-container">February | R2500</div>
+                 <div className="smallanalytics-container">March | R 2000</div>
+               </div>
+               <div className="set-of-containers">
+                 <div className="smallanalytics-container">April | R 1500</div>
+                 <div className="smallanalytics-container">May | R 3000</div>
+                 <div className="smallanalytics-container">June | R2000</div>
+               </div>
+               <div className="set-of-containers">
+                 <div className="smallanalytics-container">July | R3000</div>
+                 <div className="smallanalytics-container">August | R1000</div>
+                 <div className="smallanalytics-container">September | R1000</div>
+               </div>
+               <div className="set-of-containers">
+                 <div className="smallanalytics-container">October | R1000</div>
+                 <div className="smallanalytics-container">November | R1000</div>
+                 <div className="smallanalytics-container">December | R1000</div>
+               </div>
+               <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+             </div>
+          )}
 
-    </div>
+          {activeTab === 'successfulOrders' && (
+             <div className="analytics-container">
     
-    <div className="analytics-container">
-    
-              <div className="item1">Customer Name</div>
-          <div className="item2">Expenses Description</div>
-          <div className="item3">Service Information</div>
-          <div className="item1">Order No</div>
-          <div className="item3">Expenses Information</div>
-          <div className="item2">Repairing a Sumsung Refrigirator</div>
-          <div className="item3">R350<br></br>01|10|2023 to 31|12|2024<br>
-          </br>  
-          </div>
-          <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
-          
+             <div className="item10">CUSTOMER NAME</div>
+         <div className="item11">SERVICE DESCRIPTION</div>
+         <div className="item12">ORDER NO</div>
+         <div className="item13">SERVICE INFORMATION</div>
+       
           
          
+         <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+         
+         
+        
+         
+           </div>
+          )}
+
+          {activeTab === 'totalRevenue' && (
+             <div className="analytics-container">
+             <select>
+               <option value="2022">2020</option>
+               <option value="2023">2021</option>
+               <option value="2024">2022</option>
+               <option value="2022">2023</option>
+               <option value="2023">2024</option>
+               <option value="2024">2025</option>
+               {/* Add more options as needed */}
+             </select>
+             <p>Year</p>
+             <div className="tiny-container">
+               January|R 2000
+            
+         
+         
+         </div>
+             <div className="totalrevenue-container">
+               <p>Total Revenues: 52</p>
+               <p>Total Order: 25</p>
+               <p>Successful Order: 15</p>
+               <p>Total Expenses: R1000</p>
+               <p>Total Revenue: R100000</p>
+               <p>Total Points: 05</p>
+            
+           </div>
+           <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+         
+             </div>
+          )}
+
+          {activeTab === 'totalExpenses' && (
+            <div className="analytics-container">
+    
+    <div className="item10">CUSTOMER NAME</div>
+         <div className="item11">EXPENSE DESCRIPTION</div>
+         <div className="item12">ORDER NO</div>
+         <div className="item13">EXPENSE INFORMATION</div>
+         
+        <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+          </div>
+          )}
+
+        
+        
+   
+    
+    
+   
+  
+   
+    
+    
           
-            </div>
   </div>
 )}
+
   
       </div>
   
@@ -2110,6 +1916,7 @@ width: 940px;
     height: 100%;
     object-fit: cover;
   }
+  
   
   /* Style for the customer email */
   .cus_email {
@@ -2436,25 +2243,24 @@ font-size: 18px;
       display: block; /* Ensure the image is a block element for centering */
       margin-left: auto; /* Auto margin to center the image within its container */
       margin-right: auto; /* Auto margin to center the image within its container */
-      margin-top: 50px;
+      margin-top: -30 px;
     }
     
+    .small-container {
+      background-color: #fff;
+      color: #000000;
+      font-weight: bold;
+      margin-top: 20px;
+      border: 3px solid #ff0068;
+      height: 100px;
+      width: 300px;
+      position: relative;
+      border-radius: 10px;
+      display: inline-block;
+      
+      
     
-  
-
-.small-container {
-  background-color: #fff; /* Set the background color to pink */
-  color: #000000; /* Set the text color to white, or adjust as needed */
-  font-weight: bold;   
-  margin-top: 20px;
-  border: 3px solid #ff0068; /* Set the border color to dark pink */
-  height: 100px;
-  width: 300px;
-  position: relative; /* Position the container absolutely */
-  border-radius: 10px;
-  display: flex;
-  
-}
+    }
 .small-container::before {
   content: '';
   position: absolute;
@@ -2464,27 +2270,38 @@ font-size: 18px;
   border-top: 3px solid #ff0068;
   transform: translateY(-50%);
 }
+.info {
+  display: flex;
+  flex-direction: row;
+}
+
+.small-containers-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.small-container {
+  flex: 1s;
+  margin-right: 10px; /* Adjust as needed */
+}
 
 
 
 .small-button {
   font-size: 14px;
-  padding: 5px 10px;
-  height: 40px;
-  width: 150px;
-  margin-top: 90px;
+  
   align-items: left; /* Center items vertically */
   display: flex;
   background-color: #027777; /* Set the background color to light green */
-  white-space: nowrap; 
+ 
   color: #fff;
-  margin-left: -100px;
+
   
   
 }
 .customer-name {
   text-align: center;
-  margin-top: -50px;
+  margin-top: -10px;
   font-family: 'Arial', sans-serif;
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
 
@@ -2518,21 +2335,18 @@ font-size: 18px;
   position: relative;
 }
 
-.updates-Container::before,
-.updates-Container::after {
+.updates-Container::before
+ {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  border-top: 1px solid #ff0068;
+  border-top: 3px solid #ff0068;
 }
 
-.updates-Container::after {
-  top: 50%;
-}
 
 .updates-Container::before {
-  bottom: 50%;
+  bottom: 78%;
 }
 
 .set:nth-child(2) .updates-Container {
@@ -2574,9 +2388,11 @@ font-size: 18px;
   height:430px;
   border: 3px solid #ff0068;
   border-radius: 10px;
+  margin-top: 30px;
 
 
 }
+
 .smallanalytics-container {
   width: calc(50% - 10px); /* Adjust width as needed */
   height: 80px; /* Adjust height as needed */
@@ -2588,8 +2404,6 @@ font-size: 18px;
   font-weight: bold;
   font-family: Arial, sans-serif;
   
-
-
 }
 
 .totalrevenue-container {
@@ -2635,6 +2449,40 @@ font-size: 18px;
   font-family: Arial, sans-serif; /* Use Arial font */
   font-weight: bold; /
 }
+.item {
+  flex: 1; /* Distributes available space equally among items */
+  margin: 5px; /* Adjust as needed for spacing between items */
+  front-weight: bold;
+}
+.item10,
+.item11,
+.item12,
+.item13,
+.item14,
+.item15,
+.item16 {
+  display: inline-block; /* Display items in a line */
+  margin: 20px; /* Adjust as needed for spacing between items */
+  font-weight: bold;
+  position: relative; 
+  
+}
+.item10::after,
+.item11::after,
+.item12::after,
+.item13::after,
+.item14::after,
+.item15::after,
+.item16::after {
+  content: ''; /* Empty content for pseudo-element */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px; /* Adjust the height of the line */
+  background-color: #ff0068; /* Set the color of the line */
+}
+
 
 
 
@@ -2651,6 +2499,61 @@ font-size: 18px;
   border-radius: 5px; /* Add border radius */
   margin-top: 25px; /* Adjust margin top */
   height: 40px;
+}
+.ScrollableContainer {
+  height: 500px; /* Adjust the height as needed */
+  overflow: auto;
+}
+.top-containers {
+  display: flex; /* Use flexbox for horizontal alignment */
+  
+
+}
+
+.pink-container {
+  background-color: #fff; /* Pink background color */
+  color: #00000 /* White text color for contrast */
+  padding: 20px; /* Adjust padding as needed */
+  border-radius: 10px; /* Optional: Add border radius for rounded corners */
+  margin-right: 100px; /* Optional: Add margin for spacing between containers */
+  border: 3px solid #ff0068;
+  width: 250px;
+  height: 300px
+}
+
+.pink-container:last-child {
+  margin-right: 0; /* Remove right margin for the last container */
+}
+.edit-button{
+  font-size: 18px;
+  align-items: left; /* Center items vertically */
+  display: flex;
+  background-color: #027777; /* Set the background color to light green */
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  margin-top: 80px;
+  margin-left: 70px;
+}
+.service-name{
+  font-size: 25px;
+  margin-left: 40px;
+  font-weight: bold;
+}
+.email-address{
+  font-size: 18px;
+}
+.price{
+  color: #ff0068;
+  font-weight: bold;
+  margin-left: 70px;
+}
+.line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #ff0068; /* You can change this to the desired color */
+  margin-bottom: 5px; /* Adjust the margin as needed */
 }
 
 .button:hover {
@@ -2673,6 +2576,18 @@ font-size: 18px;
 .contact-customer:hover {
   background-color: #40E0D0; /* Darker pink color on hover */
 }
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #ff0068; /* Adjust the color as needed */
+  font-size: 18px; /* Adjust the font size as needed */
+}
+
+.close-button:hover {
+  color: #027777; /* Adjust the hover color as needed */
+}
 
 .title {
   margin-bottom: 5px; /* Adjust the margin between title and line */
@@ -2687,7 +2602,7 @@ font-size: 18px;
 .container-button {
   margin-top: 40px;
   padding: 8px 16px;
-  background-color: #027777;;
+  background-color: #027777;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -2695,6 +2610,17 @@ font-size: 18px;
  
   
   
+}
+.popup-container{
+  background-color: #fff;
+  border: 3px solid #ff0068;
+  height: 360px;
+  width: 300px; /* Adjust width as needed */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(80px); 
+
 }
 
 .container-button:hover {
