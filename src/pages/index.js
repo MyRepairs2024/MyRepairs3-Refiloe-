@@ -191,20 +191,7 @@ and inconvenience to the consumer as possible.
           }
         </section>
         
-        <section className='allsponsors'>
-          <div className='sponsors'>
-            <div className='sponsorpic'>
-              <img src='/foldedman2.png' alt='JoinUs'style={{width: "350px", height:'350px'}}/>
-            </div>
-            <div className='sponsorinfo' >
-              <h2 style={{color: '#454545', fontSize: '12px', fontWeight: 'bold', fontFamily: 'poppins', fontSize: '25px'}}>At MyRepairs we believe that any product failure should be 
-handled quickly, efficiently, and effectively, with as little disruption 
-and inconvenience to the consumer as possible</h2><br/>
-              <button style={{color: '#fff',  background: '#21B6A8', borderStyle: 'none', fontWeight: 'bold', fontFamily: 'poppins', padding: "8px", borderRadius: '10px', marginRight: '40px'}}>Read More</button>
-            </div>
-            
-          </div>
-        </section>
+       
 
        
 

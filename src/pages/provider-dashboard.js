@@ -1006,6 +1006,9 @@ const [displayedimage, setDisplayedImage] = useState('');
     <p className='Name_Surname'></p>
    <div className='edit_container1'> <button className='edit_image'>Edit</button></div>
     </div>
+    <div className='documents-container'>
+      {/* Content of the additional container */}
+    </div>
     <div className='profile_information'>
       <div className='personalinfo_header'><h4 className='personalinfo_heading'>Personal Information</h4> 
       <button className='edit_personal' onClick={toggleEdit}>Edit</button>
@@ -1082,6 +1085,7 @@ const [displayedimage, setDisplayedImage] = useState('');
       </div>
       
     </div>
+
    
   </div>
   )}
@@ -2968,6 +2972,7 @@ margin: 0;
   .pfp_and_files{
    
   }
+  
   .info_container{
     padding: 10px;
     display: flex;
