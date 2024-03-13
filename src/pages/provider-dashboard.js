@@ -338,6 +338,10 @@ const [displayedimage, setDisplayedImage] = useState('');
       console.error('An error occurred:', error);
     }
   };
+  function selectPicture() {
+    // Trigger the click event of the file input
+    document.getElementById('pictureInput').click();
+}
   
   
   
@@ -644,7 +648,13 @@ const [displayedimage, setDisplayedImage] = useState('');
     // Remove the link from the document body
     document.body.removeChild(link);
   };
-  
+  function initAutocomplete() {
+    var input = document.getElementById('street');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+
+// Load the Autocomplete API asynchronously
+
   return (
 <div className='UserDashboard'>
 
@@ -1004,81 +1014,111 @@ const [displayedimage, setDisplayedImage] = useState('');
     <h4>Profile Picture</h4>
     <div className='pfp'></div>
     <p className='Name_Surname'></p>
-   <div className='edit_container1'> <button className='edit_image'>Edit</button></div>
+    <div className='edit_container1'> 
+    <button className='edit_image' onClick={selectPicture}>Edit</button>
+    <input type="file" id="pictureInput" style={{ display: 'none' }} accept="image/*" />
+</div>
+   <div>
+ 
+    <div className="upload-section">
+        <label htmlFor="upload_id">Upload ID:</label>
+        <input type="file" id="upload_id" name="upload_id" />
     </div>
-    <div className='documents-container'>
-      {/* Content of the additional container */}
+    {/* Upload Certificates */}
+    <div className="upload-section">
+        <label htmlFor="upload_certificates">Company Registration Certificates:</label>
+        <input type="file" id="upload_certificates" name="upload_certificates" />
     </div>
+</div>
+    </div>
+   
     <div className='profile_information'>
       <div className='personalinfo_header'><h4 className='personalinfo_heading'>Personal Information</h4> 
       <button className='edit_personal' onClick={toggleEdit}>Edit</button>
       </div>
-<div className='User_info'>
-<div className='fetched_salut'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='Name'>Salutation:</p></strong></div>
-              <div className='fetched_name'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='profile_name'>Name:</p></strong></div>
-              <div className='fetched_dob'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='dob'>Date of Birth</p></strong></div>
-              <div className='fetched_phone'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='phone'>Phone:</p></strong></div>
-
-              <div className='fetched_email'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='profile_email'>Email:</p></strong></div>
-              <div className='fetched_country'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='country'>Country</p></strong></div>
-              <div className='fetched_city'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='city'>City:</p></strong></div>
-              <div className='fetched_zip'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='zip'>ZIP:</p></strong></div>
-              <div className='fetched_street'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='street'>Street Name</p></strong></div>
-              <div className='fetched_building'><strong><p style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}} className='building'>Building:</p></strong></div>
-
-
+      <div className='User_info'>
+    <div className='fetched_salut'>
+        <strong>
+            <label htmlFor="salutation" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Salutation:</label>
+        </strong>
+        <input type="text" id="salutation" name="salutation" />
+    </div>
+    <div className='fetched_name'>
+        <strong>
+            <label htmlFor="profile_name" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Name:</label>
+        </strong>
+        <input type="text" id="profile_name" name="profile_name" />
+    </div>
+    <div className='fetched_surname'>
+        <strong>
+            <label htmlFor="profile_surname" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Surname:</label>
+        </strong>
+        <input type="text" id="profile_surname" name="profile_surname" />
+    </div>
+    <div className='fetched_dob'>
+        <strong>
+            <label htmlFor="dob" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Date of Birth:</label>
+        </strong>
+        <input type="date" id="dob" name="dob" />
+    </div>
+    <div className='fetched_phone'>
+        <strong>
+            <label htmlFor="phone" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Phone:</label>
+        </strong>
+        <input type="text" id="phone" name="phone" />
+    </div>
+    <div className='fetched_email'>
+        <strong>
+            <label htmlFor="email" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Email:</label>
+        </strong>
+        <input type="email" id="email" name="email" />
+    </div>
+    <div className='fetched_country'>
+        <strong>
+            <label htmlFor="country" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Country:</label>
+        </strong>
+        <select id="country" name="country">
+            <option value="South Africa">South Africa</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            {/* Add more countries as needed */}
+        </select>
+    </div>
+    <div className='fetched_city'>
+        <strong>
+            <label htmlFor="city" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>City:</label>
+        </strong>
+        <input type="text" id="city" name="city" />
+    </div>
+    <div className='fetched_zip'>
+        <strong>
+            <label htmlFor="zip" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>ZIP:</label>
+        </strong>
+        <input type="text" id="zip" name="zip" />
+    </div>
+    <div className='fetched_street'>
+        <strong>
+            <label htmlFor="street" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Street:</label>
+        </strong>
+        <input type="text" id="street" name="street" />
+    </div>
+    <div className='fetched_building'>
+        <strong>
+            <label htmlFor="building" style={{color: '#454545', fontFamily: 'poppins', fontWeight: 'bold'}}>Building:</label>
+        </strong>
+        <input type="text" id="building" name="building" />
+    </div>
 </div>
 {editMode && (
   <>
         <div className='edit-personal-info-container'>
-        <div className='editinfo_header1'><h4 className='personalinfo_heading'>Personal Information</h4> 
+        <div className='editinfo_header1'><h4 className='personalinfo_heading'></h4> 
         <div className='editbuttons'>
       <button className='edit_personal1' onClick={toggleEdit}>Save</button>
       <button className='edit_personal2' onClick={toggleEdit}>Cancel</button>
       </div>
       </div>
-          <form className='edit_form'>
-            <div className='fetched_salut' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='Name'></p></strong>
-              <input type="text" name="salutation" id="edit-salutation" />
-            </div>
-            <div className='fetched_name' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='profile_name'>Name:</p></strong>
-              <input type="text" name="name" id="edit-name" />
-            </div>
-            <div className='fetched_dob' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='dob'>Date of Birth:</p></strong>
-              <input type="text" name="dob" id="edit-dob" />
-            </div>
-            <div className='fetched_phone' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='phone'>Phone:</p></strong>
-              <input type="text" name="phone" id="edit-phone" />
-            </div>
-            <div className='fetched_email' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='profile_email'>Email:</p></strong>
-              <input type="text" name="email" id="edit-email" />
-            </div>
-            <div className='fetched_country' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='country'>Country:</p></strong>
-              <input type="text" name="country" id="edit-country" />
-            </div>
-            <div className='fetched_city' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='city'>City:</p></strong>
-              <input type="text" name="city" id="edit-city" />
-            </div>
-            <div className='fetched_zip' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='zip'>ZIP:</p></strong>
-              <input type="text" name="zip" id="edit-zip" />
-            </div>
-            <div className='fetched_street' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='street'>Street Name:</p></strong>
-              <input type="text" name="street" id="edit-street" />
-            </div>
-            <div className='fetched_building' style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-              <strong><p style={{ color: '#454545', fontFamily: 'poppins', fontWeight: 'bold' }} className='building'>Building:</p></strong>
-              <input type="text" name="building" id="edit-building" />
-            </div>
-          </form>
+          
         </div>
           </>
       )}
@@ -2630,6 +2670,13 @@ font-size: 18px;
 .container-button:hover {
   background-color: #cc004d;
 }
+.documents-container{
+  background-color: #fff;
+  border: 2px solid #ff0068;
+  height: 200px;
+  width: 350px;
+
+}
 
  .orderDate {
   border-bottom: 2px solid #ff0068;
@@ -2944,17 +2991,20 @@ margin: 0;
           border-radius: 5px;
           padding: 10px;
           position: relative;
+          flex: 1;
+          
         }
         .Profiletab{
           display: flex;
-          padding: 10px;
+         padding: 30px;
+         
         }
   
         .edit_pfp{
           padding: 10px;
           margin-right: 50px;
           width: 350px;
-          height: 300px;
+          height: 500px;
           border: 2px solid #ff0068;
           border-radius: 5px;
           margin-bottom: 10px;
@@ -3011,9 +3061,11 @@ background-color: #ccc;
 cursor: not-allowed;
 }
 
+
 .upload-button:hover {
 background-color: #0056b3;
 }
+
 
    .file-label {
     display: inline-block;
@@ -3022,6 +3074,46 @@ background-color: #0056b3;
     border-radius: 5px;
     cursor: pointer;
   }
+  .User_info input[type="text"],
+.User_info input[type="email"],
+.User_info select,
+.User_info input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ff0068;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.upload-section {
+  margin-bottom: 10px;
+}
+
+/* Style for labels */
+.upload-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Style for file input */
+.upload-section input[type="file"] {
+  display: block;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ff0068;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+
+
+/* Style for paragraph */
+.upload-section p {
+  font-weight: bold;
+}
+
+
+
 
   #selectedFileName {
     display: inline-block;
