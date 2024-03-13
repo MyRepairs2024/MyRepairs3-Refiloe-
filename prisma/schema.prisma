@@ -118,6 +118,15 @@ model pendingrequests {
   pro_address String?
   date        DateTime
 }
+model provider_reg {
+  id            Int       @id @default(autoincrement())
+  name          String
+  surname       String
+  email         String    @unique
+  address       String
+  password      String
+  contactnumber String
+}
 
 enum ServiceProviderRole {
   APPLIANCE_REPAIR
@@ -141,3 +150,5 @@ enum BusinessType {
   BUSINESS
   FREELANCER
 }
+
+

@@ -131,9 +131,12 @@ function App() {
     console.log('Google Login Failed:', response);
     // Handle failed Google Sign-In
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+  
   
     // Handle user registration and get user data
     console.log('Form data submitted:', formData);
@@ -152,6 +155,7 @@ function App() {
   
     
   };
+  
   
 
   return (

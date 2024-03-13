@@ -338,13 +338,27 @@ const [displayedimage, setDisplayedImage] = useState('');
       console.error('An error occurred:', error);
     }
   };
-  function selectPicture() {
-    // Trigger the click event of the file input
-    document.getElementById('pictureInput').click();
-}
-  
-  
-  
+  const [selectedPicture, setSelectedPicture] = useState(null);
+
+    function handleSelectPicture() {
+        document.getElementById('pictureInput').click();
+    }
+
+    function handlePictureInputChange(event) {
+        const file = event.target.files[0]; // Get the selected file
+        setSelectedPicture(file); // Store the selected file in state
+        const pfp = document.querySelector('.pfp'); // Get the pfp div
+        pfp.innerHTML = ''; // Clear any existing content
+        const img = document.createElement('img'); // Create an img element
+        img.src = URL.createObjectURL(file); // Set src attribute to the selected image
+        img.alt = 'Profile Picture'; // Set alt attribute
+        img.style.maxWidth = '100%'; // Set maximum width to fit inside the pfp div
+        img.style.height = '100%'; 
+        img.style.width = '100%'; 
+        img.style.maxHeight = '150px'; // Set maximum height (adjust as needed)
+        img.style.borderRadius = '50%';
+        pfp.appendChild(img); // Append the img element to the pfp div
+    }
   
   
    /* const handleFileInputChange = (event) => {
@@ -1011,13 +1025,22 @@ const [displayedimage, setDisplayedImage] = useState('');
       <div></div>
       <div className='Profiletab'>
    <div className='edit_pfp'>
-    <h4>Profile Picture</h4>
-    <div className='pfp'></div>
-    <p className='Name_Surname'></p>
-    <div className='edit_container1'> 
-    <button className='edit_image' onClick={selectPicture}>Edit</button>
-    <input type="file" id="pictureInput" style={{ display: 'none' }} accept="image/*" />
-</div>
+   <h4>Profile Picture</h4>
+            <div className='pfp'></div>
+            <p className='Name_Surname'></p>
+            <div className='edit_container1'> 
+                {/* Visible button or label to trigger file input click */}
+                <button className='edit_image' onClick={handleSelectPicture}>Edit</button>
+                
+                {/* Hidden file input element */}
+                <input 
+                    type="file" 
+                    id="pictureInput" 
+                    style={{ display: 'none' }} 
+                    accept="image/*" 
+                    onChange={handlePictureInputChange} 
+                />
+            </div>
    <div>
  
     <div className="upload-section">
@@ -3104,12 +3127,12 @@ background-color: #0056b3;
   border: 1px solid #ff0068;
   border-radius: 4px;
   box-sizing: border-box;
-  
 
 
 /* Style for paragraph */
 .upload-section p {
   font-weight: bold;
+ 
 }
 
 
