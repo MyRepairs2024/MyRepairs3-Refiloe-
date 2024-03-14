@@ -347,20 +347,7 @@ Opposite Grand Central International Airport<br/>
       display: block; /* Show the container on hover */
     }
     
-    .expanded-content-container {
-      border: 5px solid #ff0068;
-      border-radius: 15px;
-      overflow: hidden;
-      padding: 20px;
-      width: 150%; /* Set a fixed width or adjust as needed */
-      max-width: 800px; /* Set a maximum width */
-      max-height: 300px; /* Set a maximum height */
-      background-color: rgba(255, 255, 255, 0.9);
-      z-index: 1001; /* Adjust the z-index to be higher than the description box */
-      position: absolute;
-      display: none; /* Initially hide the container */
-    }
-    
+ 
     .long-description-container {
       position: relative; /* Make sure the position is relative */
       z-index: 1000; /* Set a z-index for the description box */
@@ -885,7 +872,7 @@ margin-top: -30px;
         font-family: poppins;
       }
       .topheader{
-        margin-left: 80px;
+        margin-left: 40px;
       }
 .intro{
   display: block;

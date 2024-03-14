@@ -264,7 +264,7 @@ const Header = () => {
     <ul className="nav-links">
         <li><a href="/Login-Page">How it works</a></li>
         <li><a href="/provider_homepage">Become a partner</a></li>
-        <li><a href="/admin-registration">Admin</a></li>
+        <li><a href="/">Apps</a></li>
     </ul>
 </div>
 

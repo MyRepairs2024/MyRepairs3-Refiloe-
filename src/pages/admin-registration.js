@@ -140,7 +140,7 @@ function App() {
   
     // Handle user registration and get user data
     console.log('Form data submitted:', formData);
-    window.location.href = '/admin-dashboard';
+    window.location.href = '/admin-login';
     const responseGoogle = (response) => {
       console.log('Google Login Response:', response);
       // Use the response to extract user information and update your state or perform any other actions
