@@ -396,7 +396,93 @@ const handleCloseAlert = () => {
         img.style.borderRadius = '50%';
         pfp.appendChild(img); // Append the img element to the pfp div
     }
+    function deleteMessage() {
+      // Code to delete the message
+      // For example, you might want to remove the entire div with class 'header_msg'
+      var messageDiv = document.querySelector('.header_msg');
+      messageDiv.remove();
+  }
+  const [email, setEmail] = useState('');
+  const [location, setLocation] = useState('');
+
+  const handleContactCustomer = () => {
+    setShowPopup(true);
+  };
+  const [showPopup, setShowPopup] = useState(false);
+
+
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setShowNextContainer(true); // Show the next container
+  };
+  function handleClick() {
+    // Add your logic here
+    console.log('Icon clicked! Add action goes here.');
+}
+const [expandLocationInput, setExpandLocationInput] = useState(false); // Define expandLocationInput state
+const handleGetLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=YOUR_API_KEY`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.results && data.results.length > 0) {
+              const formattedAddress = data.results[0].formatted_address;
+              setLocation(formattedAddress);
+            } else {
+              setLocation('Location not found');
+            }
+          } else {
+            setLocation('Error fetching location');
+          }
+        } catch (error) {
+          console.error('Error fetching location:', error);
+          setLocation('Error fetching location');
+        }
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+        setLocation('Failed to retrieve location');
+      }
+    );
+  } else {
+    setLocation('Geolocation is not supported by your browser');
+  }
+};
+const [showPaymentsContainer, setShowPaymentsContainer] = useState(false);
+const [showNextContainer, setShowNextContainer] = useState(false); 
+const handleNextButtonClick = () => {
+  setShowNextContainer(true);
+};
+const [paymentMethod, setPaymentMethod] = useState('');
+const handlePayNow = () => {
+  setShowPaymentsContainer(true);
+ 
   
+};
+
+
+const handleUploadCardDetails = (event) => {
+  event.preventDefault();
+  // You can handle the uploaded card details here
+  console.log('Card details uploaded!');
+};
+const handleClosePayments = () => {
+  // Implement logic to close the payments container
+  // For example, you can set a state variable to control visibility
+  setShowPaymentsContainer(false);
+};
+const handlePayLater = () => {
+  // Display a pop-up message
+  window.alert('Order successful! You can pay later.');
+};
+
+ 
+
 
 
   return (
@@ -618,6 +704,7 @@ const handleCloseAlert = () => {
 
               
           <div className='Overview'>
+            
 
             
            <div>
@@ -693,15 +780,26 @@ const handleCloseAlert = () => {
   <div className='searchfilters'>
   <div className='emailfilters'>
   <div className='filter1'>
-  <label>Service Types</label>
-    <input
-      className='filteremail'
-      type="text"
-      value={serviceTypeFilter}
-      placeholder='Type'
-      onChange={(e) => setServiceTypeFilter(e.target.value)}
-    />
-  </div>
+  <label htmlFor="serviceType">Service Types</label>
+  <select
+    className='filteremail'
+    id="serviceType"
+    value={serviceTypeFilter}
+    onChange={(e) => setServiceTypeFilter(e.target.value)}
+  >
+    <option value="">Select a service type</option>
+    <option value="Type1">Electrician Services</option>
+    <option value="Type2">Applicances Repairing</option>
+    <option value="Type3">Microwave Repairing</option>
+    <option value="Type3">Painting</option>
+    <option value="Type3">Welding</option>
+    <option value="Type3">Electrician Repairing</option>
+    <option value="Type3">Fridge Repairing</option>
+    <option value="Type3">Keetle Repairing</option>
+    
+    {/* Add more options as needed */}
+  </select>
+</div>
 
   <div className='filter2'>
   <label>Provider Email</label>
@@ -796,9 +894,74 @@ const handleCloseAlert = () => {
 
        
         {activeTab === 'accounts' && (
+        
+
           <div>
-            {/* Add content for the Accounts tab here */}
+           <div className="container">
+      {/* First Set of Containers */}
+      <div className="set">
+        <div className='updates-Container1' >Service Description
+        <h2>Service Description</h2>
+        <p style={{ fontWeight: 'normal' }}>Repairing a Samsung fridge</p>
+        
+        </div>
+        <div className='updates-Container1'>Service Description
+        <h2>Service Description</h2>
+        <p style={{ fontWeight: 'normal' }}>Repairing a Microwave</p>
+        
+        </div>
+        
+        
+      </div>
+
+      {/* Second Set of Containers */}
+      <div className="set">
+        <div className='updates-Container1'>Service Provider
+        <p style={{ fontWeight: 'normal', color: 'black' }}>Name: <span style={{ color: '#40E0D0' }}>Jane Smith</span></p>
+    <p style={{ fontWeight: 'normal',color: 'black'  }}>Address: <span style={{ color: '#40E0D0' }}>456 Oak Avenue</span></p>
+    <p style={{ fontWeight: 'normal' ,color: 'black' }}>Service Date: <span style={{ color: '#40E0D0' }}>20|05|2024</span></p>
+        </div>
+        <div className='updates-Container1'>Service Provider
+        <p style={{ fontWeight: 'normal', color: 'black' }}>Name: <span style={{ color: '#40E0D0' }}>Jane Smith</span></p>
+    <p style={{ fontWeight: 'normal',color: 'black'  }}>Address: <span style={{ color: '#40E0D0' }}>456 Oak Avenue</span></p>
+    <p style={{ fontWeight: 'normal' ,color: 'black' }}>Service Date: <span style={{ color: '#40E0D0' }}>20|05|2024</span></p>
+        </div>
+        
+      </div>
+
+
+      <div className="set">
+      <div className='updates-Container1'>Services Rating
+      <div class="stars">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <p style={{ fontWeight: 'bold' ,color: 'black' }}>Service Price:<br></br><span style={{ color: '#ff0068' }}>R350</span></p>
+      </div>
+      </div>
+      <div className='updates-Container1'>Services Rating
+      <div class="stars">
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <span class="star">&#9733;</span>
+        <p style={{ fontWeight: 'bold' ,color: 'black' }}>Service Price:<br></br><span style={{ color: '#ff0068' }}>R350</span></p>
+      </div>
+      </div>
+
+      </div>
+      </div>
+
+      
+
+
+
+
           </div>
+        
         )}
         
         {activeTab === 'payments' && (
@@ -846,6 +1009,7 @@ const handleCloseAlert = () => {
 
     </div>
         )}
+
 
 {activeTab2 === 'profile' &&( 
 <div>
@@ -977,18 +1141,38 @@ const handleCloseAlert = () => {
   <Dashheader />
   <br/>
 <div className='cus_inbox'>
-<div className='all_msg'></div>
+<div className='all_msg'>
+    <div className='msg-container'>My Repairs<br></br>Dear Thabang<br></br>Here is your receipt for your order</div>
+    <div className='msg-container'>My Repairs<br></br>Dear Thabang<br></br>Here is your receipt for your order</div>
+    <div className='msg-container'>My Repairs<br></br>Dear Thabang<br></br>Here is your receipt for your order</div>
+    <div className='msg-container'>My Repairs<br></br>Dear Thabang<br></br>Here is your receipt for your order</div>
+    <div className='msg-container'>My Repairs<br></br>Dear Thabang<br></br>Here is your receipt for your order</div>
+    <div className='msg-container'>My Repairs<br></br>Dear Thabang<br></br>Here is your receipt for your order</div>
+</div>
 <div className='opened_msg'>
 
 <div className='header_msg'>
-<div  className='default_msg'><p>No Messages...</p></div>
+    <div className='default_msg'>
+        <p>My Repairs<br/>18.03.2024<br/>Send Issued Invoice to a Customer</p>
+    </div>
+    <button className="delete_button" onClick={deleteMessage}>Delete</button>
 </div>
 <div className='current_msg'>
-<div  className='default_msg1'><p>No Messages...</p></div>
+    <div className="logo-container">
+        <img src="logo.png" alt="Logo" className="logo" />
+    </div>
+    <div className='default_msg1'>
+    <p className="default_msg_text">Dear Thabang Lengane<br/>Thank You for ordering at Lumen<br/>You will find your invoice in the attached messages below.</p>
 
+    </div>
+    
 </div>
 <div className='condition_msg'>
-<div  className='default_msg'><p>No Messages...</p></div>
+<div className='default_msg'>
+    <p>Invoice IN-171020238(Placed on the 17/08/2023)</p>
+    <div className="line"></div>
+   
+</div>
 
 </div>
 <div className='footer_msg'>
@@ -1013,8 +1197,139 @@ const handleCloseAlert = () => {
 
 <div className='fav_services1'>
 <div class="Add_fav">
-  <img style={{objectFit: 'cover'}} src="icons8-plus-48.png" alt="Add" class="add-icon"/>
+<img
+    style={{objectFit: 'cover'}}
+    src="icons8-plus-48.png"
+    alt="Add"
+    className="add-icon"
+    onClick={handleClick}
+/>
+
 </div>
+<div className='customers-container current-container pink-border'>
+       <div className='info'>
+          {/* Container for customer name */}
+          <div className='info-item pink'>
+            <p>Service Provider Name</p>
+            <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+            <p className="customer-name"> HiFi Corp</p>
+
+        <button className='small-button' onClick={handleContactCustomer}>
+        Request
+        </button>
+        {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p style={{ color: 'white',marginRight: '200px' }}>Requested Service Name</p> {/* Add inline style to change color */}
+            <hr style={{ borderTop: '3px solid white' }} /> {/* Apply style to change color */}
+            <p style={{ color: 'white',marginRight: '370px' }}>Service Price</p> {/* Add inline style to change color */}
+      <p style={{ color: 'white',marginRight: '395px' }}>R350</p> {/* Add inline style to change color */}
+      <input 
+  type="email" 
+  placeholder="Enter your email" 
+  value={email} 
+  onChange={(e) => setEmail(e.target.value)} 
+  style={{ width: '4000px', maxWidth: '400px', boxSizing: 'border-box', marginBottom: '10px' }}
+/>
+     <button onClick={handleGetLocation} style={{ backgroundColor: '#40E0D0', color: 'white', width: '30%', boxSizing: 'border-box',marginBottom: '10px'}}>Get Location</button> {/* Added Get Location button */}
+     <input 
+        type="text" 
+        placeholder="Enter your location" 
+        value={location} 
+        onChange={(e) => setLocation(e.target.value)}
+        style={{ width: expandLocationInput ? '100%' : 'auto', boxSizing: 'border-box', marginBottom: '10px',width: '400px' }}
+      />  
+
+<button className="close-button" onClick={handleNextButtonClick} style={{ position: 'fixed', bottom: '10px', right: '10px', backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', fontSize: '14px', borderRadius: '5px', border: 'none', height: '40px', width: '90px',marginTop: '395px' }}>Next</button>
+{showNextContainer && (
+        <div className="next-container" id="next-container">
+         <p style={{color: 'white',marginRight: '200px',fontSize: '24px'}}>Request Summary</p>
+         <hr style={{ borderTop: '3px solid white' }} />
+         <p style={{color: 'white',marginRight: '250px' }}>Service: Painting</p>
+         <p style={{color: 'white',marginRight: '265px'}}>Provider Email:</p>
+         <p style={{color: 'white',marginRight: '325px'}}>Address:</p>
+         <p style={{color: 'white',marginRight: '280px'}}>Total Amount:</p>
+         <p style={{color: 'white',marginRight: '350px'}}>Email:</p>
+        
+        
+         
+
+         <button onClick={handlePayNow} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none', marginLeft: '35px' }}>Pay Now</button>
+    <button onClick={handlePayLater} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none', marginLeft: '10px' }}>Pay Later</button>
+    <button onClick={handleClosePopup} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none',marginLeft: '150px'}}>Close</button>
+        </div>
+      )}
+     {showPaymentsContainer && (
+  <div className="payments-container" id="payments-container">
+    <button className="close-button" onClick={handleClosePayments} style={{ position: 'relative', top: '-10px', left: '10px' }}>
+      <span style={{ fontSize: '24px', color: 'black' }}>×</span>
+    </button>
+    {/* Content of your payments container */}
+    <p style={{color: 'white',marginRight: '190px'}}>Enter Your Card Details</p>
+    <form onSubmit={handleUploadCardDetails} style={{ display: 'flex', flexDirection: 'column' ,color: 'white' }}>
+      <label htmlFor="cardNumber">Card Number:</label>
+      <input type="text" id="cardNumber" name="cardNumber" maxLength="20" required />
+      
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ flex: 1, marginRight: '10px' }}>
+          <label htmlFor="expirationDate">Expiration Date:</label>
+          <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
+        </div>
+        <div style={{ flex: 1, marginLeft: '10px' }}>
+          <label htmlFor="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv"  maxLength="4" required />
+        </div>
+      </div>
+      
+      <button type="submit">Upload Card Details</button>
+    </form>
+  </div>
+)}
+      
+       
+          </div>
+        
+
+        </div>
+      )}
+      
+              </div>
+           
+          
+          
+          
+          {/* Container for service description */}
+          <div className='info-item pink'>
+            <p>Service Provider Name</p>
+           <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+           <p className="customer-name">Lumen</p>
+           <button className='small-button' onClick={handleContactCustomer}>
+          Request
+        </button>
+      
+
+             </div>
+         
+          {/* Container for information description */}
+          <div className='info-item pink'>
+            <p>Service Provider Name</p>
+            <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
+            <p className="customer-name">Thabang</p>
+             <button className='small-button' onClick={handleContactCustomer}>
+          Request
+          </button>
+          
+           
+            
+           
+            
+          </div>  
+        </div>
+      
+       
+      </div>
 </div>
 
 
@@ -1191,7 +1506,7 @@ display: flex;
         width: 500px;
         margin-bottom: 10px;
         border: 1px solid #ff0068;
-        height: 80px;
+        height: 140px;
         border-radius: 5px;
       }
       .all_msg{
@@ -1223,6 +1538,156 @@ display: flex;
 
 
       }
+      .delete_button {
+        background-color: #40E0D0; /* Red background */
+        color: #fff; /* White text */
+        border: none; /* No border */
+        padding: 10px 20px; /* Padding */
+        cursor: pointer; /* Cursor style */
+        border-radius: 5px; /* Rounded corners */
+        margin-top: -100px;
+        margin-left: 400px;
+    }
+    
+    .delete_button:hover {
+        background-color: #ff0068; /* pink background on hover */
+    }
+    .billinfo-container {
+      padding: 10px; /* Padding inside the additional container */
+      background-color: #fff; /* Background color for the additional content */
+      border-radius: 5px solid ; /* Rounded corners */
+      height: 50px;
+      width: 150px;
+      border: 1px ;
+      
+  }
+  .default_msg_text {
+    margin-bottom: 50px; /* Remove bottom margin of the <p> element */
+}
+
+.msg-container {
+  
+  margin: 10px; /* Add margin between containers */
+  padding: 20px; /* Add padding inside each container */
+  border: 1px solid #ff0068; /* Add border to each container */
+  box-sizing: border-box; /* Include border in width calculation */
+  border-radius: 5px ; /* Add rounded corners to each container */
+  width: 320px;
+  height: 90px;
+}
+.default_msg {
+  /* Your existing styles */
+  position: relative; /* Ensure relative positioning for the line */
+}
+
+.default_msg p {
+  font-weight: bold;
+ 
+}
+
+.line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px; /* Adjust line thickness */
+  background-color: #ff0068; /* Line color */
+}
+.container {
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* Distribute space between the containers */
+}
+
+.pink {
+  display: flex;
+  background-color: #fff;
+  border: 3px solid #ff0068; /* Set the border color to dark pink */
+  width: 300px;
+  height: 330px;
+  flex-direction: row;
+  margin-top: 30px;
+  display: flex; /* Use flexbox */
+  border-radius: 10px;
+
+}
+.pink-border {
+  display: column; /* Use flexbox */
+  display: grid;
+  
+
+}
+.info {
+  display: flex;
+  justify-content: space-between; /* Optional: Adjust this based on your layout preferences */
+  
+  
+  
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+}
+
+
+
+.info-item p {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  font-family: 'Arial', sans-serif;
+}
+
+.info-item img {
+    width: 80px; /* Set the desired width for the image */
+    height: 80px; /* Set the desired height for the image */
+    object-fit: cover; /* Adjust the object-fit property as needed (e.g., 'contain', 'fill') */
+    margin-right: 10px; /* Add some margin to separate the image from other content */
+    display: block; /* Ensure the image is a block element for centering */
+    margin-left: auto; /* Auto margin to center the image within its container */
+    margin-right: auto; /* Auto margin to center the image within its container */
+    margin-top: -30 px;
+  }
+  .popup-container{
+    background-color: #ff0068;
+    border: 3px solid #ff0068;
+    height: 450px;
+    width: 450px; /* Adjust width as needed */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(80px); 
+  
+  }
+  .next-container{
+    background-color: #ff0068;
+    border: 3px solid #ff0068;
+    height: 450px;
+    width: 450px; /* Adjust width as needed */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(80px); 
+
+
+  }
+  .payments-container{
+    background-color: #ff0068;
+    border: 3px solid #ff0068;
+    height: 450px;
+    width: 450px; /* Adjust width as needed */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(80px); 
+
+
+
+  }
+
      
       .edit_personal{
         margin: 0;
@@ -2226,10 +2691,7 @@ border-radius: 10px;
           width: 170px;
           position: relative;
           font-weight: bold;
-        margin: 0 auto;
-      
-        
-          
+        margin: 0 auto;  
         }
 
        
@@ -2488,6 +2950,57 @@ margin-left: -19px;
   border-left: 2px solid #ff0068;
   border-right: 2px solid #ff0068;
 }
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  
+}
+.set {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: #fff;
+  margin-right: auto; /* Push updates container to the left */
+}
+
+.updates-Container1 {
+  border: 3px solid #ff0068;
+  padding: 10px;
+  margin: 5px;
+  width: 280px; /* Adjust width */
+  height: 150px; /* Adjust height */
+  margin-top: 30px;
+  border-radius: 10px; /* Adjust the value to change the roundness */ 
+  font-family: Arial, sans-serif; /* Set font family to Arial */
+  font-weight: bold; /* Set font weight to bold */
+  color: black; /* Set text color to black */
+  font-size: 17px; /* Set font size to 20 pixels */
+  position: relative;
+}
+
+.updates-Container1::before
+ {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 3px solid #ff0068;
+}
+
+
+.updates-Container1::before {
+  bottom: 78%;
+}
+
+.set:nth-child(2) .updates-Container1 {
+  width: 400px; /* Width of the containers in the middle */
+}
+
+.set:nth-child(1) .updates-Container1,
+.set:nth-child(3) .updates-Container1 {
+  width: 200px; /* Width of the containers on the left and right */
+}
 
 @media (max-width: 768px){
   .dashboard-container{
@@ -2719,6 +3232,7 @@ color: blue;
     margin: 0;
     
   }
+  
 
 
 }
@@ -2757,6 +3271,7 @@ color: blue;
     width: 100%;
     margin-bottom: 10px;
   }
+  
 }
       
 

@@ -11,12 +11,14 @@ const cardData = [
     longDescription: "Services:\n Electrical Installation\n Eletrical Repair\n Electrical Upgrades\n Light Installation\n Circuit Breaker\n Electrical Wiring\n Ceiling Fan Installation\n Appliance Wiring\n Outdoor Electrical Services\n Outdoor Safety Inspections\n Surge Protection\n Emergency Eletrcical Services\n Electrical Panel Upgrade\n Grounding and Bonding\n Generator Installation and Maintenance\n Energy Efficiency Audits\n Smoke and Carbon Monoxide Detector Installation\n Home Automation and Smart Home Services"
 
   },
+
   {
     icon: '/Icon2.1.png',
     title: 'Appliance Services',
     hoverIcon: '/Icon2.png',
     longDescription: "Appliance Repair Faults:\n Refrigerator\n Dryer\n DishWasher\n Oven and Stove\n Microwave\n Freezer\n Garbage Disposal Repair\n Air Conditioner\n Water Heater\n Range Hood\n Ice Maker\n Small Applianes\n General Maintenance and Tune-Ups "
   },
+  
   {
     icon: '/Icon3.1.png',
     title: 'Plumbing Repairs',
@@ -75,6 +77,7 @@ const cardData = [
   },
   
 ];
+
 const HomePage = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -100,6 +103,10 @@ const HomePage = () => {
   }, []);
   const handleCardClick = (index) => {
     setExpandedCard((prevExpandedCard) => (prevExpandedCard === index ? null : index));
+  };
+  const handleDescriptionItemClick = (line) => {
+    // Handle click event for each line in the long description
+    console.log('Clicked:', line);
   };
   return (
     <div className="home-page">
@@ -166,17 +173,17 @@ and inconvenience to the consumer as possible.
                   {index === expandedCard && (
   <div className="expanded-content-container">
     <div className="expanded-content">
-      <div className="long-description-container">
-        {card.longDescription && typeof card.longDescription === 'string' ? (
-          <React.Fragment>
-            {card.longDescription.split('\n').map((line, index) => (
-              <div key={index}>{line}</div>
-            ))}
-          </React.Fragment>
-        ) : (
-          "No description available"
-        )}
-      </div>
+    <div className="long-description-container">
+            {card.longDescription && typeof card.longDescription === 'string' ? (
+              card.longDescription.split('\n').map((line, index) => (
+                <a key={index} onClick={() => handleDescriptionItemClick(line)}>
+                  {line}
+                </a>
+              ))
+            ) : (
+              "No description available"
+            )}
+          </div>
     </div>
   </div>
 )}
@@ -351,6 +358,8 @@ Opposite Grand Central International Airport<br/>
     .long-description-container {
       position: relative; /* Make sure the position is relative */
       z-index: 1000; /* Set a z-index for the description box */
+      max-height: 150px; /* Adjust the max height as per your need */
+      overflow-y: auto;
     }
     
     .expanded-content {
