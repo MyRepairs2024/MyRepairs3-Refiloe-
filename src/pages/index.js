@@ -138,6 +138,7 @@ const HomePage = () => {
 
           }
         </section>
+        
         <section className="services">
           {
             <div>
@@ -176,7 +177,7 @@ and inconvenience to the consumer as possible.
     <div className="long-description-container">
             {card.longDescription && typeof card.longDescription === 'string' ? (
               card.longDescription.split('\n').map((line, index) => (
-                <a key={index} onClick={() => handleDescriptionItemClick(line)}>
+                <a key={index} onClick={() => handleDescriptionItemClick(line)} style={{ color: '', cursor: 'pointer' }}>
                   {line}
                 </a>
               ))
@@ -234,7 +235,7 @@ appliances at your fingertips</p>
             </div>
             </div>}
         </section>
-
+      
      
       </main>
       <footer className='finalsection'>
