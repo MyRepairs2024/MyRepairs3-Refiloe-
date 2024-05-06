@@ -124,6 +124,23 @@ function LoginPage() {
     } else {
       console.log('Incorrect verification code.');
     }
+    try {
+      const { user, session, error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) {
+        console.error('Registration error:', error.message);
+        return;
+      }
+
+      console.log('User registered:', user);
+      console.log('Session:', session);
+      // Redirect to dashboard or update UI accordingly
+    } catch (error) {
+      console.error('Registration error:', error.message);
+    }
   };
 
   return (

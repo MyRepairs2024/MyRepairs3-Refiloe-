@@ -6,7 +6,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '14px',
+    fontSize: '18px',
     fontFamily: 'Arial',
     padding: '20px',
     borderRadius: '10px',
@@ -52,7 +52,7 @@ const styles = {
   },
   textInput: {
     width: '100%',
-    padding: '12px',
+    padding: '20px',
     marginBottom: '10px',
     boxSizing: 'border-box',
     borderRadius: '20px',
@@ -69,6 +69,7 @@ const styles = {
     margin: '20px auto',
     borderRadius: '20px',
   },
+  
 };
 
 function ProfilePage() {

@@ -124,7 +124,10 @@ function LoginPage() {
     } else {
       console.log('Incorrect verification code.');
     }
+    
+    
   };
+  
 
   return (
     <div style={styles.container}>

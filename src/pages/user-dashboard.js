@@ -12,6 +12,8 @@ import { IoWarningSharp } from 'react-icons/io5';
 import { css } from "@emotion/react";
 import { BarLoader } from "react-spinners";
 import jsPDF from 'jspdf';
+import { FaHeart } from 'react-icons/fa';
+import { FaPaperPlane } from 'react-icons/fa';
 
 
 
@@ -56,6 +58,8 @@ const [servicesDoneData, setServicesDoneData] = useState(null);
 const [alertVisible, setAlertVisible] = useState(false);
 const [receiptdata, setreceiptData] = useState([]);
 const [editMode, setEditMode] = useState(false);
+const [containers, setContainers] = useState([]);
+
 
   const toggleEdit = () => {
     setEditMode(!editMode);
@@ -184,6 +188,7 @@ const handleCloseAlert = () => {
         console.error('Error inserting image URL:', error.message);
       }
     };
+    
 
   const handleFileUpload = async () => {
     if (selectedFile.length === 0) return;
@@ -236,40 +241,7 @@ const handleCloseAlert = () => {
     }));
   };
   
-  const handleFilter = () => {
-    const filtered = services.filter((service) => {
-      let isMatch = true;
-  
-      if (serviceTypeFilter && serviceTypeFilter !== service.serviceType) {
-        isMatch = false;
-      }
-  
-      if (providerEmailFilter && providerEmailFilter !== service.serviceProviderEmail) {
-        isMatch = false;
-      }
-  
-      if (priceRangeFilter) {
-        const [minPrice, maxPrice] = priceRangeFilter.split('-').map(Number);
-        const servicePrice = parseFloat(service.pricePerHour);
-  
-        if (isNaN(servicePrice) || servicePrice < minPrice || servicePrice > maxPrice) {
-          isMatch = false;
-        }
-      }
-  
-      if (locationFilter && locationFilter !== service.location) {
-        isMatch = false;
-      }
-  
-      if (availabilityFilter && availabilityFilter !== service.availability) {
-        isMatch = false;
-      }
-  
-      return isMatch;
-    });
-  
-    setFilteredServices(filtered);
-  };
+
   const handleDownload = (rowId) => {
     // Find the selected receipt based on the rowId
     const selectedReceipt = receiptdata.find((row) => row.id === rowId);
@@ -480,6 +452,53 @@ const handlePayLater = () => {
   // Display a pop-up message
   window.alert('Order successful! You can pay later.');
 };
+const handlePayWithPayFast = () => {
+  // Your logic to initiate payment with PayFast
+  console.log('Initiating payment with PayFast...');
+  // For example, you can redirect the user to the PayFast payment page
+  window.location.href = 'https://www.payfast.co.za/payments';
+};
+const handlefavoritesClick = () => {
+  // Create a new container object with desired classes
+  const newContainer = {
+    id: containers.length + 1, // Unique ID for each container
+    classes: 'customers-container current-container pink-border', // Classes for the new container
+    content: 'Your Favorite Container has been added' // Content of the new container
+  };
+
+  // Add the new container to the containers array
+  setContainers([...containers, newContainer]);
+};
+const handleRequestService = () => {
+  setShowPopup(!showPopup);
+};
+const handleFilter = () => {
+  const filtered = services.filter((service) => {
+    return (
+      (serviceTypeFilter === '' || service.type === serviceTypeFilter) &&
+      (providerEmailFilter === '' || service.providerEmail.includes(providerEmailFilter)) &&
+      (priceRangeFilter === '' || isPriceInRange(service.price, priceRangeFilter)) &&
+      (locationFilter === '' || service.location === locationFilter) &&
+      (availabilityFilter === '' || isAvailabilityMatch(service.availability, availabilityFilter))
+    );
+  });
+
+  setFilteredServices(filtered);
+};
+
+// Helper function to check if price is within the selected range
+const isPriceInRange = (price, range) => {
+  const [min, max] = range.split('-').map(Number);
+  return price >= min && price <= max;
+};
+
+// Helper function to check if availability matches the selected option
+const isAvailabilityMatch = (availability, selected) => {
+  // You can implement your own logic here based on the structure of availability data
+  // For example, if availability is an array of days, you can check if the selected days are included in it
+  return availability.includes(selected);
+};
+
 
  
 
@@ -639,27 +658,7 @@ const handlePayLater = () => {
 
 
 
-{expandedServicesDone && (
-  <div className='overlay-container'>
-    <div className="expanded-content">
-   
-      {servicesDoneData ? (
-        // Render the data for services done here
-        <p>Services Done Data</p>
-      ) : (
-        
-        // Render the "No Services Done" message
-        <div className="no-data-message">
-         
-          No Services Done
-        </div>
-      )}
-        <button className="closemetric" onClick={() => setExpandedServicesDone(false)}>
-    Close
-      </button>
-    </div>
-  </div>
-)}
+
 
 {expandedRewards && (
   <div className='overlay-container'>
@@ -700,78 +699,317 @@ const handlePayLater = () => {
 <a href="#" onClick={() => handleTabChange('payments')}>Payments</a>
 </nav>
 
-             {activeTab === 'overview' && (
-
-              
-          <div className='Overview'>
-            
-
-            
-           <div>
-      
-      
-
-     
-    </div>
-
-            <div className='metrics'>
-            <div
+{activeTab === 'overview' && (
+  <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
+       
+          <div className='Dash-Container'>
+          <div className="metrics">
+          <div
   className={`servicesdone ${expandedServicesDone ? 'expanded' : ''}`}
-  onClick={() => setExpandedServicesDone(!expandedServicesDone)}
->
-  <h3>Services Done</h3>
-  <progress value={servicesDoneProgress} max="100"></progress>
-</div>
-
-<div
-  className={`pendingservices ${expandedPendingServices ? 'expanded' : ''}`}
   onClick={() => {
-    setExpandedPendingServices(!expandedPendingServices);
+        setExpandedServicesDone(!expandedServicesDone);
     // Perform the database search here
- 
   }}
 >
-  <h3>Pending Services</h3>
-  <progress value={pendingServicesProgress} max="100"></progress>
-</div>
+ {/*Under Service done button */}
+    <h3>Service done</h3>
+      <div className="">
+      <progress className="" value={pendingServicesProgress} max="100"></progress>
+      <span>{pendingServicesProgress}%</span>
+    </div>
+    
 
+    {/*Electrician Container*/ }
+    <div className="container">
+        <div className="set">
+        <div className='updates-Container'>
+        <div className={{ display: 'flex' }}> {/* Container element */}
 
-<div
-  className={`Rewards ${expandedRewards ? 'expanded' : ''}`}
-  onClick={() => setExpandedRewards(!expandedRewards)}
->
-  <h3>Rewards</h3>
-  <progress value={rewardsProgress} max="100"></progress>
-</div>
-
-      </div>
-      <div className='popularservice_heading'>
-        <p className='popular_heading'>Popular Services</p>
-      </div>
-      <div className='availableservices'>
-  <div
-    className='overviewservices'
-   
-  >
-    {firstTenServices.map((service) => (
-      <div
-      key={service.id}
-      className="productCard"
-       onClick={() => handleServiceClick(service)}
-
-      >
-      <Products key={service.id} service={service} />
-      </div>
-    ))}
+        <div style={{ position: 'relative', width: 10, height: 10 }}>
+  <div style={{
+    position: 'absolute',
+    top: -35,
+    left: 70,
+    width: 70,
+    height: 50,
+    backgroundColor: '#E71E5B',
+    borderRadius: '10%'
+  }} />
+  
+  {/* Overlapping SVG image icon */}
+  <div style={{
+    position: 'absolute',
+    top: -20, // Adjust the top position as needed
+    left: 90, // Adjust the left position as needed
+    zIndex: 1, // Ensure the SVG is above the square shape
+  }}>
+    {/* Your SVG image icon code goes here */}
+    <svg
+      width="30"
+      height="30"
+      xmlns=""
+      viewBox="0 0 24 24"
+      fill="#ffffff"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-6v-2h6v2zm0-4h-6V7h6v5z" />
+    </svg>
   </div>
 </div>
 
+           <FaPaperPlane className={{ color: '#007bff', fontSize: '1.3rem' }} />
+          <FaStar style={{ col0or: 'E71E5B', fontSize: '1rem',marginLeft: '80px',marginBottom:'-30px' }} />
+          <FaHeart style={{ color: 'E71E5B', fontSize: '1rem',marginInlineStart:'175px',marginBottom:'-2px'}} />        
+        </div>
+        <h2>  
+        Electrician</h2>
+        <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px',color: '#E71E5B' }}>provider@gmail.com</p>
+        <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px', textAlign: 'center', color: '#E71E5B'}}>Price</p>
+        <p style={{fontSize: '20px', textAlign: 'center',fontFamily: ' Arial',color: '#E71E5B' }}><b>R500</b></p>
+        <p style={{ fontSize: '14px', textAlign: 'center',color: '#E71E5B' }}>Monday-Friday</p>
+        <button className='small-button' onClick={handleRequestService} style={{ fontWeight: 'bold', color: '#fff',marginTop: '30px',backgroundColor: '#40E0D0', border: '3px solid #40E0D0', borderRadius: '7px',marginLeft: '65px'}}>
+        Request
+        </button>
         
-            
-          </div>
+        
+       
+         </div>
+    </div>
+</div>
+</div>
 
-          
+
+      {/*Cleaning Container*/}
+      <div className="set">
+              <div className='updates-Container'>
+              <div className={{ display: 'flex' }}> {/* Container element */}
+              <div style={{ position: 'relative', width: 10, height: 10 }}>
+  <div style={{
+    position: 'absolute',
+    top: -35,
+    left: 70,
+    width: 70,
+    height: 70,
+    backgroundColor: '#E71E5B',
+    borderRadius: '10%'
+  }} />
+  
+  {/* Overlapping SVG image icon */}
+  <div style={{
+    position: 'absolute',
+    top: -20, // Adjust the top position as needed
+    left: 90, // Adjust the left position as needed
+    zIndex: 1, // Ensure the SVG is above the square shape
+  }}>
+    {/* Your SVG image icon code goes here */}
+    <svg
+      width="30"
+      height="30"
+      xmlns=""
+      viewBox="0 0 24 24"
+      fill="#ffffff"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-6v-2h6v2zm0-4h-6V7h6v5z" />
+    </svg>
+  </div>
+</div>
+                <FaPaperPlane className={{ color: '#007bff', fontSize: '1.3rem' }} />
+                <FaStar style={{ col0or: 'E71E5B', fontSize: '1rem',marginLeft: '80px',marginBottom:'-30px' }} />
+                <FaHeart style={{ color: 'E71E5B', fontSize: '1rem',marginInlineStart:'175px',marginBottom:'-2px'}} />        
+                </div>
+           <h2> 
+           Cleaning  </h2>
+           <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px',color: '#E71E5B' }}>provider@gmail.com</p>
+        <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px', textAlign: 'center', color: '#E71E5B'}}>Price</p>
+        <p style={{fontSize: '20px', textAlign: 'center',fontFamily: ' Arial',color: '#E71E5B' }}><b>R160</b></p>
+       <p style={{ fontSize: '14px', textAlign: 'center',color: '#E71E5B' }}>Monday-Friday</p>
+       <button className='small-button' onClick={handleRequestService}  style={{ fontWeight: 'bold', color: '#fff',marginTop: '30px',backgroundColor: '#40E0D0', border: '3px solid #40E0D0', borderRadius: '7px',marginLeft: '65px'}}>
+        Request
+        </button>
+        </div>
+      </div>
+   </div>
+   </div>
+
+
+
+    {/*Painting container*/}
+      <div className="set">  
+            <div className='updates-Container'>    
+            <div className={{ display: 'flex' }}> {/* Container element */}
+            <div style={{ position: 'relative', width: 10, height: 10 }}>
+  <div style={{
+    position: 'absolute',
+    top: -40,
+    left: 70,
+    width: 70,
+    height: 70,
+    backgroundColor: '#E71E5B',
+    borderRadius: '10%'
+  }} />
+  
+  {/* Overlapping SVG image icon */}
+  <div style={{
+    position: 'absolute',
+    top: -20, // Adjust the top position as needed
+    left: 90, // Adjust the left position as needed
+    zIndex: 1, // Ensure the SVG is above the square shape
+  }}>
+    {/* Your SVG image icon code goes here */}
+    <svg
+      width="30"
+      height="30"
+      xmlns=""
+      viewBox="0 0 24 24"
+      fill="#ffffff"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-6v-2h6v2zm0-4h-6V7h6v5z" />
+    </svg>
+  </div>
+</div>
+              <FaPaperPlane className={{ color: '#007bff', fontSize: '1.3rem' }} />
+              <FaStar style={{ col0or: 'E71E5B', fontSize: '1rem',marginLeft: '80px',marginBottom:'-30px' }} />
+              <FaHeart style={{ color: 'E71E5B', fontSize: '1rem',marginInlineStart:'175px',marginBottom:'-2px'}} />        
+              </div> 
+              <h2>  
+              Painting</h2>
+              <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+       <p style={{ fontSize: '14px',color: '#E71E5B' }}>provider@gmail.com</p>
+       <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px', textAlign: 'center', color: '#E71E5B'}}>Price</p>
+        <p style={{fontSize: '20px', textAlign: 'center',fontFamily: ' Arial',color: '#E71E5B' }}><b>R200</b></p>
+        <p style={{ fontSize: '14px', textAlign: 'center',color: '#E71E5B' }}>Monday-Friday</p>
+        <button className='small-button' onClick={handleRequestService}  style={{ fontWeight: 'bold', color: '#fff',marginTop: '30px',backgroundColor: '#40E0D0', border: '3px solid #40E0D0', borderRadius: '7px',marginLeft: '65px'}}>
+        Request
+        </button>
+           </div>
+         </div>
+     </div>
+   </div>
+   </div>
+   {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p style={{ color: 'white',marginRight: '200px' }}>Requested Service Name</p> {/* Add inline style to change color */}
+            <hr style={{ borderTop: '3px solid white' }} /> {/* Apply style to change color */}
+            <p style={{ color: 'white',marginRight: '370px' }}>Service Price</p> {/* Add inline style to change color */}
+      <p style={{ color: 'white',marginRight: '395px' }}>R350</p> {/* Add inline style to change color */}
+      <input 
+  type="email" 
+  placeholder="Enter your email" 
+  value={email} 
+  onChange={(e) => setEmail(e.target.value)} 
+  style={{ width: '4000px', maxWidth: '400px', boxSizing: 'border-box', marginBottom: '10px' }}
+/>
+     <button onClick={handleGetLocation} style={{ backgroundColor: '#40E0D0', color: 'white', width: '30%', boxSizing: 'border-box',marginBottom: '10px'}}>Get Location</button> {/* Added Get Location button */}
+     <input 
+        type="text" 
+        placeholder="Enter your location" 
+        value={location} 
+        onChange={(e) => setLocation(e.target.value)}
+        style={{ width: expandLocationInput ? '100%' : 'auto', boxSizing: 'border-box', marginBottom: '10px',width: '400px' }}
+      />  
+
+<button className="close-button" onClick={handleNextButtonClick} style={{ position: 'fixed', bottom: '10px', right: '10px', backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', fontSize: '14px', borderRadius: '5px', border: 'none', height: '40px', width: '90px',marginTop: '395px' }}>Next</button>
+{showNextContainer && (
+        <div className="next-container" id="next-container">
+         <p style={{color: 'white',marginRight: '200px',fontSize: '24px'}}>Request Summary</p>
+         <hr style={{ borderTop: '3px solid white' }} />
+         <p style={{color: 'white',marginRight: '250px' }}>Service: Painting</p>
+         <p style={{color: 'white',marginRight: '265px'}}>Provider Email:</p>
+         <p style={{color: 'white',marginRight: '325px'}}>Address:</p>
+         <p style={{color: 'white',marginRight: '280px'}}>Total Amount:</p>
+         <p style={{color: 'white',marginRight: '350px'}}>Email:</p>
+        
+        
+         
+
+         <button onClick={handlePayNow} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none', marginLeft: '35px' }}>Pay Now</button>
+    <button onClick={handlePayLater} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none', marginLeft: '10px' }}>Pay Later</button>
+    <button onClick={handleClosePopup} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none',marginLeft: '150px'}}>Close</button>
+        </div>
+      )}
+     {showPaymentsContainer && (
+  <div className="payments-container" id="payments-container">
+    <button className="close-button" onClick={handleClosePayments} style={{ position: 'relative', top: '-10px', left: '10px' }}>
+      <span style={{ fontSize: '24px', color: 'black' }}>×</span>
+    </button>
+    {/* Content of your payments container */}
+    <p style={{color: 'white',marginRight: '190px'}}>Enter Your Card Details</p>
+    <form onSubmit={handleUploadCardDetails} style={{ display: 'flex', flexDirection: 'column' ,color: 'white' }}>
+      <label htmlFor="cardNumber">Card Number:</label>
+      <input type="text" id="cardNumber" name="cardNumber" maxLength="20" required />
+      
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ flex: 1, marginRight: '10px' }}>
+          <label htmlFor="expirationDate">Expiration Date:</label>
+          <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
+        </div>
+        <div style={{ flex: 1, marginLeft: '10px' }}>
+          <label htmlFor="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv"  maxLength="4" required />
+        </div>
+      </div>
+   
+      
+      <button type="submit" style={{width: '125px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}} >Upload </button>
+    </form>
+    {/* Option to pay with PayFast */}
+    <p style={{color: 'white',marginRight: '230px'}}>OR</p>
+    <button onClick={handlePayWithPayFast} style={{ marginTop: '-30px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}}>Pay with PayFast</button>
+  
+  </div>
+  
+)}
+      
+       
+          </div>
+        
+
+        </div>
+      )}
+   </div>
+
+
+
+{/*Expenses Container*/}
+<div className={`pendingservices ${expandedPendingServices ? 'expanded' : ''}`}
+ onClick={() =>setExpandedPendingServices(!expandedPendingServices)}>
+    <h3>Pending Services </h3>
+    <div className="progress-circle">
+      <progress className="circle-progress" value={pendingServicesProgress} max="100"></progress>
+      <span>{pendingServicesProgress}%</span>
+    </div>
+  </div>
+
+
+
+  {/*Point Container*/}
+  <div className={`Rewards ${expandedRewards ? 'expanded' : ''}`}
+   onClick={() => setExpandedRewards(!expandedRewards)}>
+    <h3>Rewards</h3>
+    <div className="progress-circle">
+      <progress className="circle-progress" value={rewardsProgress} max="100"></progress>
+      <span>{rewardsProgress}%</span>
+    </div>
+   
+       
+        
+  </div>
+</div>
+</div>
+        
+</div>
         )}
+
        
         {activeTab === 'services' && (
          
@@ -871,17 +1109,18 @@ const handlePayLater = () => {
 
 </div>
   <div className='my_services'>
-    <div className='services_services'
-   
-    >  {filteredServices.map((service) => (
-      <div
-        key={service.id}
-        className="productCard"
-        onClick={() => handleServiceClick(service)}
-      >
-        <Products service={service} />
-      </div>
+  <div className='services_services'>
+        {/* Filtered services based on the selected filters */}
+        {filteredServices.map((service) => (
+          <div
+            key={service.id}
+            className="productCard"
+            onClick={() => handleServiceClick(service)}
+          >
+            <Products service={service} />
+          </div>
     ))}
+    
     </div>
       </div>
       
@@ -890,6 +1129,278 @@ const handlePayLater = () => {
       </div>
       
         )}
+        
+
+{activeTab === 'services' && ( 
+                  <div className='ScrollableContainer'>
+                  <div className='Dash-Container'>
+                  <div className="metrics">
+                  <div
+                   onClick={() => {
+            
+            //setExpandedPendingServices(!expandedPendingServices);
+            // Perform the database search here
+          }}
+        >
+         <br/>
+          
+            <div className="container2">
+      {/* First Set of Containers */}
+      <div className="set">
+              <div className='updates-Container2'>
+              <div className={{ display: 'flex' }}> {/* Container element */}
+            <div style={{ position: 'relative', width: 10, height: 10 }}>
+  <div style={{
+    position: 'absolute',
+    top: -40,
+    left: 70,
+    width: 70,
+    height: 70,
+    backgroundColor: '#E71E5B',
+    borderRadius: '10%'
+  }} />
+  
+  {/* Overlapping SVG image icon */}
+  <div style={{
+    position: 'absolute',
+    top: -20, // Adjust the top position as needed
+    left: 90, // Adjust the left position as needed
+    zIndex: 1, // Ensure the SVG is above the square shape
+  }}>
+    {/* Your SVG image icon code goes here */}
+    <svg
+      width="30"
+      height="30"
+      xmlns=""
+      viewBox="0 0 24 24"
+      fill="#ffffff"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-6v-2h6v2zm0-4h-6V7h6v5z" />
+    </svg>
+  </div>
+</div>
+              <FaPaperPlane className={{ color: '#007bff', fontSize: '1.3rem' }} />
+              <FaStar style={{ col0or: 'E71E5B', fontSize: '1rem',marginLeft: '80px',marginBottom:'-30px' }} />
+              <FaHeart style={{ color: 'E71E5B', fontSize: '1rem',marginInlineStart:'175px',marginBottom:'-2px'}} />        
+              </div> 
+           <h2>
+           Cleaning
+           </h2>
+           <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px',color: '#E71E5B' }}>provider@gmail.com</p>
+        <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px', textAlign: 'center', color: '#E71E5B'}}>Price</p>
+        <p style={{fontSize: '20px', textAlign: 'center',fontFamily: ' Arial',color: '#E71E5B' }}><b>R160</b></p>
+        <p style={{ fontSize: '14px', textAlign: 'center',color: '#E71E5B' }}>Monday-Friday</p>
+        <button className='small-button' onClick={handleRequestService}  style={{ fontWeight: 'bold', color: '#fff',marginTop: '30px',backgroundColor: '#40E0D0', border: '3px solid #40E0D0', borderRadius: '7px',marginLeft: '65px'}}>
+        Request
+        </button>
+        </div>
+      </div>
+   </div>
+   </div>
+
+
+      {/* Second Set of Containers */}
+      <div className="set">
+        <div className='updates-Container2'>
+        <div className={{ display: 'flex' }}> {/* Container element */}
+            <div style={{ position: 'relative', width: 10, height: 10 }}>
+  <div style={{
+    position: 'absolute',
+    top: -40,
+    left: 70,
+    width: 70,
+    height: 70,
+    backgroundColor: '#E71E5B',
+    borderRadius: '10%'
+  }} />
+  
+  {/* Overlapping SVG image icon */}
+  <div style={{
+    position: 'absolute',
+    top: -20, // Adjust the top position as needed
+    left: 90, // Adjust the left position as needed
+    zIndex: 1, // Ensure the SVG is above the square shape
+  }}>
+    {/* Your SVG image icon code goes here */}
+    <svg
+      width="30"
+      height="30"
+      xmlns=""
+      viewBox="0 0 24 24"
+      fill="#ffffff"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-6v-2h6v2zm0-4h-6V7h6v5z" />
+    </svg>
+  </div>
+</div>
+              <FaPaperPlane className={{ color: '#007bff', fontSize: '1.3rem' }} />
+              <FaStar style={{ col0or: 'E71E5B', fontSize: '1rem',marginLeft: '80px',marginBottom:'-30px' }} />
+              <FaHeart style={{ color: 'E71E5B', fontSize: '1rem',marginInlineStart:'175px',marginBottom:'-2px'}} />        
+              </div> 
+        <h2> Electrician</h2>
+        <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px',color: '#E71E5B' }}>provider@gmail.com</p>
+        <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px', textAlign: 'center', color: '#E71E5B'}}>Price</p>
+        <p style={{fontSize: '20px', textAlign: 'center',fontFamily: ' Arial',color: '#E71E5B' }}><b>R500</b></p>
+        <p style={{ fontSize: '14px', textAlign: 'center',color: '#E71E5B' }}>Monday-Friday</p>
+        <button className='small-button' onClick={handleRequestService}  style={{ fontWeight: 'bold', color: '#fff',marginTop: '30px',backgroundColor: '#40E0D0', border: '3px solid #40E0D0', borderRadius: '7px',marginLeft: '65px'}}>
+        Request
+        </button>
+         </div>
+    </div>
+</div>
+</div>
+
+
+<div className="set">  
+            <div className='updates-Container2'>    
+            <div className={{ display: 'flex' }}> {/* Container element */}
+            <div style={{ position: 'relative', width: 10, height: 10 }}>
+  <div style={{
+    position: 'absolute',
+    top: -40,
+    left: 70,
+    width: 70,
+    height: 70,
+    backgroundColor: '#E71E5B',
+    borderRadius: '10%'
+  }} />
+  
+  {/* Overlapping SVG image icon */}
+  <div style={{
+    position: 'absolute',
+    top: -20, // Adjust the top position as needed
+    left: 90, // Adjust the left position as needed
+    zIndex: 1, // Ensure the SVG is above the square shape
+  }}>
+    {/* Your SVG image icon code goes here */}
+    <svg
+      width="30"
+      height="30"
+      xmlns=""
+      viewBox="0 0 24 24"
+      fill="#ffffff"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-6v-2h6v2zm0-4h-6V7h6v5z" />
+    </svg>
+  </div>
+</div>
+              <FaPaperPlane className={{ color: '#007bff', fontSize: '1.3rem' }} />
+              <FaStar style={{ col0or: 'E71E5B', fontSize: '1rem',marginLeft: '80px',marginBottom:'-30px' }} />
+              <FaHeart style={{ color: 'E71E5B', fontSize: '1rem',marginInlineStart:'175px',marginBottom:'-2px'}} />        
+              </div> 
+                          <h2>
+              Painting
+              </h2>
+              <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+       <p style={{ fontSize: '14px',color: '#E71E5B' }}>provider@gmail.com</p>
+       <div style={{borderTop: '1px solid #E71E5B', margin: '10px 0'}}>
+        <p style={{ fontSize: '14px', textAlign: 'center', color: '#E71E5B'}}>Price</p>
+        <p style={{fontSize: '20px', textAlign: 'center',fontFamily: ' Arial',color: '#E71E5B' }}><b>R200</b></p>
+       <p style={{ fontSize: '14px', textAlign: 'center',color: '#E71E5B' }}>Monday-Friday</p>
+       <button className='small-button' onClick={handleRequestService}  style={{ fontWeight: 'bold', color: '#fff',marginTop: '30px',backgroundColor: '#40E0D0', border: '3px solid #40E0D0', borderRadius: '7px',marginLeft: '65px'}}>
+        Request
+        </button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   {showPopup && (
+        <div className="popup-container">
+          <div className="popup-content">
+            {/* Content of your popup */}
+            
+            <p style={{ color: 'white',marginRight: '200px' }}>Requested Service Name</p> {/* Add inline style to change color */}
+            <hr style={{ borderTop: '3px solid white' }} /> {/* Apply style to change color */}
+            <p style={{ color: 'white',marginRight: '370px' }}>Service Price</p> {/* Add inline style to change color */}
+      <p style={{ color: 'white',marginRight: '395px' }}>R350</p> {/* Add inline style to change color */}
+      <input 
+  type="email" 
+  placeholder="Enter your email" 
+  value={email} 
+  onChange={(e) => setEmail(e.target.value)} 
+  style={{ width: '4000px', maxWidth: '400px', boxSizing: 'border-box', marginBottom: '10px' }}
+/>
+     <button onClick={handleGetLocation} style={{ backgroundColor: '#40E0D0', color: 'white', width: '30%', boxSizing: 'border-box',marginBottom: '10px'}}>Get Location</button> {/* Added Get Location button */}
+     <input 
+        type="text" 
+        placeholder="Enter your location" 
+        value={location} 
+        onChange={(e) => setLocation(e.target.value)}
+        style={{ width: expandLocationInput ? '100%' : 'auto', boxSizing: 'border-box', marginBottom: '10px',width: '400px' }}
+      />  
+
+<button className="close-button" onClick={handleNextButtonClick} style={{ position: 'fixed', bottom: '10px', right: '10px', backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', fontSize: '14px', borderRadius: '5px', border: 'none', height: '40px', width: '90px',marginTop: '395px' }}>Next</button>
+{showNextContainer && (
+        <div className="next-container" id="next-container">
+         <p style={{color: 'white',marginRight: '200px',fontSize: '24px'}}>Request Summary</p>
+         <hr style={{ borderTop: '3px solid white' }} />
+         <p style={{color: 'white',marginRight: '250px' }}>Service: Painting</p>
+         <p style={{color: 'white',marginRight: '265px'}}>Provider Email:</p>
+         <p style={{color: 'white',marginRight: '325px'}}>Address:</p>
+         <p style={{color: 'white',marginRight: '280px'}}>Total Amount:</p>
+         <p style={{color: 'white',marginRight: '350px'}}>Email:</p>
+        
+        
+         
+
+         <button onClick={handlePayNow} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none', marginLeft: '35px' }}>Pay Now</button>
+    <button onClick={handlePayLater} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none', marginLeft: '10px' }}>Pay Later</button>
+    <button onClick={handleClosePopup} style={{ backgroundColor: '#40E0D0', color: 'white', padding: '8px 16px', borderRadius: '5px', border: 'none',marginLeft: '150px'}}>Close</button>
+        </div>
+      )}
+     {showPaymentsContainer && (
+  <div className="payments-container" id="payments-container">
+    <button className="close-button" onClick={handleClosePayments} style={{ position: 'relative', top: '-10px', left: '10px' }}>
+      <span style={{ fontSize: '24px', color: 'black' }}>×</span>
+    </button>
+    {/* Content of your payments container */}
+    <p style={{color: 'white',marginRight: '190px'}}>Enter Your Card Details</p>
+    <form onSubmit={handleUploadCardDetails} style={{ display: 'flex', flexDirection: 'column' ,color: 'white' }}>
+      <label htmlFor="cardNumber">Card Number:</label>
+      <input type="text" id="cardNumber" name="cardNumber" maxLength="20" required />
+      
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ flex: 1, marginRight: '10px' }}>
+          <label htmlFor="expirationDate">Expiration Date:</label>
+          <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
+        </div>
+        <div style={{ flex: 1, marginLeft: '10px' }}>
+          <label htmlFor="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv"  maxLength="4" required />
+        </div>
+      </div>
+   
+      
+      <button type="submit" style={{width: '125px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}} >Upload </button>
+    </form>
+    {/* Option to pay with PayFast */}
+    <p style={{color: 'white',marginRight: '230px'}}>OR</p>
+    <button onClick={handlePayWithPayFast} style={{ marginTop: '-30px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}}>Pay with PayFast</button>
+  
+  </div>
+  
+)}
+      
+       
+          </div>
+        
+
+        </div>
+      )}
+      </div>
+      </div>
+      </div>
+      </div>  
+           )}
+
 
 
        
@@ -900,12 +1411,12 @@ const handlePayLater = () => {
            <div className="container">
       {/* First Set of Containers */}
       <div className="set">
-        <div className='updates-Container1' >Service Description
+        <div className='accounts-Container' >Service Description
         <h2>Service Description</h2>
         <p style={{ fontWeight: 'normal' }}>Repairing a Samsung fridge</p>
         
         </div>
-        <div className='updates-Container1'>Service Description
+        <div className='accounts-Container'>Service Description
         <h2>Service Description</h2>
         <p style={{ fontWeight: 'normal' }}>Repairing a Microwave</p>
         
@@ -916,12 +1427,12 @@ const handlePayLater = () => {
 
       {/* Second Set of Containers */}
       <div className="set">
-        <div className='updates-Container1'>Service Provider
+        <div className='accounts-Container'>Service Provider
         <p style={{ fontWeight: 'normal', color: 'black' }}>Name: <span style={{ color: '#40E0D0' }}>Jane Smith</span></p>
     <p style={{ fontWeight: 'normal',color: 'black'  }}>Address: <span style={{ color: '#40E0D0' }}>456 Oak Avenue</span></p>
     <p style={{ fontWeight: 'normal' ,color: 'black' }}>Service Date: <span style={{ color: '#40E0D0' }}>20|05|2024</span></p>
         </div>
-        <div className='updates-Container1'>Service Provider
+        <div className='accounts-Container'>Service Provider
         <p style={{ fontWeight: 'normal', color: 'black' }}>Name: <span style={{ color: '#40E0D0' }}>Jane Smith</span></p>
     <p style={{ fontWeight: 'normal',color: 'black'  }}>Address: <span style={{ color: '#40E0D0' }}>456 Oak Avenue</span></p>
     <p style={{ fontWeight: 'normal' ,color: 'black' }}>Service Date: <span style={{ color: '#40E0D0' }}>20|05|2024</span></p>
@@ -931,7 +1442,7 @@ const handlePayLater = () => {
 
 
       <div className="set">
-      <div className='updates-Container1'>Services Rating
+      <div className='accounts-Container'>Services Rating
       <div class="stars">
         <span class="star">&#9733;</span>
         <span class="star">&#9733;</span>
@@ -941,7 +1452,7 @@ const handlePayLater = () => {
         <p style={{ fontWeight: 'bold' ,color: 'black' }}>Service Price:<br></br><span style={{ color: '#ff0068' }}>R350</span></p>
       </div>
       </div>
-      <div className='updates-Container1'>Services Rating
+      <div className='accounts-Container'>Services Rating
       <div class="stars">
         <span class="star">&#9733;</span>
         <span class="star">&#9733;</span>
@@ -1196,16 +1707,23 @@ const handlePayLater = () => {
 <div className='heading_fav'><h4>Favourites</h4></div>
 
 <div className='fav_services1'>
-<div class="Add_fav">
-<img
-    style={{objectFit: 'cover'}}
-    src="icons8-plus-48.png"
-    alt="Add"
-    className="add-icon"
-    onClick={handleClick}
-/>
+{containers.map(container => (
+        <div key={container.id} className={container.classes}>
+          {container.content}
+        </div>
+      ))}
 
-</div>
+      {/* Add icon */}
+      <div className="Add_fav"style={{ width: '50px',height: '50px' }}>
+        <img
+          style={{ objectFit: 'cover' }}
+          src="icons8-plus-48.png"
+          alt="Add"
+          className="add-icon"
+          onClick={handlefavoritesClick}
+        />
+      </div>
+    
 <div className='customers-container current-container pink-border'>
        <div className='info'>
           {/* Container for customer name */}
@@ -1282,10 +1800,16 @@ const handlePayLater = () => {
           <input type="text" id="cvv" name="cvv"  maxLength="4" required />
         </div>
       </div>
+   
       
-      <button type="submit">Upload Card Details</button>
+      <button type="submit" style={{width: '125px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}} >Upload </button>
     </form>
+    {/* Option to pay with PayFast */}
+    <p style={{color: 'white',marginRight: '230px'}}>OR</p>
+    <button onClick={handlePayWithPayFast} style={{ marginTop: '-30px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}}>Pay with PayFast</button>
+  
   </div>
+  
 )}
       
        
@@ -1714,13 +2238,19 @@ display: flex;
 
       }
       .profile_information{
+        overflow: auto;
+       
+      }
+      .profile_information{
         border: 2px solid #ff0068;
-        height: 500px;
+        height: 700px;
         width: 500px;
         border-radius: 5px;
         padding: 10px;
         position: relative;
       }
+      
+    
       .Profiletab{
         display: flex;
         padding: 10px;
@@ -1757,8 +2287,10 @@ margin-bottom: 40px;
     box-sizing: border-box;
 }
 .upload-section {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
+
+
 
 
 
@@ -2894,7 +3426,7 @@ margin-left: -19px;
 .popularservice_heading {
   position: relative;
   color: #ff0068;
-  font-size: 17px;
+  font-size: 25px;
   font-weight: bold;
   font-family: poppins;
   margin: 0;
@@ -2905,7 +3437,7 @@ margin-left: -19px;
   content: '';
   border-top: 2px solid #ff0068; /* Adjust the style and color as needed */
   display: block;
-  width: 4%; /* Adjust the line width as needed */
+  width: 100%; /* Adjust the line width as needed */
   position: absolute;
   top: 50%;
 }
@@ -2964,43 +3496,115 @@ margin-left: -19px;
   margin-right: auto; /* Push updates container to the left */
 }
 
-.updates-Container1 {
-  border: 3px solid #ff0068;
+.updates-Container {
+  border: 1px solid #ff0068;
   padding: 10px;
-  margin: 5px;
-  width: 280px; /* Adjust width */
+  margin: 1px;
+  box-shadow: 0 0 15px rgba(255, 0, 104, 0.5);
+  width: 300px; /* Adjust width */
   height: 150px; /* Adjust height */
-  margin-top: 30px;
+  margin-top: 100px;
+  margin-left: 15px;
   border-radius: 10px; /* Adjust the value to change the roundness */ 
   font-family: Arial, sans-serif; /* Set font family to Arial */
   font-weight: bold; /* Set font weight to bold */
-  color: black; /* Set text color to black */
-  font-size: 17px; /* Set font size to 20 pixels */
+  color:#ff0068; /* Set text color to black */
+  font-size: 20px; /* Set font size to 20 pixels */
   position: relative;
 }
 
-.updates-Container1::before
+.updates-Container::before
  {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  border-top: 3px solid #ff0068;
+  border-top: 1px solid #ff0068;
 }
 
 
-.updates-Container1::before {
+.updates-Container::before {
   bottom: 78%;
 }
 
-.set:nth-child(2) .updates-Container1 {
-  width: 400px; /* Width of the containers in the middle */
+.set:nth-child(2) .updates-Container {
+  width: 200px; /* Width of the containers in the middle */
+  height:400px;
 }
 
-.set:nth-child(1) .updates-Container1,
-.set:nth-child(3) .updates-Container1 {
+.set:nth-child(1) .updates-Container,
+.set:nth-child(3) .updates-Container {
   width: 200px; /* Width of the containers on the left and right */
+  height:400px;
 }
+
+
+
+/*all container code*/
+.container {
+  display: flex; /* Use flexbox */
+  gap:100px;
+  justify-content: space-between; /* Distribute space between the containers */
+}
+
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  
+}
+
+.updates-Container2 {
+  border: 2px solid #ff0068;
+  padding: 10px;
+  margin: 1px;
+  box-shadow: 0 0 15px rgba(255, 0, 104, 0.5);
+  width: 200px; /* Adjust width */
+  height: 400px; /* Adjust height */
+  margin-top: -300px;
+  margin-left: 20px;
+  border-radius: 10px; /* Adjust the value to change the roundness */ 
+  font-family: Arial, sans-serif; /* Set font family to Arial */
+  font-weight: bold; /* Set font weight to bold */
+  color:#ff0068; /* Set text color to black */
+  font-size: 20px; /* Set font size to 20 pixels */
+  position: relative;
+}
+
+.updates-Container2::before
+ {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #ff0068;
+}
+
+
+.updates-Container2::before {
+  bottom: 78%;
+}
+
+
+
+.container2 {
+  display: flex; /* Use flexbox */
+  gap:100px;
+  justify-content: space-between; /* Distribute space between the containers */
+}
+
+
+
+
+
+/* .set {
+display: flex;
+flex-direction: column;
+align-items: left;
+background-color: transparent;
+margin-right: auto; /* Push updates container to the left */
+}*/
 
 @media (max-width: 768px){
   .dashboard-container{
@@ -3271,6 +3875,25 @@ color: blue;
     width: 100%;
     margin-bottom: 10px;
   }
+  .updates-Container{
+    border: 3px solid #ff0068;
+    padding: 10px;
+    margin: 5px;
+    width: 280px; /* Adjust width */
+    height: 150px; /* Adjust height */
+    margin-top: 30px;
+    border-radius: 10px; /* Adjust the value to change the roundness */ 
+    font-family: Arial, sans-serif; /* Set font family to Arial */
+    font-weight: bold; /* Set font weight to bold */
+    color: black; /* Set text color to black */
+    font-size: 20px; /* Set font size to 20 pixels */
+    position: relative;
+  }
+  .accounts-Container{
+
+  }
+  
+  
   
 }
       

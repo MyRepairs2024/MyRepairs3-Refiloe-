@@ -15,13 +15,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
-
-
-
-
-
-
-
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co';
 const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwYXZsYnFic3BsdWRtcnZqcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAyNzcwODIsImV4cCI6MjAwNTg1MzA4Mn0.HZXbPikgoL0V7sYj7xNPj0FUupXd8hx1JdMrixvq7Xw';
 
@@ -673,6 +666,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 <div className='UserDashboard'>
 
     <div className="dashboard-container">
+
     <div className="img-and-title">
       
         
@@ -692,6 +686,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 
 </div>
 <div className='username'><h4>{userEmail}</h4></div>
+      
 
 <div className="dashcontent">
 <div className="dashboard-content">
@@ -1024,7 +1019,7 @@ const [displayedimage, setDisplayedImage] = useState('');
       <Dashheader />
       <div></div>
       <div className='Profiletab'>
-   <div className='edit_pfp'>
+      <div className="edit_pfp">
    <h4>Profile Picture</h4>
             <div className='pfp'></div>
             <p className='Name_Surname'></p>
@@ -1674,7 +1669,7 @@ const [displayedimage, setDisplayedImage] = useState('');
                  <div className="smallanalytics-container">November | R1000</div>
                  <div className="smallanalytics-container">December | R1000</div>
                </div>
-               <button onClick={handleDownloadpdf} style={{marginTop: '20px'}}>Download PDF</button>
+               <button onClick={handleDownloadpdf} style={{marginTop: '45px'}}>Download PDF</button>
              </div>
           )}
 
@@ -2471,6 +2466,7 @@ font-size: 18px;
   font-weight: bold;
   font-family: Arial, sans-serif;
   
+  
 }
 
 .totalrevenue-container {
@@ -3175,6 +3171,16 @@ background-color: #0056b3;
   
   
   }
+  .username{
+    background: red;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 50px;
+  width: 130px;
+  font-size: 12px;
+  display: none;
+ 
+  }
   .Profile{
   width: 100%;
   
@@ -3664,6 +3670,22 @@ height: 100vh;
       top: 21%;
       left: 0;
       width: 100%;
+    }
+    .img-and-title{
+      width: 60px;
+      margin-bottom: 30px;
+      
+    }
+    .profile-pic {
+      background: #fff;
+      color: #ff0068;
+      width: 80px;
+      height: 80px;
+      margin-top: 25px;
+      font-size: 25px;
+      margin-left: 35px;
+      border-radius: 50%; /* Makes the element a circle */
+      overflow: hidden; /* Ensures content within the circle is clipped */
     }
 
 
