@@ -59,6 +59,8 @@ const [alertVisible, setAlertVisible] = useState(false);
 const [receiptdata, setreceiptData] = useState([]);
 const [editMode, setEditMode] = useState(false);
 const [containers, setContainers] = useState([]);
+const [location, setLocation] = useState('');
+
 
 
   const toggleEdit = () => {
@@ -375,7 +377,7 @@ const handleCloseAlert = () => {
       messageDiv.remove();
   }
   const [email, setEmail] = useState('');
-  const [location, setLocation] = useState('');
+ 
 
   const handleContactCustomer = () => {
     setShowPopup(true);
@@ -425,6 +427,18 @@ const handleGetLocation = () => {
     setLocation('Geolocation is not supported by your browser');
   }
 };
+const fetchLocation = async () => {
+  try {
+    // Fetch location logic
+  } catch (error) {
+    console.error('Error fetching location:', error);
+    setLocation('Error fetching location');
+  }
+};
+
+
+// Example of setLocation function (to be defined in your component)
+
 const [showPaymentsContainer, setShowPaymentsContainer] = useState(false);
 const [showNextContainer, setShowNextContainer] = useState(false); 
 const handleNextButtonClick = () => {
@@ -1673,18 +1687,19 @@ const isAvailabilityMatch = (availability, selected) => {
         <img src="logo.png" alt="Logo" className="logo" />
     </div>
     <div className='default_msg1'>
-    <p className="default_msg_text">Dear Thabang Lengane<br/>Thank You for ordering at Lumen<br/>You will find your invoice in the attached messages below.</p>
+    <p className="default_msg_text" style={{ marginTop: '20px' }}>Dear Thabang Lengane<br />Thank You for requesting a service at Myrepairs<br />Your service has been completed.</p>
+{/* Review input field or textarea */}
 
+<textarea placeholder="Leave your review and rate your service" style={{ marginTop: '-40px' }}></textarea>
     </div>
     
 </div>
 <div className='condition_msg'>
-<div className='default_msg'>
+  <div className='default_msg'>
     <p>Invoice IN-171020238(Placed on the 17/08/2023)</p>
     <div className="line"></div>
-   
-</div>
 
+  </div>
 </div>
 <div className='footer_msg'>
 <div className='heading_footer_msg'><h4 className='heading_footer_msg1'>Contact Us</h4><p>support@myrepairs.co.za</p></div>

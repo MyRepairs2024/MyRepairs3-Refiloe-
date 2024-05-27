@@ -64,6 +64,11 @@ import { GoogleLogin } from 'react-google-login';
       margin: '20px auto',
       borderRadius: '20px',
     },
+    forgotPassword: {
+      color: '#fff',
+      textDecoration: 'underline',
+      cursor: 'pointer',
+    },
   
   
 };
@@ -192,6 +197,14 @@ function LoginPage() {
 
           <div style={styles.links}>
             <p>Don't have an account? <a href="/provider_homepage">Register</a></p>
+            <p>
+              <span
+                style={styles.forgotPassword}
+                onClick={() => window.location.href = '/ProviderForgotPassword'}
+              >
+                Forgot Password?
+              </span>
+            </p>
           </div>
         </form>
       </div>

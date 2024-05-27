@@ -104,6 +104,7 @@ const currentCustomers = Customers.slice(indexOfFirstCustomer, indexOfLastCustom
    const [profileImage, setProfileImage] = useState(null);
    const [imageSrc, setImageSrc] = useState('');
 const [displayedimage, setDisplayedImage] = useState('');
+const [showPopuprequest, setShowPopuprequest] = useState(false);
    const handleDownloadInvoice = (customerEmail) => {
     // Logic to download invoice for the given customer
     console.log(`Downloading invoice for ${customerEmail}`);
@@ -161,6 +162,7 @@ const [displayedimage, setDisplayedImage] = useState('');
 
   const handleClosePopup = () => {
     setShowPopup(false);
+    setShowPopuprequest(false);
   };
   
 
@@ -565,28 +567,7 @@ const [displayedimage, setDisplayedImage] = useState('');
   
 
 
-  const handleAcceptRequest = async (userEmail) => {
-    try {
-      const response = await fetch('/api/acceptrequest', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userEmail: pendingRequests.pro_email }), // Use pendingRequests instead of pendingRequest
-      });
-
-      if (response.ok) {
-        // Request accepted successfully, update the UI or fetch pending requests again
-        await deletePendingRequest(pendingRequests.pro_email);
-      await populatePaidRequests(pendingRequests);
  
-      } else {
-        console.error('Error accepting request:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error accepting request:', error);
-    }
-  };
   const handleTabChange2 = (tab1) => {
     setActiveTab2(tab1);
     if (selectedTab === tab1) {
@@ -659,6 +640,31 @@ const [displayedimage, setDisplayedImage] = useState('');
     var input = document.getElementById('street');
     var autocomplete = new google.maps.places.Autocomplete(input);
 }
+function handleTabChangeCustomers(tabName) {
+  // Add your implementation here
+  console.log("Tab changed to:", tabName);
+  // You can perform any necessary actions based on the tabName parameter
+}
+const handleAcceptRequest = () => {
+  setShowPopuprequest(true);
+  // You can also include additional logic here for handling the request acceptance
+};
+
+const handleStartProcess = () => {
+  // Add logic for starting the process
+  console.log('Process started');
+};
+
+const handleInProgress = () => {
+  // Add logic for process in progress
+  console.log('Process in progress');
+};
+
+const handleProcessDone = () => {
+  // Add logic for process done
+  console.log('Process done');
+};
+
 
 // Load the Autocomplete API asynchronously
 
@@ -961,19 +967,67 @@ const [displayedimage, setDisplayedImage] = useState('');
         )}
        
        {activeTab === 'services' && (
-         <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
-  <div className="services-wrapper">
-    <div className="services-container">
-      {/* Your services content goes here */}
-      <p>This is where your services content will be placed.</p>
+  <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
+    <div className="services-wrapper">
+      <div className="services-container">
+        {/* Testimonial reviews */}
+        <div className="testimonial">
+          <h3>Testimonials</h3>
+          <div className="testimonial-list">
+            {/* Individual testimonial */}
+            <div className="testimonial-item-container">
+              <div className="testimonial-item">
+                <div className="testimonial-rating">
+                  {/* Replace 'rating' with the actual rating value */}
+                  <div className="stars" style={{'--rating': 4.5}}></div>
+                </div>
+                <div className="testimonial-text">
+                  <p>Had several tasks to be completed. Themba was fast, efficient and professional.</p>
+                  <p>- Thabang </p>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial-item-container">
+              <div className="testimonial-item">
+                <div className="testimonial-rating">
+                  {/* Replace 'rating' with the actual rating value */}
+                  <div className="stars" style={{'--rating': 4.0}}></div>
+                </div>
+                <div className="testimonial-text">
+                  <p>I hired Themba to install a couple sets of curtain rods and blackout curtains and he did an amazing job! Very friendly and efficient. Would recommend Austin to anyone </p>
+                  <p>- John Doe</p>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial-item-container">
+              <div className="testimonial-item">
+                <div className="testimonial-rating">
+                  {/* Replace 'rating' with the actual rating value */}
+                  <div className="stars" style={{'--rating': 5.0}}></div>
+                </div>
+                <div className="testimonial-text">
+                  <p>Themba was great! I would highly recommend him to anyone looking for efficient and extremely competent taskers!</p>
+                  <p>- Shaleen</p>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial-item-container">
+              <div className="testimonial-item">
+                <div className="testimonial-rating">
+                  {/* Replace 'rating' with the actual rating value */}
+                  <div className="stars" style={{'--rating': 4.8}}></div>
+                </div>
+                <div className="testimonial-text">
+                  <p>Themba is fantastic! Very professional and a great attention to detail. I will definitely hire him again</p>
+                  <p>- Retha</p>
+                </div>
+              </div>
+            </div>
+            {/* Add more testimonials as needed */}
+          </div>
+        </div>
+      </div>
     </div>
-    <div className="days-container">
-      {/* Days content goes here */}
-      <p>Days</p>
-
-      
-    </div>
-  </div>
   </div>
 )}
        
@@ -1399,30 +1453,79 @@ const [displayedimage, setDisplayedImage] = useState('');
           </div>  
         </div>
         <div className='small-containers-container'>
-    <div className='small-container'>
-      <div class='content'>
-        <div class='title'>Total Services 01</div>
-        <div class='line'></div>
-        <button className='container-button'>View Invoices</button>
-      </div>
-    </div>
+        <div className='small-container'>
+  <div class='content'>
+    <a href='#' className='title'>View Request Summary</a>
+    <div class='line'></div>
+    <button className='container-button' onClick={handleAcceptRequest}>Accept Request</button>
+  </div>
+</div>
 
-    <div className='small-container'>
-      <div class='content'>
-        <div class='title'>Total Services 02</div>
-        <div class='line'></div>
-        <button className='container-button'>View Invoices</button>
+{showPopuprequest && (
+  <div className='popup-container'>
+    <div className='popup-content'>
+      <p>Track the process:</p>
+      <div>
+        <button onClick={handleStartProcess} style={{ marginRight: '20px', width: '75px', marginLeft: '15px', backgroundColor: '#ff0068', padding: '10px' }}>Start Process</button>
+        <span style={{ margin: '0 1px' }}>➔</span> {/* Unicode arrow character */}
+        <button onClick={handleInProgress} style={{ marginRight: '20px', width: '75px', backgroundColor: '#ff0068', padding: '10px' }}>In Progress</button>
+        <span style={{ margin: '0 0px' }}>➔</span> {/* Unicode arrow character */}
+        <button onClick={handleProcessDone} style={{ marginLeft: '25px', width: '75px', backgroundColor: '#ff0068', padding: '10px' }}>Process Done</button>
       </div>
-    </div>
-
-    <div className='small-container'>
-      <div class='content'>
-        <div class='title'>Total Services 03</div>
-        <div class='line'></div>
-        <button className='container-button'>View Invoices</button>
-      </div>
+      <button onClick={handleClosePopup} style={{ marginTop: '20px', marginLeft: 'auto', marginRight: 'auto', display: 'block', padding: '20px' }}>Close</button>
     </div>
   </div>
+)}
+
+    <div className='small-container'>
+      <div class='content'>
+      <a href='#' className='title'>View Request Summary</a>
+        <div class='line'></div>
+        <button className='container-button' onClick={handleAcceptRequest}>Accept Request</button>
+      </div>
+    </div>
+    {showPopuprequest && (
+  <div className='popup-container'>
+    <div className='popup-content'>
+      <p>Track the process:</p>
+      <div>
+      <button onClick={handleStartProcess} style={{ marginRight: '20px', width: '75px',marginLeft: '15px',  backgroundColor: '#ff0068', padding: '10px' }}>Start Process</button>
+      <span style={{ margin: '0 1px' }}>➔</span> {/* Unicode arrow character */}
+        <button onClick={handleInProgress} style={{ marginRight: '20px', width: '75px', backgroundColor: '#ff0068', padding: '10px' }}>In Progress</button>
+        <span style={{ margin: '0 0px' }}>➔</span> {/* Unicode arrow character */}
+
+        <button onClick={handleProcessDone} style={{ marginLeft: '25px', width: '75px', backgroundColor: '#ff0068', padding: '10px' }}>Process Done</button>
+      </div>
+      <button onClick={handleClosePopup} style={{ marginRight: '60px' }}>Close</button>
+    </div>
+  </div>
+)}
+
+    <div className='small-container'>
+      <div class='content'>
+      <a href='#' className='title'>View Request Summary</a>
+        <div class='line'></div>
+        <button className='container-button' onClick={handleAcceptRequest}>Accept Request</button>
+      </div>
+    </div>
+    {showPopuprequest && (
+  <div className='popup-container'  style={{ width: '400px' }}>
+    <div className='popup-content'>
+      <p>Track the process:</p>
+      <div>
+      <button onClick={handleStartProcess} style={{ marginRight: '20px', width: '75px',marginLeft: '15px',  backgroundColor: '#ff0068', padding: '10px' }}>Start Process</button>
+      <span style={{ margin: '0 1px' }}>➔</span> {/* Unicode arrow character */}
+        <button onClick={handleInProgress} style={{ marginRight: '20px', width: '75px', backgroundColor: '#ff0068', padding: '10px' }}>In Progress</button>
+        <span style={{ margin: '0 0px' }}>➔</span> {/* Unicode arrow character */}
+
+        <button onClick={handleProcessDone} style={{ marginLeft: '25px', width: '75px', backgroundColor: '#ff0068', padding: '10px' }}>Process Done</button>
+      </div>
+      <button onClick={handleClosePopup} style={{ marginRight: '60px' }}>Close</button>
+    </div>
+  </div>
+)}
+  </div>
+
          <div className='customers1'>
           {Customers.map((customer, index) => (
             <div className='customer-card' key={index}>
@@ -4068,6 +4171,50 @@ position: relative;
 position: absolute;
 right: -30px;      
   display: none;
+}
+.testimonial-item-container {
+  background-color: pink;
+  padding: 10px; /* Add padding for spacing */
+  margin-bottom: 10px; /* Add margin for spacing between testimonial containers */
+  position: relative;
+}
+.testimonial-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.testimonial-content {
+  flex-grow: 1;
+}
+
+.stars {
+  --star-size: 20px;
+  --rating: 0; /* This should be replaced with the actual rating value */
+  display: inline-block;
+  font-size: var(--star-size);
+  background: linear-gradient(90deg, gold var(--rating), #ddd var(--rating));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #ff0068;
+}
+
+.stars::before {
+  content: '★★★★★';
+  position: absolute;
+}
+
+.stars::after {
+  content: '★★★★★';
+  position: absolute;
+  z-index: -1;
+}
+.testimonial-rating {
+  position: absolute;
+  top: 0;
+}
+
+.testimonial-text {
+  padding-top: 25px; /* Adjust as needed to provide space for the stars */
 }
 
 

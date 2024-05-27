@@ -85,6 +85,19 @@ function ProfilePage() {
     profileDescription: '',
   });
 
+  const [userType, setUserType] = useState('freelancer'); // Default to freelancer
+
+  const handleUserTypeChange = (e) => {
+    setUserType(e.target.value);
+    // Reset files when user type changes
+    setFiles({
+      id: null,
+      certificates: null,
+      licenses: null,
+      taxCertificate: null,
+    });
+  };
+
   const handleFileChange = (e, fileType) => {
     const file = e.target.files[0];
     setFiles((prevFiles) => ({
@@ -100,28 +113,30 @@ function ProfilePage() {
       [field]: value,
     }));
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Check if any of the required files are missing
-    if (!files.id || !files.certificates || !files.licenses || !files.taxCertificate) {
+    // Check if any of the required files are missing based on user type
+    const requiredFiles =
+      userType === 'freelancer'
+        ? ['id', 'certificates', 'taxCertificate']
+        : ['id', 'certificates', 'licenses', 'taxCertificate'];
+
+    const missingFiles = requiredFiles.filter((fileType) => !files[fileType]);
+
+    if (missingFiles.length > 0) {
       alert('Please upload all required documents before saving your profile.');
       return; // Exit the function if files are missing
     }
-  
-    // You can handle file uploads and profile info here
 
+    // Handle form submission
     console.log('Form data submitted:', { files, profileInfo });
 
     // Show alert for successful registration
-    alert('Registration successful,We are verifying your information.We shall send you the login key in your email in 24 hours!');
+    alert('Registration successful. We are verifying your information. We shall send you the login key in your email in 24 hours!');
 
     // Optionally, you can redirect the user to another page
-    
     window.location.href = '/MyLogin';
-    
   };
 
   return (
@@ -129,13 +144,19 @@ function ProfilePage() {
       <h1>Service Provider Profile</h1>
       <div style={styles.header}></div>
       <div style={styles.logoContainer}>
-  <div className="logo">
-    <img src="/logo-w.png" alt="My Repairs" style={styles.logo} />
-  </div>
-</div>
+        <div className="logo">
+          <img src="/logo-w.png" alt="My Repairs" style={styles.logo} />
+        </div>
+      </div>
       <div style={styles.formContainer}>
-      
         <form style={styles.form} onSubmit={handleSubmit}>
+          <label>
+            User Type:
+            <select value={userType} onChange={handleUserTypeChange}>
+              <option value="freelancer">Freelancer</option>
+              <option value="business">Business</option>
+            </select>
+          </label>
           <label>
             Upload ID:
             <input
@@ -154,19 +175,19 @@ function ProfilePage() {
               style={styles.fileInput}
             />
           </label>
-
+          {userType === 'business' && (
+            <label>
+              Upload Licenses:
+              <input
+                type="file"
+                accept=".pdf, .jpg, .png"
+                onChange={(e) => handleFileChange(e, 'licenses')}
+                style={styles.fileInput}
+              />
+            </label>
+          )}
           <label>
-            Upload Licenses:
-            <input
-              type="file"
-              accept=".pdf, .jpg, .png"
-              onChange={(e) => handleFileChange(e, 'licenses')}
-              style={styles.fileInput}
-            />
-          </label>
-
-          <label>
-            Upload Tax Certificate:
+            Police Clearanace/Criminal Record Check:
             <input
               type="file"
               accept=".pdf, .jpg, .png"
@@ -174,7 +195,6 @@ function ProfilePage() {
               style={styles.fileInput}
             />
           </label>
-
           <label>
             Experiences:
             <textarea
@@ -184,7 +204,6 @@ function ProfilePage() {
               style={styles.textInput}
             />
           </label>
-
           <label>
             Profile Description:
             <textarea
@@ -194,10 +213,6 @@ function ProfilePage() {
               style={styles.textInput}
             />
           </label>
-
-
-          
-
           <button type="submit" style={styles.button}>
             Save Profile
           </button>
