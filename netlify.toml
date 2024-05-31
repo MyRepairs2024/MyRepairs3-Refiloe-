@@ -1,11 +1,7 @@
 [build]
+  base    = "My-Repairs"
   command = "npm run build"
-  publish = ".next"
+  publish = "My-Repairs/out"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[functions]
+  directory = "My-Repairs/netlify/functions"
