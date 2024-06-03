@@ -3,7 +3,7 @@ import { FaUser } from 'react-icons/fa';
 import { createClient } from '@supabase/supabase-js';
 import TermsAndConditionsModal from './TermsAndConditionsModal'; 
 import axios from 'axios';
-import  GoogleLogin  from 'react-google-login';
+
 import { NotificationsNone } from '@mui/icons-material';
 
 const supabaseUrl = 'https://hpavlbqbspludmrvjroo.supabase.co'; 
@@ -206,15 +206,9 @@ const checkPasswordStrength = (password) => {
     }));
   };
   
-  const responseGoogleSuccess = (response) => {
-    console.log('Google Login Response:', response);
-    // Use the response to extract user information and update your state or perform any other actions
-  };
+ 
   
-  const responseGoogleFailure = (response) => {
-    console.log('Google Login Failed:', response);
-    // Handle failed Google Sign-In
-  };
+  
   const [passwordError, setPasswordError] = useState('');
 
 //for close
@@ -455,13 +449,7 @@ const handleSubmitClose = async (e) => {
     )}
     </>
 
-           <GoogleLogin
-             clientId="YOUR_GOOGLE_CLIENT_ID"
-             buttonText="Sign up with Google"
-             onSuccess={responseGoogleSuccess}
-             onFailure={responseGoogleFailure}
-             cookiePolicy={'single_host_origin'}
-              />
+           
           <div style={styles.links}>
             <p>Already have an account? 
               <a href="/MyLogin">
