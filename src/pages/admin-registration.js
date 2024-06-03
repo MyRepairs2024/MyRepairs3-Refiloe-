@@ -3,7 +3,7 @@ import { FaUser } from 'react-icons/fa';
 import { createClient } from '@supabase/supabase-js';
 import TermsAndConditionsModal from './TermsAndConditionsModal'; 
 import axios from 'axios';
-import { GoogleLogin } from 'react-google-login';
+
 
 
 
@@ -125,15 +125,9 @@ function App() {
       [name]: value,
     }));
   };
-  const responseGoogleSuccess = (response) => {
-    console.log('Google Login Response:', response);
-    // Use the response to extract user information and update your state or perform any other actions
-  };
   
-  const responseGoogleFailure = (response) => {
-    console.log('Google Login Failed:', response);
-    // Handle failed Google Sign-In
-  };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -141,10 +135,7 @@ function App() {
     // Handle user registration and get user data
     console.log('Form data submitted:', formData);
     window.location.href = '/admin-login';
-    const responseGoogle = (response) => {
-      console.log('Google Login Response:', response);
-      // Use the response to extract user information and update your state or perform any other actions
-    };
+   
     const responseFacebook = (response) => {
       console.log('Facebook Login Response:', response);
       // Use the response to extract user information and update your state or perform any other actions
@@ -263,13 +254,7 @@ function App() {
               style={styles.input}
             />
           </label>
-          <GoogleLogin
-        clientId="YOUR_GOOGLE_CLIENT_ID"
-        buttonText="Sign up with Google"
-        onSuccess={responseGoogleSuccess}
-        onFailure={responseGoogleFailure}
-        cookiePolicy={'single_host_origin'}
-      />
+        
           <div style={styles.checkboxContainer}>
             
           
