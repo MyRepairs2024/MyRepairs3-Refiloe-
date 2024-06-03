@@ -1,7 +1,11 @@
 [build]
-  base    = "My-Repairs"
+  # The directory containing your site's source files
+  base = "My-Repairs"
+  # The build command to run to generate the static site files
   command = "npm run build"
+  # The directory to publish (contains your built site files)
   publish = "My-Repairs/out"
 
 [functions]
+  # The directory containing your Netlify Functions
   directory = "My-Repairs/netlify/functions"
