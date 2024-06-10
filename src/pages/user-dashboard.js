@@ -957,28 +957,12 @@ const isAvailabilityMatch = (availability, selected) => {
       <span style={{ fontSize: '24px', color: 'black' }}>×</span>
     </button>
     {/* Content of your payments container */}
-    <p style={{color: 'white',marginRight: '190px'}}>Enter Your Card Details</p>
-    <form onSubmit={handleUploadCardDetails} style={{ display: 'flex', flexDirection: 'column' ,color: 'white' }}>
-      <label htmlFor="cardNumber">Card Number:</label>
-      <input type="text" id="cardNumber" name="cardNumber" maxLength="20" required />
-      
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ flex: 1, marginRight: '10px' }}>
-          <label htmlFor="expirationDate">Expiration Date:</label>
-          <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
-        </div>
-        <div style={{ flex: 1, marginLeft: '10px' }}>
-          <label htmlFor="cvv">CVV:</label>
-          <input type="text" id="cvv" name="cvv"  maxLength="4" required />
-        </div>
-      </div>
-   
-      
-      <button type="submit" style={{width: '125px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}} >Upload </button>
-    </form>
-    {/* Option to pay with PayFast */}
-    <p style={{color: 'white',marginRight: '230px'}}>OR</p>
-    <button onClick={handlePayWithPayFast} style={{ marginTop: '-30px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}}>Pay with PayFast</button>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh' }}>
+  <button onClick={handlePayWithPayFast} style={{ marginToP: '20px', backgroundColor: '#40E0D0', color: 'white',width: '180px',height: '50px',fontSize: '20px' }}>
+    Pay with PayFast
+  </button>
+</div>
+  
   
   </div>
   
@@ -1375,30 +1359,14 @@ const isAvailabilityMatch = (availability, selected) => {
     <button className="close-button" onClick={handleClosePayments} style={{ position: 'relative', top: '-10px', left: '10px' }}>
       <span style={{ fontSize: '24px', color: 'black' }}>×</span>
     </button>
-    {/* Content of your payments container */}
-    <p style={{color: 'white',marginRight: '190px'}}>Enter Your Card Details</p>
-    <form onSubmit={handleUploadCardDetails} style={{ display: 'flex', flexDirection: 'column' ,color: 'white' }}>
-      <label htmlFor="cardNumber">Card Number:</label>
-      <input type="text" id="cardNumber" name="cardNumber" maxLength="20" required />
-      
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ flex: 1, marginRight: '10px' }}>
-          <label htmlFor="expirationDate">Expiration Date:</label>
-          <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
-        </div>
-        <div style={{ flex: 1, marginLeft: '10px' }}>
-          <label htmlFor="cvv">CVV:</label>
-          <input type="text" id="cvv" name="cvv"  maxLength="4" required />
-        </div>
-      </div>
-   
-      
-      <button type="submit" style={{width: '125px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}} >Upload </button>
-    </form>
-    {/* Option to pay with PayFast */}
-    <p style={{color: 'white',marginRight: '230px'}}>OR</p>
-    <button onClick={handlePayWithPayFast} style={{ marginTop: '-30px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}}>Pay with PayFast</button>
+    
   
+    {/* Option to pay with PayFast */}
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh' }}>
+  <button onClick={handlePayWithPayFast} style={{ marginToP: '20px', backgroundColor: '#40E0D0', color: 'white',width: '180px',height: '50px',fontSize: '20px' }}>
+    Pay with PayFast
+  </button>
+</div>
   </div>
   
 )}
@@ -1425,12 +1393,12 @@ const isAvailabilityMatch = (availability, selected) => {
            <div className="container">
       {/* First Set of Containers */}
       <div className="set">
-        <div className='accounts-Container' >Service Description
+        <div className='accounts-Container' >
         <h2>Service Description</h2>
         <p style={{ fontWeight: 'normal' }}>Repairing a Samsung fridge</p>
         
         </div>
-        <div className='accounts-Container'>Service Description
+        <div className='accounts-Container'>
         <h2>Service Description</h2>
         <p style={{ fontWeight: 'normal' }}>Repairing a Microwave</p>
         
@@ -1800,28 +1768,12 @@ const isAvailabilityMatch = (availability, selected) => {
       <span style={{ fontSize: '24px', color: 'black' }}>×</span>
     </button>
     {/* Content of your payments container */}
-    <p style={{color: 'white',marginRight: '190px'}}>Enter Your Card Details</p>
-    <form onSubmit={handleUploadCardDetails} style={{ display: 'flex', flexDirection: 'column' ,color: 'white' }}>
-      <label htmlFor="cardNumber">Card Number:</label>
-      <input type="text" id="cardNumber" name="cardNumber" maxLength="20" required />
-      
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ flex: 1, marginRight: '10px' }}>
-          <label htmlFor="expirationDate">Expiration Date:</label>
-          <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
-        </div>
-        <div style={{ flex: 1, marginLeft: '10px' }}>
-          <label htmlFor="cvv">CVV:</label>
-          <input type="text" id="cvv" name="cvv"  maxLength="4" required />
-        </div>
-      </div>
    
-      
-      <button type="submit" style={{width: '125px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}} >Upload </button>
-    </form>
-    {/* Option to pay with PayFast */}
-    <p style={{color: 'white',marginRight: '230px'}}>OR</p>
-    <button onClick={handlePayWithPayFast} style={{ marginTop: '-30px',marginLeft: '150px', backgroundColor: '#40E0D0',color: 'white'}}>Pay with PayFast</button>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh' }}>
+  <button onClick={handlePayWithPayFast} style={{ marginToP: '20px', backgroundColor: '#40E0D0', color: 'white',width: '180px',height: '50px',fontSize: '20px' }}>
+    Pay with PayFast
+  </button>
+</div>
   
   </div>
   
@@ -3905,7 +3857,43 @@ color: blue;
     position: relative;
   }
   .accounts-Container{
+    border: 3px solid #ff0068;
+    padding: 10px;
+    margin: 5px;
+    width: 280px; /* Adjust width */
+    height: 150px; /* Adjust height */
+    margin-top: 30px;
+    border-radius: 10px; /* Adjust the value to change the roundness */ 
+    font-family: Arial, sans-serif; /* Set font family to Arial */
+    font-weight: bold; /* Set font weight to bold */
+    color: black; /* Set text color to black */
+    font-size: 20px; /* Set font size to 20 pixels */
+    position: relative;
 
+  }
+
+  
+  .accounts-Container::before
+   {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 3px solid #ff0068;
+  }
+  
+  
+  .accounts-Container::before {
+    bottom: 78%;
+  }
+  
+  .set:nth-child(2) .accounts-Container {
+    width: 400px; /* Width of the containers in the middle */
+  }
+  
+  .set:nth-child(1) .accounts-Container,
+  .set:nth-child(3) .accounts-Container {
+    width: 200px; /* Width of the containers on the left and right */
   }
   
   

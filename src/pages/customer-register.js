@@ -392,7 +392,7 @@ const handleSubmitClose = async (e) => {
          
           <div style={styles.links}>
             <p>Already have an account? 
-              <a href="/MyLogin">
+              <a href="/customer-login">
                 Log in
                 </a>
                 </p>
@@ -501,7 +501,7 @@ const handleSubmitClose = async (e) => {
 }
 /* CSS styles for the expanded-content (the actual content inside the container) */
 .expanded-content {
-  background-color: #000; /* Background color for the content */
+  background-color: #ff0068; /* Background color for the content */
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
