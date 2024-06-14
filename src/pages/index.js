@@ -283,6 +283,174 @@ const paintinganddecorationSubFaults = {
   
  
 };
+const CapentrySubFaults = {
+  '5.1': [
+    { id: 1,  name: 'Designing and crafting custom-made furniture pieces such as tables, chairs, cabinets, and shelves.' },
+    { id: 2,  name: 'Installing kitchen cabinets, bathroom vanities, and other built-in storage units.' },
+    { id: 3,  name: 'Installing decorative trim, crown molding, baseboards, and wainscoting.' }
+  ],
+  '5.2': [
+    { id: 1,  name: 'Installing and repairing interior and exterior doors, including hardware and frames.' },
+    { id: 2,  name: 'Installing and repairing windows, including frames, sashes, and glass panes.' },
+    { id: 3,  name: 'Designing and building staircases, balustrades, and handrails.' }
+  ],
+  '5.3': [
+    { id: 1,  name: 'Building decks, patios, pergolas, and outdoor structures for enhanced living spaces.' },
+    { id: 2,  name: 'Constructing framing for buildings, walls, roofs, and floors.' },
+    { id: 3,  name: 'Installing hardwood, laminate, and engineered wood flooring.' }
+  ],
+  '5.4': [
+    { id: 1,  name: 'Repairing damaged wood structures, furniture, doors, and more.' },
+    { id: 2,  name: 'Building custom shelves, storage units, closets, and organizational systems.' },
+    { id: 3,  name: 'Restoring antique or historical woodwork to its original condition.' }
+  ],
+  '5.5': [
+    { id: 1,  name: 'Building outdoor structures such as gazebos, pergolas, and playhouses.' },
+    { id: 2,  name: 'Installing wooden fences and gates for privacy and security.' },
+    { id: 3,  name: 'Installing wood siding to enhance the exterior of buildings.' }
+  ],
+  '5.6': [
+    { id: 1,  name: 'Undertaking unique and specialized carpentry projects based on client requests.' },
+    { id: 2,  name: 'Applying finishes, stains, paints, and sealants to enhance the appearance and durability of wood surfaces.' },
+    { id: 3,  name: 'Crafting one-of-a-kind pieces based on specific design requests.' }
+  ],
+  '5.7': [
+    { id: 1,  name: 'Providing expert advice on design, materials, and construction techniques.' },
+    { id: 2,  name: 'Collaborating with architects and interior designers to bring their concepts to life.' },
+   
+
+  ],
+ 
+  
+  
+ 
+};
+const HAVCSubFaults = {
+  '6.1': [
+    { id: 1,  name: 'Installing and repairing various heating systems such as furnaces, heat pumps, boilers, and radiant heating systems.' },
+    { id: 2,  name: 'Installing and repairing air conditioning systems, including central air conditioners, ductless mini-split systems, and window units.' },
+    { id: 3,  name: 'Installing and maintaining ventilation systems, including ductwork, exhaust fans, and air exchange systems.' }
+  ],
+  '6.2': [
+    { id: 1,  name: 'Installing air purifiers, humidifiers, and dehumidifiers to improve indoor air quality.' },
+    { id: 2,  name: 'Conducting routine inspections and maintenance to ensure HVAC systems operate efficiently and avoid breakdowns.' },
+    { id: 3,  name: 'Cleaning and sealing ductwork to improve airflow and prevent air leakage.' }
+  ],
+  '6.3': [
+    { id: 1,  name: 'Installing programmable thermostats and calibrating them for accurate temperature control.' },
+    { id: 2,  name: 'Installing, repairing, and maintaining heat pumps for both heating and cooling purposes.' },
+    { id: 3,  name: 'Installing, repairing, and maintaining boilers for heating applications.' }
+  ],
+  '6.4': [
+    { id: 1,  name: 'Installing, repairing, and maintaining various types of furnaces.' },
+    { id: 2,  name: 'Providing 24/7 emergency repair services for HVAC system breakdowns.' },
+    { id: 3,  name: 'Designing and installing efficient duct systems for proper airflow and temperature distribution.' }
+  ],
+  '6.5': [
+    { id: 1,  name: 'Assessing HVAC systems to identify energy-saving opportunities and recommending improvements.' },
+    { id: 2,  name: 'Installing zoning systems that allow different areas of a building to have customized temperature control.' },
+    { id: 3,  name: 'Installing and maintaining geothermal systems that use the earths natural heat for heating and cooling.' }
+  ],
+  '6.6': [
+    { id: 1,  name: 'Upgrading or retrofitting older HVAC systems with more energy-efficient components.' },
+    { id: 2,  name: 'Checking, refilling, and repairing refrigerant levels in air conditioning and cooling systems.' },
+    { id: 3,  name: 'Providing HVAC services for commercial and industrial buildings, including large-scale systems.' }
+  ],
+  '6.7': [
+    { id: 1,  name: 'Designing and installing customized HVAC systems for new construction or renovations.' },
+    { id: 2,  name: 'Designing and installing customized HVAC systems for new construction or renovations.' },
+   
+
+  ],
+ 
+  
+  
+ 
+};
+const GardeningandlandscapingSubFaults = {
+  '7.1': [
+    { id: 1,  name: 'Creating a detailed plan for outdoor spaces, including plant selection, hardscape design, and layout.' },
+    { id: 2,  name: 'Planting flowers, shrubs, trees, and other plants in gardens and landscaped areas.' },
+    { id: 3,  name: 'Mowing, edging, fertilizing, aerating, and overseeding lawns to keep them healthy and vibrant.' }
+  ],
+  '7.2': [
+    { id: 1,  name: 'Building paths, patios, decks, retaining walls, and other non-plant elements to enhance outdoor spaces.' },
+    { id: 2,  name: 'Installing automatic sprinkler systems and ensuring proper watering for plants.' },
+    { id: 3,  name: 'Applying mulch or ground cover to conserve moisture, suppress weeds, and enhance soil health.' }
+  ],
+  '7.3': [
+    { id: 1,  name: 'Pruning trees, shrubs, and plants for improved growth, shape, and overall health.' },
+    { id: 2,  name: 'Planting and caring for seasonal flowers, plants, and decorations.' },
+    { id: 3,  name: 'Installing outdoor lighting to enhance aesthetics, safety, and functionality during the evenings.' }
+  ],
+  '7.4': [
+    { id: 1,  name: 'Installing ponds, fountains, waterfalls, and other water features for a serene outdoor ambiance.' },
+    { id: 2,  name: 'Revitalizing overgrown or neglected gardens by cleaning, pruning, and replanting.' },
+    { id: 3,  name: 'Laying down sod for instant lawn establishment and appearance improvement.' }
+  ],
+  '7.5': [
+    { id: 1,  name: 'Designing, planting, and maintaining vegetable and herb gardens for homegrown produce.' },
+    { id: 2,  name: 'Creating landscapes that require minimal water through the use of drought-resistant plants and efficient irrgation' },
+    { id: 3,  name: 'Testing soil quality and pH levels, then amending the soil to create a favorable environment for plants.' }
+  ],
+  '7.6': [
+    { id: 1,  name: 'Identifying and treating plant pests and diseases to maintain plant health.' },
+    { id: 2,  name: 'Designing and planting in containers for smaller spaces or to add versatility to a landscape.' },
+    { id: 3,  name: 'Incorporating edible plants like fruits, vegetables, and herbs into the landscape design.' }
+  ],
+  '7.7': [
+    { id: 1,  name: 'Providing expert advice on landscape design, plant selection, and maintenance practices.' },
+    { id: 2,  name: 'Providing landscaping services for commercial properties such as office buildings, parks, and retail spaces.' },
+   
+
+  ],
+ 
+  
+  
+ 
+};
+const homesecurityservicesSubFaults = {
+  '8.1': [
+    { id: 1,  name: 'Installing home security systems, including alarm systems, motion sensors, door/window sensors, and security cameras.' },
+    { id: 2,  name: 'Installing indoor and outdoor security cameras to monitor and record activities around the property.' },
+    { id: 3,  name: 'Integrating security systems with smart home devices, allowing remote monitoring and control through smartphones and tablets..' }
+  ],
+  '8.2': [
+    { id: 1,  name: 'Providing 24/7 monitoring of alarm systems for immediate response to security breaches.' },
+    { id: 2,  name: 'Installing access control systems such as keyless entry, intercoms, and keypad locks to regulate entry.' },
+    { id: 3,  name: 'Incorporating security features into home automation systems, such as controlling lights, locks, and cameras remotely.' }
+  ],
+  '8.3': [
+    { id: 1,  name: 'Offering emergency response services, including dispatching security personnel or contacting law enforcement in case of alarms.' },
+    { id: 2,  name: 'Installing smoke detectors, heat sensors, and fire alarms for early fire detection and notification.' },
+    { id: 3,  name: 'Installing carbon monoxide detectors to monitor and alert occupants of dangerous gas levels.' }
+  ],
+  '8.4': [
+    { id: 1,  name: 'Upgrading existing security systems with newer technology and features.' },
+    { id: 2,  name: 'Regular maintenance and testing of security equipment to ensure proper functionality.' },
+    { id: 3,  name: 'Assessing the security needs of a property and recommending appropriate security solutions.' }
+  ],
+  '8.5': [
+    { id: 1,  name: 'Repairing and servicing malfunctioning or outdated alarm systems.' },
+    { id: 2,  name: 'Providing ongoing monitoring of security systems and dispatching emergency services as needed.' },
+    { id: 3,  name: 'Offering remote monitoring of security cameras by security professionals.' }
+  ],
+  '8.6': [
+    { id: 1,  name: 'Integrating security systems with emergency services, enabling direct communication and faster response times.' },
+    { id: 2,  name: 'Customizing security systems to suit specific needs and preferences.' },
+    { id: 3,  name: 'Providing training to homeowners on how to use security system apps and features effectively.' }
+  ],
+  '8.7': [
+    { id: 1,  name: 'Installing sensors to detect water leaks and flooding, sending alerts to prevent water damage.' },
+    { id: 2,  name: 'Educating homeowners about the importance of security measures and best practices.' },
+   
+
+  ],
+ 
+  
+  
+ 
+};
 const subFaultsHandymanServices = {
   '9.1': [
     { id: '9.1.1', name: 'fixing leaks', description: 'fixing leaks'},
@@ -1471,11 +1639,29 @@ const subFaultsLocksmith = {
                   style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                 >
                   <option value="">Select Main Fault</option>
-                  <option value="1.1">Compressor Replacement</option>
-                  <option value="1.2">Thermostat Repair</option>
-                  <option value="1.3">Refrigerant Recharge</option>
-                  <option value="1.4">Door Seal Replacement</option>
-                  <option value="1.5">Defrost System Repair</option>
+                  <option value="5.1">Custom Furniture Building</option>
+                  <option value="5.1">Cabinet Installation</option>
+                  <option value="5.1">Trim and Molding Installation</option>
+                  <option value="5.2">Door Installation and Repair</option>
+                  <option value="5.2">Window Installation and Repair</option>
+                  <option value="5.2">Staircase Design and Installation</option>
+                  <option value="5.3">Deck and Patio Construction</option>
+                  <option value="5.3">Framing and Structural Carpentry</option>
+                  <option value="5.3">Wood Flooring Installation</option>
+                  <option value="5.4">Carpentry Repairs</option>
+                  <option value="5.4">Shelving and Storage Solutions</option>
+                  <option value="5.4">Carpentry Restorations</option>
+                  <option value="5.5">Outdoor Structures</option>
+                  <option value="5.5">Fencing and Gate Installation</option>
+                  <option value="5.5">Wooden Siding Installation</option>
+                  <option value="5.6">Custom Carpentry Projects</option>
+                  <option value="5.6">Finishing and Refinishing</option>
+                  <option value="5.6">Bespoke Carpentry</option>
+                  <option value="5.7">Carpentry Consultation</option>
+                  <option value="5.7">Collaboration with Architects and Designers</option>
+                
+
+        
                 </select>
                 {/* Render subfaults dropdown based on selected main fault */}
                 {selectedMainFault && (
@@ -1487,7 +1673,7 @@ const subFaultsLocksmith = {
                       style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                     >
                       <option value="">Select Sub Fault</option>
-                      {subFaults[selectedMainFault].map(subFault => (
+                      {CapentrySubFaults[selectedMainFault].map(subFault => (
                         <option key={subFault.id} value={subFault.id}>{subFault.name}</option>
                       ))}
                     </select>
@@ -1593,11 +1779,27 @@ const subFaultsLocksmith = {
                   style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                 >
                   <option value="">Select Main Fault</option>
-                  <option value="1.1">Compressor Replacement</option>
-                  <option value="1.2">Thermostat Repair</option>
-                  <option value="1.3">Refrigerant Recharge</option>
-                  <option value="1.4">Door Seal Replacement</option>
-                  <option value="1.5">Defrost System Repair</option>
+                  <option value="6.1">Heating System Installation and Repair</option>
+                  <option value="6.1">Air Conditioning Installation and Repair</option>
+                  <option value="6.1">Ventilation System Installation and Maintenance</option>
+                  <option value="6.2">Indoor Air Quality Services</option>
+                  <option value="6.2">HVAC System Inspections and Maintenance</option>
+                  <option value="6.2">Duct Cleaning and Sealing</option>
+                  <option value="6.3">Thermostat Installation and Calibration</option>
+                  <option value="6.3">Heat Pump Services</option>
+                  <option value="6.3">Boiler Services</option>
+                  <option value="6.4">Furnace Services</option>
+                  <option value="6.4">Emergency HVAC Services</option>
+                  <option value="6.4">Ductwork Design and Installation</option>
+                  <option value="6.5">Energy Efficiency Audits</option>
+                  <option value="6.5">Zoning System Installation</option>
+                  <option value="6.5">Geothermal Heating and Cooling</option>
+                  <option value="6.6">HVAC Retrofitting</option>
+                  <option value="6.6">Refrigerant Services</option>
+                  <option value="6.6">Commercial HVAC Services</option>
+                  <option value="6.7">HVAC System Design and Installation</option>
+                  <option value="6.7">HVAC Consulting and Advice</option>
+              
                 </select>
                 {/* Render subfaults dropdown based on selected main fault */}
                 {selectedMainFault && (
@@ -1609,7 +1811,7 @@ const subFaultsLocksmith = {
                       style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                     >
                       <option value="">Select Sub Fault</option>
-                      {subFaults[selectedMainFault].map(subFault => (
+                      {HAVCSubFaults [selectedMainFault].map(subFault => (
                         <option key={subFault.id} value={subFault.id}>{subFault.name}</option>
                       ))}
                     </select>
@@ -1714,11 +1916,27 @@ const subFaultsLocksmith = {
                   style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                 >
                   <option value="">Select Main Fault</option>
-                  <option value="1.1">Compressor Replacement</option>
-                  <option value="1.2">Thermostat Repair</option>
-                  <option value="1.3">Refrigerant Recharge</option>
-                  <option value="1.4">Door Seal Replacement</option>
-                  <option value="1.5">Defrost System Repair</option>
+                  <option value="7.1">Landscape Design</option>
+                  <option value="7.1">Planting and Garden Bed Installation</option>
+                  <option value="7.1">Lawn Care and Maintenance</option>
+                  <option value="7.2">Hardscape Installation</option>
+                  <option value="7.2">Irrigation System Installation and Maintenance</option>
+                  <option value="7.2">Mulching and Ground Cover Installatione</option>
+                  <option value="7.3">Irrigation System Installation and Maintenance</option>
+                  <option value="7.4">Pruning and Trimming</option>
+                  <option value="7.4">Seasonal Planting and Maintenance</option>
+                  <option value="7.4">Landscape Lighting Installation</option>
+                  <option value="7.5">Water Features Installation</option>
+                  <option value="1.5">Garden Renovation and Restoration</option>
+                  <option value="7.5">Sod Installation</option>
+                  <option value="7.6">Vegetable and Herb Garden Setup</option>
+                  <option value="7.6">Xeriscaping and Drought-Tolerant Landscaping</option>
+                  <option value="7.6">Soil Testing and Conditioning</option>
+                  <option value="7.7">Garden Pest and Disease Management</option>
+                  <option value="7.7">Container Gardening</option>
+                  <option value="7.7">Edible Landscaping</option>
+                  <option value="7.7">Landscape Consultation</option>
+                  <option value="7.7">Commercial Landscaping Services</option>
                 </select>
                 {/* Render subfaults dropdown based on selected main fault */}
                 {selectedMainFault && (
@@ -1730,7 +1948,7 @@ const subFaultsLocksmith = {
                       style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                     >
                       <option value="">Select Sub Fault</option>
-                      {subFaults[selectedMainFault].map(subFault => (
+                      {GardeningandlandscapingSubFaults[selectedMainFault].map(subFault => (
                         <option key={subFault.id} value={subFault.id}>{subFault.name}</option>
                       ))}
                     </select>
@@ -1834,11 +2052,26 @@ const subFaultsLocksmith = {
                   style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                 >
                   <option value="">Select Main Fault</option>
-                  <option value="1.1">Compressor Replacement</option>
-                  <option value="1.2">Thermostat Repair</option>
-                  <option value="1.3">Refrigerant Recharge</option>
-                  <option value="1.4">Door Seal Replacement</option>
-                  <option value="1.5">Defrost System Repair</option>
+                  <option value="8.1">Security System Installation</option>
+                  <option value="8.1">Video Surveillance System Installation</option>
+                  <option value="8.1">Smart Home Security Integration</option>
+                  <option value="8.2">Burglar Alarm Monitoring</option>
+                  <option value="8.2">Access Control System Installation</option>
+                  <option value="8.2">Home Automation Security</option>
+                  <option value="8.3">Emergency Response Services</option>
+                  <option value="8.3">Fire and Smoke Detection</option>
+                  <option value="8.3">Carbon Monoxide Detection</option>
+                  <option value="8.4">Home Security System Upgrades</option>
+                  <option value="8.4">Security System Maintenance</option>
+                  <option value="8.4">Security Consultation and Assessment</option>
+                  <option value="8.5">Alarm System Repair</option>
+                  <option value="8.5">Security System Monitoring Services</option>
+                  <option value="8.5">Remote Surveillance Services</option>
+                  <option value="8.6">Security System Integration with Emergency Services</option>
+                  <option value="8.6">Security System Customization</option>
+                  <option value="8.6">Security System App Training</option>
+                  <option value="8.7">Flood and Water Leak Detection</option>
+                  <option value="8.7">Security System Education</option>
                 </select>
                 {/* Render subfaults dropdown based on selected main fault */}
                 {selectedMainFault && (
@@ -1850,7 +2083,7 @@ const subFaultsLocksmith = {
                       style={{ borderRadius: '5px', width: '250px', height: '40px' }}
                     >
                       <option value="">Select Sub Fault</option>
-                      {subFaults[selectedMainFault].map(subFault => (
+                      {homesecurityservicesSubFaults [selectedMainFault].map(subFault => (
                         <option key={subFault.id} value={subFault.id}>{subFault.name}</option>
                       ))}
                     </select>
@@ -2561,7 +2794,7 @@ const subFaultsLocksmith = {
             <div className='pictureinfo' >
               <h2 style={{color: '#21B6A8', fontWeight: 'bold', fontFamily: 'poppins', fontSize: '35px'}}>Become a Partner</h2><br/>
               <h1 style={{color: '#ff0068', fontWeight: 'bold', fontFamily: 'poppins', fontSize: '40px', marginBottom: '40px'}}>Become a partner and enjoy many benefits</h1>
-              <button style={{color: '#fff', float: 'right', background: '#ff0068', borderStyle: 'none', fontWeight: 'bold', fontFamily: 'poppins', padding: "8px", borderRadius: '10px', marginRight: '40px'}}>Register Now</button>
+              <p style={{color: '#fff', float: 'right', background: '#ff0068', borderStyle: 'none', fontWeight: 'bold', fontFamily: 'poppins', padding: "8px", borderRadius: '10px', marginRight: '40px'}}>Register Now</p>
               <a href="Registrationform" style={{color: '#ff0068', textDecoration: 'underline', display: 'block', marginTop: '90px', textAlign: 'right', marginRight: '40px'}}>Download a Form here</a>
             </div>
             

@@ -262,9 +262,9 @@ const Header = () => {
         <div className='help-links'>
         <div className='help-links'>
     <ul className="nav-links">
-        <li><a href="/Login-Page">How it works</a></li>
+        <li><a href="/howitworks">How it works</a></li>
         <li><a href="/provider_homepage">Become a partner</a></li>
-        <li><a href="/">Apps</a></li>
+        <li><a href="/aboutus">About Us</a></li>
     </ul>
 </div>
 

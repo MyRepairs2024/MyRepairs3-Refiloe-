@@ -196,6 +196,21 @@ const handleSubmitClose = async (e) => {
     } else {
       setPasswordError('');
     }
+    const { password, confirmPassword } = formData;
+
+    const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    
+    if (!passwordValidation.test(password)) {
+      setPasswordError('Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setPasswordError('Passwords do not match');
+      return;
+    }
+
+    setPasswordError('');
     
     
     
@@ -348,9 +363,10 @@ const handleSubmitClose = async (e) => {
                borderRadius: '20px',
                cursor: 'pointer',
                height:'30px' ,
-            width:'200px',
-            marginRight:'40px',
+            width:'210px',
+            marginRight:'30px',
             marginTop: '20px',
+            marginLeft: '30px',
             
          }}
         >
@@ -365,7 +381,7 @@ const handleSubmitClose = async (e) => {
          style={{ 
           position:'relative',
           bottom:'10px',
-          marginLeft:'70px',
+          marginLeft:'90px',
           marginTop:'15px',
           padding: '10px 20px',
            fontSize: '16px',

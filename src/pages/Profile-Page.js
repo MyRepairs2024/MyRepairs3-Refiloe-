@@ -69,6 +69,13 @@ const styles = {
     margin: '20px auto',
     borderRadius: '20px',
   },
+    userTypeLabel: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  select: {
+    marginLeft: '10px', // Adjust the value as needed
+  },
   
 };
 
@@ -150,13 +157,13 @@ function ProfilePage() {
       </div>
       <div style={styles.formContainer}>
         <form style={styles.form} onSubmit={handleSubmit}>
-          <label>
-            User Type:
-            <select value={userType} onChange={handleUserTypeChange}>
-              <option value="freelancer">Freelancer</option>
-              <option value="business">Business</option>
-            </select>
-          </label>
+        <label style={styles.userTypeLabel}>
+  User Type:
+  <select value={userType} onChange={handleUserTypeChange} style={styles.select}>
+    <option value="freelancer">Freelancer</option>
+    <option value="business">Business</option>
+  </select>
+</label>
           <label>
             Upload ID:
             <input
@@ -187,7 +194,7 @@ function ProfilePage() {
             </label>
           )}
           <label>
-            Police Clearanace/Criminal Record Check:
+            Police Clearance/Criminal Record Check:
             <input
               type="file"
               accept=".pdf, .jpg, .png"
