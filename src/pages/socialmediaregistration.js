@@ -16,10 +16,10 @@ const socialmediaregistration = () => {
       <header className="header">
         <img src="/logo-w.png" alt="My Repairs" className="logo" />
       </header>
-      <h1>Register</h1>
+      <h1>Register Here</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Name and Surname</label>
           <input
             type="text"
             id="username"
@@ -105,7 +105,7 @@ const socialmediaregistration = () => {
         button {
           width: 100%;
           padding: 10px;
-          background-color: ##40E0D0;
+          background-color: #40E0D0;
           color: white;
           border: none;
           border-radius: 4px;
