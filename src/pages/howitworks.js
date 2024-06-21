@@ -103,7 +103,7 @@ Opposite Grand Central International Airport<br/>
                 <ul className='footerlist'><li><a href='/'>Home</a></li>
                 <li><a href='/'></a></li>
                 <li><a href='/'>Become A Partner</a></li>
-                <li><a href='/'>Apps</a></li>
+                <li><a href='/'>About Us</a></li>
                 <li><a href='/'>Contact us</a></li></ul>
               </div>
               <div className='footerlinks2'>
@@ -249,6 +249,70 @@ Opposite Grand Central International Airport<br/>
         }
         .footerimage {
           margin-left: 0px;
+        }
+        @media (max-width: 768px) {
+          .phase1,
+          .phase2 {
+            flex-direction: column;
+          }
+
+          .step {
+            flex-basis: 100%;
+            margin-bottom: 20px;
+          }
+
+          .footerinfo {
+            flex-direction: row;
+            align-items: center;
+          }
+
+          .footerlinks,
+          .footerlinks2,
+          .footeraddress {
+            width: 100%;
+            padding-left: 0;
+            text-align: center;
+            border: none;
+          }
+
+          .footeraddress {
+            padding-top: 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .howitworks {
+            font-size: 24px;
+            padding: 10px;
+          }
+
+          .step h3 {
+            font-size: 18px;
+          }
+
+          .step img {
+            width: 100px;
+            height: 100px;
+          }
+
+          .step-description,
+          .step-instructions {
+            font-size: 16px;
+          }
+
+          .step-instructions p {
+            font-size: 16px;
+          }
+
+          .footerinfo {
+            padding: 15px;
+          }
+
+          .footerlinks,
+          .footerlinks2,
+          .footeraddress {
+            font-size: 16px;
+          }
         }
 
       `}</style>

@@ -28,10 +28,11 @@ import { GoogleLogin } from 'react-google-login';
     },
     
     logo: {
-      width: '170px', // Adjusted logo width
-      height: 'auto', // Adjusted logo height to maintain aspect ratio
-      borderRadius: '50%',
+      height: '110px',
+      width: 'auto',
+      marginTop: '20px',
       backgroundColor: 'none',
+      marginLeft: '-10px',
     },
     form: {
       display: 'grid',

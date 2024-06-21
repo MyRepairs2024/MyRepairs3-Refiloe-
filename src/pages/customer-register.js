@@ -16,7 +16,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '14px',
+    fontSize: '10px',
     fontFamily: 'Arial',
     padding: '20px', // Added padding for the container
     borderRadius: '10px', // Added border radius for a rounded appearance
@@ -43,14 +43,15 @@ const styles = {
   },
   
   logo: {
-    width: '170px', // Adjusted logo width to be slightly bigger
-    height: 'auto',
-    borderRadius: '50%',
+    height: '110px',
+    width: 'auto',
+    marginTop: '20px',
     backgroundColor: 'none',
+    marginLeft: '-10px',
   },
   
   icon: {
-    fontSize: '40px', // Increased font size for the icon
+    fontSize: '20px', // Increased font size for the icon
     marginBottom: '-3px', // Adjusted margin for icon
   },
   
@@ -87,6 +88,8 @@ const styles = {
     margin: '20px auto',
     borderRadius: '20px',  
   },
+
+
 };
 
 
@@ -417,6 +420,7 @@ const handleSubmitClose = async (e) => {
       </div>
 
       <style jsx>{`
+      
 /*.alert-box {
   background-color: orange;
   width: 800px;

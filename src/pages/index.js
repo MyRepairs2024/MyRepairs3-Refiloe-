@@ -2841,7 +2841,7 @@ Opposite Grand Central International Airport<br/>
                 <ul className='footerlist'><li><a href='/'>Home</a></li>
                 <li><a href='/'></a></li>
                 <li><a href='/'>Become A Partner</a></li>
-                <li><a href='/'>Apps</a></li>
+                <li><a href='/'>About Us</a></li>
                 <li><a href='/'>Contact us</a></li></ul>
               </div>
               <div className='footerlinks2'>

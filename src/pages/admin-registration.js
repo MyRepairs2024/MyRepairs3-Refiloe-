@@ -20,7 +20,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '14px',
+    fontSize: '10px',
     fontFamily: 'Arial',
     padding: '20px', // Added padding for the container
     borderRadius: '10px', // Added border radius for a rounded appearance
@@ -46,15 +46,18 @@ const styles = {
     zIndex: 1,
   },
   
-  logo: {
-    width: '170px', // Adjusted logo width to be slightly bigger
-    height: 'auto',
-    borderRadius: '50%',
-    backgroundColor: 'none',
+ 
+    logo: {
+      height: '110px',
+      width: 'auto',
+      marginTop: '20px',
+      backgroundColor: 'none',
+      marginLeft: '-10px',
+   
   },
   
   icon: {
-    fontSize: '40px', // Increased font size for the icon
+    fontSize: '20px', // Increased font size for the icon
     marginBottom: '-3px', // Adjusted margin for icon
   },
   

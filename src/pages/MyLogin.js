@@ -8,7 +8,7 @@ import React, { useState } from 'react';
       marginTop: '50px',
       backgroundColor: '#ff0068',
       color: '#fff',
-      fontSize: '14px',
+      fontSize: '10px',
       fontFamily: 'Arial',
       padding: '20px',
       borderRadius: '10px',
@@ -28,10 +28,11 @@ import React, { useState } from 'react';
     },
     
     logo: {
-      width: '170px', // Adjusted logo width
-      height: 'auto', // Adjusted logo height to maintain aspect ratio
-      borderRadius: '50%',
+      height: '110px',
+      width: 'auto',
+      marginTop: '20px',
       backgroundColor: 'none',
+      marginLeft: '-10px',
     },
     form: {
       display: 'grid',
