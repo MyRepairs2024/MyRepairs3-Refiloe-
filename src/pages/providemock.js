@@ -2572,6 +2572,24 @@ border-radius: 10px;
         
           
         }
+        /* Mobile view adjustments */
+@media (max-width: 600px) {
+  .dashboard-content {
+    width: 100%;
+    max-width: none;
+    padding: 10px;
+    
+  }
+}
+
+/* Tablet view adjustments */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .dashboard-content {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+  }
+}
 
        
 
