@@ -6,7 +6,7 @@ const HowItWorksPage = () => {
      
 
       <div className='howitworks'>
-        <h2 className="heading-with-lines">How It Works</h2>
+        <h2 className="heading-with-lines">HOW IT WORKS</h2>
         <div className='phase1'>
           <div className='step'>
             <div className='icon-area'>
@@ -121,9 +121,7 @@ Opposite Grand Central International Airport<br/>
       </div>
       
       <style jsx>{`
-        .HowItWorks {
-          // Add your styles here
-        }
+        
 
         .howitworks {
           text-align: center;

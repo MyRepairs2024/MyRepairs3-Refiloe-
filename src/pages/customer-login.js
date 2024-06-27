@@ -8,7 +8,7 @@ import React, { useState } from 'react';
       marginTop: '50px',
       backgroundColor: '#ff0068',
       color: '#fff',
-      fontSize: '10px',
+      fontSize: '12px',
       fontFamily: 'Arial',
       padding: '20px',
       borderRadius: '10px',

@@ -16,7 +16,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '10px',
+    fontSize: '12px',
     fontFamily: 'Arial',
     padding: '20px', // Added padding for the container
     borderRadius: '10px', // Added border radius for a rounded appearance
@@ -630,6 +630,36 @@ const handleSubmitClose = async (e) => {
           background-color: #dddddd; /* Change hover background color */
         }
       }
+      
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+  .Terms {
+    width: 100%;
+    font-size: 20px; /* Increase font size for better visibility */
+    padding: 20px 16px; /* Adjust padding for better spacing */
+  }
+
+  .expanded-content {
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  .overlay-container {
+    position: absolute;
+    place-items: center;
+    width: 500px;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2222; /* Set a high z-index to ensure it's on top */
+    background-color: rgba(255, 255, 255, 0.3); /* Transparent white background */
+    backdrop-filter: blur(10px);
+    /* Semi-transparent overlay background */
+    transition: backdropFilter 3s;
+  }
+  
+}
       
       `}</style>
 

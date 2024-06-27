@@ -693,84 +693,73 @@ const handleProcessDone = () => {
 </div>
 <div className='username'><h4>{userEmail}</h4></div>
       
-
-<div className="dashcontent">
-<div className="dashboard-content">
-
-
-<div className={`dashboard-section ${selectedTab === 'dashboard' ? 'active' : ''}`}
-          onClick={() => handleTabChange2('dashboard')}>
-          <div className="dashboard-section-header" >
+ <div className="dashcontent">
+      <div className="dashboard-content">
+        <div
+          className={`dashboard-section ${selectedTab === 'dashboard' ? 'active' : ''}`}
+          onClick={() => handleTabChange2('dashboard')}
+        >
+          <div className="dashboard-section-header">
             <FaHome className="dashboard-section-icon" />
             <h3 className="dashboard-section-title">Dashboard</h3>
           </div>
-          <div className='active_Tab'>
-&gt;
-</div>
+          <div className="active_Tab">&gt;</div>
         </div>
-        
-        
-        <div className={`dashboard-section ${selectedTab === 'profile' ? 'active' : ''}`}
-          onClick={() => handleTabChange2('profile')}>
-          <div className="dashboard-section-header"  >
+        <div
+          className={`dashboard-section ${selectedTab === 'profile' ? 'active' : ''}`}
+          onClick={() => handleTabChange2('profile')}
+        >
+          <div className="dashboard-section-header">
             <FaUserCircle className="dashboard-section-icon" />
             <h3 className="dashboard-section-title">Profile</h3>
           </div>
-
-          <div className='active_Tab'>
-          &gt;
-</div>
-
+          <div className="active_Tab">&gt;</div>
         </div>
-        <div className={`dashboard-section ${selectedTab === 'orders' ? 'active' : ''}`}
-          onClick={() => handleTabChange2('orders')}>
-          <div className="dashboard-section-header"  >
+        <div
+          className={`dashboard-section ${selectedTab === 'orders' ? 'active' : ''}`}
+          onClick={() => handleTabChange2('orders')}
+        >
+          <div className="dashboard-section-header">
             <FaRegPaperPlane className="dashboard-section-icon" />
             <h3 className="dashboard-section-title">Orders</h3>
           </div>
-          <div className='active_Tab'>
-&gt;
-</div>
+          <div className="active_Tab">&gt;</div>
         </div>
-        
-        <div className={`dashboard-section ${selectedTab === 'Customers' ? 'active' : ''}`}
-          onClick={() => handleTabChange2('Customers')}>          <div className="dashboard-section-header">
+        <div
+          className={`dashboard-section ${selectedTab === 'Customers' ? 'active' : ''}`}
+          onClick={() => handleTabChange2('Customers')}
+        >
+          <div className="dashboard-section-header">
             <FaUsers className="dashboard-section-icon" />
             <h3 className="dashboard-section-title">Customers</h3>
           </div>
-          <div className='active_Tab'>
-&gt;
-</div>
-         
+          <div className="active_Tab">&gt;</div>
         </div>
-        <div className={`dashboard-section ${selectedTab === 'My Services' ? 'active' : ''}`}
-          onClick={() => handleTabChange2('My Services')}>          <div className="dashboard-section-header">
+        <div
+          className={`dashboard-section ${selectedTab === 'My Services' ? 'active' : ''}`}
+          onClick={() => handleTabChange2('My Services')}
+        >
+          <div className="dashboard-section-header">
             <FaTools className="dashboard-section-icon" />
             <h3 className="dashboard-section-title">My Services</h3>
           </div>
-          <div className='active_Tab'>
-&gt;
-</div>
-          </div>
-
-          <div className={`dashboard-section ${selectedTab === 'Analytics' ? 'active' : ''}`}
-          onClick={() => handleTabChange2('Analytics')}>          <div className="dashboard-section-header">
+          <div className="active_Tab">&gt;</div>
+        </div>
+        <div
+          className={`dashboard-section ${selectedTab === 'Analytics' ? 'active' : ''}`}
+          onClick={() => handleTabChange2('Analytics')}
+        >
+          <div className="dashboard-section-header">
             <FaChartBar className="dashboard-section-icon" />
             <h3 className="dashboard-section-title">Analytics</h3>
           </div>
-          <div className='active_Tab'>
-&gt;
-</div>
-          </div>
-</div>
-<div className='btn_logout'>
-      <button className='logsout'>Log Out</button>
+          <div className="active_Tab">&gt;</div>
+        </div>
       </div>
-     
-      
-
-
+      <div className="btn_logout">
+        <button className="logsout">Log Out</button>
       </div>
+    </div>
       </div>
       <div className='mainpage'>
       {expandedPendingServices && (
@@ -1903,9 +1892,9 @@ top: 0;
   padding: 0px;
   margin-left: 0px;
  
-
-
 }
+
+
 
 
 .profile_information{
@@ -2884,6 +2873,7 @@ margin: 0;
     margin-right: 0;
 
   }
+  
   .maindash{
 
     margin: 0;
@@ -3314,6 +3304,7 @@ background-color: #0056b3;
     height: 100%;
     object-fit: cover; /* Adjust the object-fit property to control how the image fits within the container */
   }
+  
         .closemetric:hover{
           background: red;
           color: #fff;
@@ -3702,6 +3693,7 @@ height: 100vh;
       margin-left: 25px;
       border: 2px solid #fff; /* Add a border for styling */
       box-shadow: 0 0 5px #fff;
+      
     }
     
     .profile-picture img {
@@ -4163,6 +4155,8 @@ position: relative;
  
   
 }
+ 
+
 
 .active_Tab{
   font-size: 22px;
@@ -4215,6 +4209,37 @@ right: -30px;
 
 .testimonial-text {
   padding-top: 25px; /* Adjust as needed to provide space for the stars */
+}
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+  .maindash {
+    width: 100%; /* Take full width on smaller screens */
+    max-width: none; /* Remove maximum width limit */
+    margin-top: -80px; /* Adjust margin top for smaller screens */
+  }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+  .servicesdone, .pendingservices, .Rewards {
+    width: calc(7% - 8px); /* Adjust width to fit three items in a row with spacing */
+    max-width: none; /* Remove maximum width limit */
+    margin-right: 8px; /* Adjust margin to create spacing between items */
+    margin-bottom: 10px; /* Adjust margin bottom for spacing */
+    display: inline-block; /* Ensure inline display */
+    vertical-align: top; /* Align items to the top of their container */
+    box-sizing: border-box; /* Include padding and border in width calculations */
+  }
+}
+
+
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+  .dashboard-section {
+    max-width: none; /* Remove maximum width limit */
+    margin-bottom: 20px; /* Adjust margin bottom for spacing */
+  }
 }
 
 

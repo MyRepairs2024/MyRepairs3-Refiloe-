@@ -20,7 +20,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '10px',
+    fontSize: '12px',
     fontFamily: 'Arial',
     padding: '20px', // Added padding for the container
     borderRadius: '10px', // Added border radius for a rounded appearance

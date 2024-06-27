@@ -216,7 +216,55 @@ const Dashheader= () =>{
        border-radius: 10px;
        padding: 5px;
      }
-    
+     @media (max-width: 768px) {
+      .container {
+          height: auto;
+          flex-direction: column;
+          padding: 10px;
+      }
+
+      .logo img {
+          width: 80px;
+          height: auto;
+          margin-bottom: 10px;
+      }
+
+      .navigation {
+          display: none;
+      }
+
+      .search-bar {
+          display: none;
+      }
+
+      .mobilesettings {
+          display: block;
+          background: #ff0068;
+          border: none;
+          font-size: 15px;
+          font-family: Poppins, sans-serif;
+          font-weight: bold;
+          color: #fff;
+          border-radius: 10px;
+          padding: 5px;
+          margin-top: 10px;
+          margin-Left: 190px;
+      }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+          padding: 12px;
+      }
+
+      .logo img {
+          max-width: 100px;
+      }
+
+      .btn-register, .btn-login, .btn-help {
+          font-size: 12px;
+          padding: 6px 12px;
+      }
    }
  
  `}</style>

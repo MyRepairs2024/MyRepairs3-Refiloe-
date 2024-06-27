@@ -16,7 +16,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '10px',
+    fontSize: '12px',
     fontFamily: 'Arial',
     padding: '20px', // Added padding for the container
     borderRadius: '10px', // Added border radius for a rounded appearance
@@ -485,106 +485,103 @@ const handleSubmitClose = async (e) => {
 }
 
 
-
-.Terms{
+.Terms {
   padding-left: 8px;
-    height: 100px;
-    width: 200px;
-   
-    color: azure;
-    border-radius: 10px;
-    background-color:#ff0068;
-    cursor: pointer;
+  height: 100px;
+  width: 200px;
+  color: azure;
+  border-radius: 10px;
+  background-color: #ff0068;
+  cursor: pointer;
+  font-size: 16px; /* Adjust font size for readability */
+  text-align: center; /* Center text for better presentation */
 }
 
-.Terms{
-  width: 80px;
+.Terms {
+  width: 100%;
+  margin-bottom: 10px;
   height: 70px;
-  font-size: 12px;
+  font-size: 16px; /* Adjust font size for smaller devices */
   font-family: poppins;
 }
 
-.Terms{
-  width: 100%;
-    margin-bottom: 10px;
-    width: 800px;
-    height: 70px;
-    font-size: 12px;
-    font-family: poppins;
-}
-
-
 .expanded-content.show {
   opacity: 1;
-  /* Keep the final position as you like */
   transform: translateY(0);
 }
-/* CSS styles for the expanded-content (the actual content inside the container) */
+
 .expanded-content {
-  background-color: #ff0068; /* Background color for the content */
+  background-color: #ff0068;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  /* Add other styling as needed */
   animation: fallingBounce 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-
+  width: 350px;
+  height: 550px;
 }
 
-.expanded-content{
-  width:350px;
-  height:550px;
-
-}
-
-/* CSS styles for the "No Pending Requests" message */
 .no-pending-requests {
   text-align: center;
   font-size: 18px;
   color: #555;
-  /* Add other styling as needed */
 }
 
 .container-wrapper {
-  /* Add your desired styles here */
-  
-  margin: 20px auto;  /* Example: Add margin for spacing */
-  padding: 10px;     /* Example: Add padding for content */
-  border: 1px solid #ddd;  /* Example: Add a border */
-  width: 200px;      /* Example: Set a specific width */
-  background-color:#f0f0;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 200px;
+  background-color: #f0f0;
 }
-      .closeButton {
-        /* Button dimensions */
-        width: 80px; /* Adjust width as desired */
-        height: 30px; /* Adjust height as desired */
-      
-        /* Button background color */
-        background-color: #cccccc; /* Change to your preferred color */
-      
-        /* Text color */
-        color: #333333; /* Change to your preferred color */
-      
-        /* Border */
-        border: 1px solid #cccccc; /* Adjust border style and color */
-      
-        /* Rounded corners */
-        border-radius: 5px; /* Adjust corner radius as desired */
-      
-        /* Padding */
-        padding: 5px 10px; /* Adjust padding as desired */
-      
-        /* Font */
-        font-family: Arial, sans-serif; /* Change to your preferred font */
-        font-size: 14px; /* Adjust font size as desired */
-      
-        /* Hover effect (optional) */
-        cursor: pointer; /* Indicate clickable behavior */
-        transition: background-color 0.2s ease-in-out; /* Smooth transition */
-      
-        &:hover {
-          background-color: #dddddd; /* Change hover background color */
-        }
-      }
+
+.closeButton {
+  width: 80px;
+  height: 30px;
+  background-color: #cccccc;
+  color: #333333;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  background-color: #dddddd;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+  .Terms {
+    width: 100%;
+    font-size: 20px; /* Increase font size for better visibility */
+    padding: 20px 16px; /* Adjust padding for better spacing */
+  }
+
+  .expanded-content {
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  .overlay-container {
+    position: absolute;
+    place-items: center;
+    width: 500px;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2222; /* Set a high z-index to ensure it's on top */
+    background-color: rgba(255, 255, 255, 0.3); /* Transparent white background */
+    backdrop-filter: blur(10px);
+    /* Semi-transparent overlay background */
+    transition: backdropFilter 3s;
+  }
+  
+}
+
       
       `}</style>
 

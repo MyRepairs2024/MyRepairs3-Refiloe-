@@ -6,7 +6,7 @@ const styles = {
     marginTop: '50px',
     backgroundColor: '#ff0068',
     color: '#fff',
-    fontSize: '18px',
+    fontSize: '15px',
     fontFamily: 'Arial',
     padding: '20px',
     borderRadius: '10px',
@@ -31,10 +31,11 @@ const styles = {
     zIndex: 1,
   },
   logo: {
-    width: '170px', // Adjusted logo width
-    height: 'auto', // Adjusted logo height to maintain aspect ratio
-    borderRadius: '50%',
+    height: '110px',
+    width: 'auto',
+    marginTop: '20px',
     backgroundColor: 'none',
+    marginLeft: '-10px',
   },
   
   
@@ -148,7 +149,7 @@ function ProfilePage() {
 
   return (
     <div style={styles.container}>
-      <h1>Service Provider Profile</h1>
+      <h1>Provider Profile</h1>
       <div style={styles.header}></div>
       <div style={styles.logoContainer}>
         <div className="logo">

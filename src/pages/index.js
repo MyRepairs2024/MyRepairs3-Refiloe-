@@ -2834,7 +2834,7 @@ appliances at your fingertips</p>
               <div className='footeraddress'>
                 <p>Grand Central Office Park<br/>
 Opposite Grand Central International Airport<br/>
-<br/>49 New Road,Midrand<br/> +27 064 897 3566| info@myrepairs.com</p>
+<br/>49 New Road , Midrand<br/> +27 064 897 3566| info@myrepairs.com</p>
               </div>
               <div className='footerlinks'>
                 <label>Links</label>

@@ -22,7 +22,7 @@ const PDFLink = () => {
   };
 
   return (
-    <div style={{ marginRight: '40px', marginTop: '20px' }}>
+    <div style={{ marginRight: '40px', marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
       <a
         onClick={downloadServiceProviderPdf}
         style={{
@@ -34,8 +34,7 @@ const PDFLink = () => {
           padding: '8px',
           borderRadius: '10px',
           textDecoration: 'none',
-       
-       
+          marginBottom: '10px' // Add some margin to separate the buttons
         }}
         href="#"
       >
@@ -52,15 +51,14 @@ const PDFLink = () => {
           padding: '8px',
           borderRadius: '10px',
           textDecoration: 'none',
-          marginBottom: '20px',
-         
+          marginBottom: '20px' // Add some margin to separate the buttons
         }}
         href="#"
       >
         Download a Freelancer Form
       </a>
       <div style={{ marginTop: '20px', color: '#000', fontFamily: 'poppins' }}>
-        <p>Scan the form to this Email: <a href="myrepairs@gmail.com" style={{ color: '#ff0068', textDecoration: 'none' }}>myrepairs@gmail.com</a></p>
+        <p>Scan the form to this Email: <a href="mailto:myrepairs@gmail.com" style={{ color: '#ff0068', textDecoration: 'none' }}>myrepairs@gmail.com</a></p>
       </div>
     </div>
   );
