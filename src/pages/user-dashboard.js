@@ -1652,7 +1652,7 @@ const isAvailabilityMatch = (availability, selected) => {
 </div>
 <div className='current_msg'>
     <div className="logo-container">
-        <img src="logo.png" alt="Logo" className="logo" />
+      
     </div>
     <div className='default_msg1'>
     <p className="default_msg_text" style={{ marginTop: '20px' }}>Dear Thabang Lengane<br />Thank You for requesting a service at Myrepairs<br />Your service has been completed.</p>
@@ -3183,6 +3183,7 @@ border-radius: 10px;
         }
         .dashcontent{
           width: 100%;
+        
         }
 
         .dashboard-content {
@@ -3898,6 +3899,169 @@ color: blue;
   
   
   
+}
+
+/* Mobile view adjustments for dashboard in user dashboard*/
+@media (max-width: 768px) {
+  .dashboard-section {
+    height: auto; /* Adjust height to fit content */
+    width: 100%; /* Make it take full width on smaller screens */
+    padding: 10px; /* Adjust padding if necessary */
+  }
+
+
+.dashboard-section-header {
+  color:#fff;
+  padding: 10px;
+  width: 90px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  margin: 0;
+  margin-right: 20px;
+}
+
+    
+
+.dashboard-header {
+  text-align: center;
+  position: inherit;
+  width: 100px;
+  background-color: cream;
+
+  
+}
+
+
+.dashcontent{
+  width: 50px;
+}
+
+.dashboard-content {
+  display: block;
+  width: 90px;
+  position: relative;
+  font-weight: bold;
+  margin-left: 10px;
+
+}
+
+
+
+  .dashboard-section-header {
+    height: auto; /* Adjust height to fit content */
+    width: 100%; /* Make it take full width on smaller screens */
+    justify-content: center; /* Center content horizontally */
+  }
+  
+.dashboard-section.active {
+  font-weight: bold;
+color: #ff0068;
+  background-color: #ff0068;
+ z-index: 99999;
+  text-decoration: none;
+  font-style: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  box-shadow: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+width: 170px;
+  .dashboard-section:hover{
+background: #ff0068;
+  }
+
+  .dashboard-section-header{
+    color:#fff;
+    padding: 10px;
+  width: 80px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    margin: 0;
+    
+    
+  }
+}
+/* Mobile view adjustments for profile in user dashboard*/
+@media (max-width: 768px) {
+  .edit_pfp{
+    padding: 10px;
+    margin-right: 50px;
+    width: 170px;
+    height: 200px;
+    border: 2px solid #ff0068;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+  }
+  .pfp{
+    border-radius: 75px;
+    background: rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 40px;
+  
+  }
+  .profile_information{
+    border: 2px solid #ff0068;
+    height: 700px;
+    width: 170px;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+    overflow-y: auto; /* Enable vertical scroll */
+  margin-top: 20px; /* Adjust the spacing between edit_pfp and profile_information */
+  }
+  .Profiletab {
+    display: flex;
+    flex-direction: column;
+  }
+  .edit_image{
+    background: #21B6A8;
+    color: #fff;
+    width: 60px;
+    font-weight:bold;
+    font-family: poppins;
+    margin-top: -10px;
+
+
+
+  }
+  
+}
+/* Mobile view adjustments for messages in user dashboard*/
+@media (max-width: 768px){
+  .msg-container {
+  
+    margin: 10px; /* Add margin between containers */
+    padding: 20px; /* Add padding inside each container */
+    border: 1px solid #ff0068; /* Add border to each container */
+    box-sizing: border-box; /* Include border in width calculation */
+    border-radius: 5px ; /* Add rounded corners to each container */
+    width: 170px;
+    height: 60px;
+  }
+  .cus_inbox{
+    display: flex;
+    width: 190px;
+    padding: 10px;
+    height: 100%;
+    flex-direction: column;
+  }
+  .default_msg_text {
+    margin-bottom: 50px; /* Remove bottom margin of the <p> element */
+    font-size: 10px;
+ }
+ .all_msg{
+  border: 1px solid #ff0068;
+  width: 200px;
+  border-radius: 5px;
+  
+}
+
+  
+
 }
       
 

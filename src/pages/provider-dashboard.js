@@ -955,107 +955,110 @@ const handleProcessDone = () => {
           
         )}
        
-       {activeTab === 'services' && (
-  <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
-    <div className="services-wrapper">
-      <div className="services-container">
-        {/* Testimonial reviews */}
-        <div className="testimonial">
-          <h3>Testimonials</h3>
-          <div className="testimonial-list">
-            {/* Individual testimonial */}
-            <div className="testimonial-item-container">
-              <div className="testimonial-item">
-                <div className="testimonial-rating">
-                  {/* Replace 'rating' with the actual rating value */}
-                  <div className="stars" style={{'--rating': 4.5}}></div>
-                </div>
-                <div className="testimonial-text">
-                  <p>Had several tasks to be completed. Themba was fast, efficient and professional.</p>
-                  <p>- Thabang </p>
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-item-container">
-              <div className="testimonial-item">
-                <div className="testimonial-rating">
-                  {/* Replace 'rating' with the actual rating value */}
-                  <div className="stars" style={{'--rating': 4.0}}></div>
-                </div>
-                <div className="testimonial-text">
-                  <p>I hired Themba to install a couple sets of curtain rods and blackout curtains and he did an amazing job! Very friendly and efficient. Would recommend Austin to anyone </p>
-                  <p>- John Doe</p>
+       <div>
+  {activeTab === 'services' && (
+    <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
+      <div className="services-wrapper">
+        <div className="services-container">
+          {/* Testimonial reviews */}
+          <div className="testimonial">
+            <h3>Testimonials</h3>
+            <div className="testimonial-list">
+              {/* Individual testimonial */}
+              <div className="testimonial-item-container">
+                <div className="testimonial-item">
+                  <div className="testimonial-rating">
+                    {/* Replace 'rating' with the actual rating value */}
+                    <div className="stars" style={{ '--rating': 4.5 }}></div>
+                  </div>
+                  <div className="testimonial-text">
+                    <p>Had several tasks to be completed. Themba was fast, efficient and professional.</p>
+                    <p>- Thabang </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="testimonial-item-container">
-              <div className="testimonial-item">
-                <div className="testimonial-rating">
-                  {/* Replace 'rating' with the actual rating value */}
-                  <div className="stars" style={{'--rating': 5.0}}></div>
-                </div>
-                <div className="testimonial-text">
-                  <p>Themba was great! I would highly recommend him to anyone looking for efficient and extremely competent taskers!</p>
-                  <p>- Shaleen</p>
-                </div>
-              </div>
-            </div>
-            <div className="testimonial-item-container">
-              <div className="testimonial-item">
-                <div className="testimonial-rating">
-                  {/* Replace 'rating' with the actual rating value */}
-                  <div className="stars" style={{'--rating': 4.8}}></div>
-                </div>
-                <div className="testimonial-text">
-                  <p>Themba is fantastic! Very professional and a great attention to detail. I will definitely hire him again</p>
-                  <p>- Retha</p>
+              <div className="testimonial-item-container">
+                <div className="testimonial-item">
+                  <div className="testimonial-rating">
+                    {/* Replace 'rating' with the actual rating value */}
+                    <div className="stars" style={{ '--rating': 4.0 }}></div>
+                  </div>
+                  <div className="testimonial-text">
+                    <p>I hired Themba to install a couple sets of curtain rods and blackout curtains and he did an amazing job! Very friendly and efficient. Would recommend Austin to anyone </p>
+                    <p>- John Doe</p>
+                  </div>
                 </div>
               </div>
+              <div className="testimonial-item-container">
+                <div className="testimonial-item">
+                  <div className="testimonial-rating">
+                    {/* Replace 'rating' with the actual rating value */}
+                    <div className="stars" style={{ '--rating': 5.0 }}></div>
+                  </div>
+                  <div className="testimonial-text">
+                    <p>Themba was great! I would highly recommend him to anyone looking for efficient and extremely competent taskers!</p>
+                    <p>- Shaleen</p>
+                  </div>
+                </div>
+              </div>
+              <div className="testimonial-item-container">
+                <div className="testimonial-item">
+                  <div className="testimonial-rating">
+                    {/* Replace 'rating' with the actual rating value */}
+                    <div className="stars" style={{ '--rating': 4.8 }}></div>
+                  </div>
+                  <div className="testimonial-text">
+                    <p>Themba is fantastic! Very professional and a great attention to detail. I will definitely hire him again</p>
+                    <p>- Retha</p>
+                  </div>
+                </div>
+              </div>
+              {/* Add more testimonials as needed */}
             </div>
-            {/* Add more testimonials as needed */}
           </div>
         </div>
       </div>
     </div>
-  </div>
-)}
+  )}
+</div>
        
-        {activeTab === 'accounts' && (
-           <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
-          <div>
-              <div className='countedorders'>
-            <div className='ordersummary_title'><h1>Total Earnings</h1></div>
-            <div className='ordersummary_number'>{numberOfDisplayedcurrentOrders}</div>
-            <button className="button">View Invoices</button>
-          </div>
+       <div>
+  {activeTab === 'accounts' && (
+    <div className='ScrollableContainer'> {/* Add a class or style for a fixed height */}
+      <div>
+        <div className='countedorders'>
+          <div className='ordersummary_title'><h1>Total Earnings</h1></div>
+          <div className='ordersummary_number'>{numberOfDisplayedcurrentOrders}</div>
+          <button className="button">View Invoices</button>
+        </div>
 
-          <div className='orderslist'>
-            <div className="grid-container1">
-              <div className="item3">Client</div>
-          <div className="item3">Service</div>
-          <div className="item3">Transaction Type</div>
-          <div className="item3">Balance change</div>
-          <div className="item3">Order</div>
-          <div className="item3">Date</div>
-         
+        <div className='orderslist'>
+          <div className="grid-container1">
+            <div className="item3">Client</div>
+            <div className="item3">Service</div>
+            <div className="item3">Transaction Type</div>
+            <div className="item3">Balance change</div>
+            <div className="item3">Order</div>
+            <div className="item3">Date</div>
           </div>
-          </div>
-          
-          </div>
-          </div>
-          
-        )}
+        </div>
+      </div>
+    </div>
+  )}
+</div>
         
-        {activeTab === 'payments' && (
-          <div>
-            {/* Add content for the Payments tab here */}
-          </div>
-        )}
-
+        <div>
+  {activeTab === 'payments' && (
+    <div>
+      {/* Add content for the Payments tab here */}
+    </div>
+  )}
+</div>
     </div>
         )}
 
 {activeTab2 === 'profile' &&(
+   <div className='mainpage' style={{ height: '100vh', overflowY: 'auto' }}>
 <div>
 
 
@@ -1188,6 +1191,7 @@ const handleProcessDone = () => {
     </div>
 
    
+  </div>
   </div>
   )}
 
@@ -1557,9 +1561,10 @@ const handleProcessDone = () => {
         )}
       </div>  
     )}
+    
   </div>
   </div>
-  
+   
 )}
 {activeTab2 === 'My Services' && (
   <div className='mainpage' style={{ height: '1000vh', overflowY: 'auto' }}>
@@ -2293,7 +2298,7 @@ font-size: 18px;
     width: 50px;
     height: 50px; 
     padding: 10px;
-    background-color: #008080;
+    background-color: #40E0D0;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -2316,8 +2321,8 @@ font-size: 18px;
   }
   
   .input_servicephoto .uploaded-image {
-    width: 2px; /* Set your desired width */
-    height: 1px; /* Set your desired height */
+    width: auto; /* Set your desired width */
+    height: auto; /* Set your desired height */
    
   }
   
@@ -3988,7 +3993,8 @@ border-radius: 30px;
   font-weight: bold;
   color: #fff;
   
-}.servicesdone{
+}
+.servicesdone{
     
   padding-left: 8px;
 height: 100px;
@@ -4210,26 +4216,143 @@ right: -30px;
 .testimonial-text {
   padding-top: 25px; /* Adjust as needed to provide space for the stars */
 }
-/* Responsive design adjustments */
+/* Responsive design adjustments for the provider dashboard */
 @media (max-width: 600px) {
   .maindash {
-    width: 100%; /* Take full width on smaller screens */
+    width: auto; /* Take full width on smaller screens */
     max-width: none; /* Remove maximum width limit */
     margin-top: -80px; /* Adjust margin top for smaller screens */
   }
 }
 
-/* Responsive design adjustments */
+/* Responsive design adjustments for dashboard in the provider dashboard */
 @media (max-width: 600px) {
-  .servicesdone, .pendingservices, .Rewards {
-    width: calc(7% - 8px); /* Adjust width to fit three items in a row with spacing */
-    max-width: none; /* Remove maximum width limit */
-    margin-right: 8px; /* Adjust margin to create spacing between items */
-    margin-bottom: 10px; /* Adjust margin bottom for spacing */
-    display: inline-block; /* Ensure inline display */
-    vertical-align: top; /* Align items to the top of their container */
-    box-sizing: border-box; /* Include padding and border in width calculations */
-  }
+  
+ .progress-circle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+
+.circle-progress {
+  width: 5%; /* Adjust the width to make the circle smaller */
+  height: 5%; /* Adjust the height accordingly */
+  border: 6px solid #fff; /* Adjust the border width and color */
+  border-top-color: ; /* Set the color for the progress */
+  border-radius: 50%;
+  background: transparent;
+  position: absolute;
+  top: -50px; /* Adjust the top position */
+  left: 50px; /* Adjust the left position */
+  padding: 30px; /* Adjust padding accordingly */
+  transform: rotate(0deg);
+  transform-origin: center;
+}
+
+.circle-progress::-webkit-progress-value {
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.circle-progress::-moz-progress-bar {
+  border-radius: 50%;
+  background-color: transparent; 
+}
+.progress-circle span {
+  position: absolute;
+  top: -20%;
+  left: 90px;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #fff;
+  
+}
+.servicesdone{
+    padding-left: 8px;
+height: 70px;
+width: 60px;
+font-size: 12px;
+color: azure;
+border-radius: 10px;
+background-color:#ff0068;
+cursor: pointer;
+margin-left: -90px
+ }
+
+
+
+ .pendingservices{
+  color: azure;
+  height: 70px;
+  width: 60px;
+  border-radius: 10px;
+  background-color:#ff0068;
+  cursor: pointer;
+  margin-right: 750px;
+}
+.Rewards{
+ color: azure;
+  height: 100px;
+  width: 20px;
+  border-radius: 10px;
+  background-color:#ff0068;
+  cursor: pointer;
+}
+.popular_heading{
+  margin-left: -740px;
+  padding-top: -50px;
+  margin-top: -20px;
+  clear: both;
+  
+}
+
+
+.set {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: #fff;
+  margin-right: auto; /* Push updates container to the left */
+}
+
+.updates-Container {
+  border: 3px solid #ff0068;
+  padding: 10px;
+  margin: 5px;
+  width: 280px; /* Adjust width */
+  height: 150px; /* Adjust height */
+  margin-top: 30px;
+  border-radius: 10px; /* Adjust the value to change the roundness */ 
+  font-family: Arial, sans-serif; /* Set font family to Arial */
+  font-weight: bold; /* Set font weight to bold */
+  color: black; /* Set text color to black */
+  font-size: 13px; /* Set font size to 20 pixels */
+  position: relative;
+}
+
+.updates-Container::before
+ {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 3px solid #ff0068;
+}
+
+
+.updates-Container::before {
+  bottom: 78%;
+}
+
+.set:nth-child(2) .updates-Container {
+  width: 80px; /* Width of the containers in the middle */
+}
+
+.set:nth-child(1) .updates-Container,
+.set:nth-child(3) .updates-Container {
+  width: 50px; /* Width of the containers on the left and right */
+}
 }
 
 
@@ -4241,6 +4364,495 @@ right: -30px;
     margin-bottom: 20px; /* Adjust margin bottom for spacing */
   }
 }
+
+/* Mobile view for service provider profile */
+@media (max-width: 768px) {
+  .Profiletab {
+    padding: 10px;
+    flex-direction: column; 
+    
+  }
+
+  .edit_container1 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile_information {
+    margin-top: 10px;
+  }
+
+  .User_info {
+    grid-template-columns: 1fr;
+  }
+
+  .edit_pfp h4, .upload-section label {
+    font-size: 14px;
+  }
+
+  .personalinfo_header h4, .User_info strong label {
+    font-size: 12px;
+  }
+
+  .edit_personal, .edit_personal1, .edit_personal2 {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .edit_container1 button {
+    margin-bottom: 10px;
+  }
+  .profile_information{
+    border: 2px solid #ff0068;
+    height: 300px;
+    width: 250px;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+    flex: 1;
+    
+  }
+  .edit_pfp{
+    padding: 10px;
+    margin-right: 50px;
+    width: 250px;
+    height: 470px;
+    border: 2px solid #ff0068;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+  }
+  .upload-section {
+    margin-bottom: 10px;
+  }
+  
+  /* Style for labels */
+  .upload-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Style for file input */
+  .upload-section input[type="file"] {
+    display: block;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ff0068;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 200px;
+  
+  
+  /* Style for paragraph */
+  .upload-section p {
+    font-weight: bold;
+   
+  }
+  
+}
+
+/* Mobile view for service provider orders*/
+@media (max-width: 768px) {
+  .orders_container {
+    padding: 10px;
+    width: 280px;
+    padding-top: 30px;
+    
+    
+   
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .item1, .item2, .item3 {
+    font-size: 16px;
+  }
+
+  .ordersummary_title h1 {
+    font-size: 18px;
+  }
+
+  .ordersummary_number {
+    font-size: 16px;
+  }
+
+  .contact-customer {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .popup-content p {
+    font-size: 14px;
+  }
+
+  .close-button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .orders_container a {
+    color: ff0068;
+    flex-direction: row;
+    margin: 0 2px; /* Adjust this value as needed */
+    padding: 2px 0; /* Adjust this value as needed */
+    font-size: 12px; 
+    margin-bottom: 20px;
+  }
+
+  .orderslist {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+    gap: 10px; /* Gap between grid items */
+  }
+
+  .orders_container1 {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+    gap: 10px; /* Gap between grid items */
+    background-color: #f0f0f0; /* Example background color */
+    padding: 10px; /* Padding around each item */
+    border-radius: 8px; /* Rounded corners for each item */
+  }
+
+  .orders_container1 .serviceInfo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .orders_container1 .serviceInfo button {
+    margin-top: 10px; /* Adjust spacing as needed */
+  }
+    
+    
+    
+  }
+
+/* Media query for mobile view for service provider customers*/
+@media (max-width: 768px) {
+  .customers-container {
+    padding: 10px;
+  }
+
+
+  .small-container {
+    background-color: #fff;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 3px solid #ff0068;
+    height: 100px;
+    width: 260px;
+    position: relative;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px;
+
+    
+    
+  
+  }
+
+  .container-button {
+    width: 100%; /* Full width buttons */
+  }
+  .pink {
+    display: flex;
+    background-color: #fff;
+    border: 3px solid #ff0068; /* Set the border color to dark pink */
+    width: 260px;
+    height: 300px;
+    flex-direction: row;
+    margin-top: 30px;
+    display: flex; /* Use flexbox */
+    border-radius: 10px;
+    padding: 5px;
+
+  }
+  .small-containers-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .customers1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+
+  }
+  .info {
+    display: flex;
+    flex-direction: row;
+  
+  }
+  .container-button {
+    margin-top: 40px;
+    padding: 8px 16px;
+    background-color: #027777;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 85px;
+    width: 100px;
+    height: 40px;
+   
+    
+    
+  }
+  .customer-name {
+    text-align: center;
+    margin-top: 70px;
+    font-family: 'Arial', sans-serif;
+    margin-right: 100px;
+  
+ 
+  
+  }
+  .info-item p {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    font-family: 'Arial', sans-serif;
+    margin-bottom:250px;
+    margin-left: 80px;
+  }
+ 
+
+    
+  
+  
+ 
+}
+
+/* Media query for mobile view for service provider analytics */
+@media (max-width: 768px) {
+  .mainpage {
+    padding: 10px;
+  }
+
+  .analytics-container {
+    padding: 10px;
+  }
+
+  .set-of-containers {
+    flex-direction: column;
+  }
+
+  .smallanalytics-container, .tiny-container, .totalrevenue-container, .item10, .item11, .item12, .item13 {
+    width: 250px;
+    margin: 5px 0;
+  }
+
+  .tab-link {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100px;
+    padding: 10px;
+  }
+  .analytics-container {
+    background-color: #fff;
+    padding: 20px; /* Adjust padding as needed */
+    height:500px;
+    border: 3px solid #ff0068;
+    border-radius: 10px;
+    margin-top: 30px;
+    width: 250px
+  
+  
+  }
+  
+
+.totalrevenue-container {
+  background-color: #fff;
+  padding: 20px;
+  height: 200px;
+  width: 300px;
+  border: 3px solid #ff0068;
+  border-radius: 10px;
+  margin-left: 350px;
+  margin-top: -90px;
+}
+
+.tiny-container {
+  width: 245px;
+  height: 80px; /* Adjust height as needed */
+  margin: 5px; /* Adjust margin as needed */
+  background-color: #fff;
+  border: 3px solid #40E0D0;
+  color: #ff0068;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  
+}
+  .months-scrollable-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: block;
+  } 
+
+  .set-of-containers {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+/* Media query for mobile view for service provider services */
+@media (max-width: 768px) {
+  .myserviceheader {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    
+  }
+
+  .myserviceheader h3 {
+    margin-top: 10px;
+    margin-left: 100px;
+   
+  }
+
+  .service1, .service2 {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .imgsev1 {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .top-containers {
+    flex-direction: column;
+  }
+
+  .pink-container {
+    width: 240px;
+   margin-left: 40px;
+   padding: 10px;
+
+  }
+  .myserviceheader button{
+    color: #fff;
+    font-weight: bold;
+    width: 80px;
+    margin-left: 200px;
+ 
+    background:  #21B6A8;
+  }
+  .input_servicephoto button {
+    
+    width: 60px;
+    height: 60px; 
+    padding: 10px;
+    background-color: #40E0D0;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%; /* Set border-radius to 50% for a circular shape */
+    margin-top: -90px;
+ 
+ 
+  }
+  .AddingConatiner{
+    width: 100px;
+  }
+  .service1{
+    display: flex;
+    width: 100%
+    padding: 10px;
+    justify-content: space-between;
+margin-bottom: 30px;
+  }
+  .imgsev1{
+padding: 5px;
+border: 2px solid #ff0068;
+width: 100px;
+height: 100px;
+border-radius: 5px;
+
+  }
+  .descrip1{
+    border-radius: 5px;
+
+    width: 280px;
+    height: 200px;
+    padding: 5px;
+    border: 2px solid #ff0068;
+
+  }
+  .service2{
+    display: flex;
+    width: 100%
+    padding: 10px;
+    justify-content: space-between;
+
+  }
+  .imgsev2{
+    padding: 5px;
+    border: 2px solid #ff0068;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+
+  }
+  .descrip2{
+    border-radius: 5px;
+
+    width: 280px;
+    height: 200px;
+    padding: 5px;
+    border: 2px solid #ff0068;
+   
+    
+  }
+ 
+}
+@media (max-width: 768px) {
+  
+  .dashboard-section-header{
+    color:#fff;
+    padding: 10px;
+  width: 40px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    margin: 0;
+    margin-right: 20px;
+    
+    
+  }
+  .btn_logout{
+    width: auto;
+    align-items: center;
+    display: flex;
+    width: 40px;
+    padding: 0;
+    position: absolute;
+    bottom: 20px;
+   
+    
+  }
+  
+    .dashboard-content {
+      display: block;
+      width: 170px;
+      position: relative;
+      font-weight: bold;
+    margin: 0 auto;
+  
+    
+      
+    }
+   
+
+}
+
+ 
 
 
 

@@ -938,7 +938,7 @@ const subFaultsLocksmith = {
     <div className="home-page">
      <a id="top"></a>
 
-<header className='header1'>
+     <header className='header1'>
   <div className='firstheader'>
 
  <h6 className='topheader'>+27 064 897 3566 | info@myrepairs.com</h6>
@@ -3644,9 +3644,43 @@ line-height: 5px;
   height: 300px;
   width: 400px;
 }
-     
-     
-    
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .popup-content {
+    max-width: 90%; /* Adjust the max width for smaller screens */
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #fff; /* Color of the close button */
+    font-size: 40px;
+    cursor: pointer;
+    font-family: bold;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+    max-width: 95%; /* Further adjust the max width for very small screens */
+    padding: 10px; /* Further reduce padding for very small screens */
+  }
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #fff; /* Color of the close button */
+    font-size: 40px;
+    cursor: pointer;
+    font-family: bold;
+  }
+}    
       `}</style>
     </div>
   );
