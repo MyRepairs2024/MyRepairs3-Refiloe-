@@ -16,22 +16,27 @@ const Dashheader= () =>{
           </div>
           <div className="navigation">
             <ul className="menu">
-              <li className="logsin">
-                <button className="btn-login" >
+            <li className="logsin">
+              <a href="/user-dashboard">
+                <button className="btn-login">
                   Home
                 </button>
-              </li>
-              <li className="registers">
-                <button className="btn-register" >
+              </a>
+            </li>
+            <li className="registers">
+              <a href="/Settings">
+                <button className="btn-register">
                   Settings
                 </button>
-              </li>
-              <li className='Help'>
-                <button className='btn-help'>
-                    Help
+              </a>
+            </li>
+            <li className="Help">
+              <a href="/Help">
+                <button className="btn-help">
+                  Help
                 </button>
-
-              </li>
+              </a>
+            </li>
             </ul>
           
           </div>
@@ -197,6 +202,8 @@ const Dashheader= () =>{
        width: 100px;
        height: auto;
        float: right;
+       margin-top: -50px;
+       margin-right: 240px;
        
      }
      .navigation{
@@ -216,6 +223,22 @@ const Dashheader= () =>{
        border-radius: 10px;
        padding: 5px;
      }
+     
+   .btn-register {
+    background-color:white ;
+    
+    color: #21B6A8;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+    }
+  }
      @media (max-width: 768px) {
       .container {
           height: auto;
@@ -227,6 +250,8 @@ const Dashheader= () =>{
           width: 80px;
           height: auto;
           margin-bottom: 10px;
+          margin-top: -50px;
+          margin-right: 240px;
       }
 
       .navigation {
@@ -259,6 +284,7 @@ const Dashheader= () =>{
 
       .logo img {
           max-width: 100px;
+          margin-top: 30px;
       }
 
       .btn-register, .btn-login, .btn-help {

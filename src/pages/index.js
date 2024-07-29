@@ -2841,16 +2841,16 @@ Opposite Grand Central International Airport<br/>
                 <ul className='footerlist'><li><a href='/'>Home</a></li>
                 <li><a href='/'></a></li>
                 <li><a href='/'>Become A Partner</a></li>
-                <li><a href='/'>About Us</a></li>
-                <li><a href='/'>Contact us</a></li></ul>
+                <li><a href='/aboutus'>About Us</a></li>
+                <li><a href='/ContactUs'>Contact us</a></li></ul>
               </div>
               <div className='footerlinks2'>
                 <label>Information</label>
-                <ul className='footerlist'><li><a href='/'>Privacy Policy</a></li>
-                <li><a href='/'>Terms & Conditions</a></li>
-                <li><a href='/'>Disclaimer</a></li>
-                <li><a href='/'>Cancellation</a></li>
-                <li><a href='/'>Return And Refund</a></li></ul>
+                <ul className='footerlist'><li><a href='/PrivacyPolicy'>Privacy Policy</a></li>
+                <li><a href='/terms-conditions'>Terms & Conditions</a></li>
+                <li><a href='/Disclaimer'>Disclaimer</a></li>
+                <li><a href='/Cancellation'>Cancellation</a></li>
+                <li><a href='/RefundAndReturn'>Return And Refund</a></li></ul>
               </div>
 
             </div>

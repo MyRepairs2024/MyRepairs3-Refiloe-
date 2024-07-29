@@ -1711,11 +1711,11 @@ const isAvailabilityMatch = (availability, selected) => {
        <div className='info'>
           {/* Container for customer name */}
           <div className='info-item pink'>
-            <p>Service Provider Name</p>
+           
             <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
             <p className="customer-name"> HiFi Corp</p>
 
-        <button className='small-button' onClick={handleContactCustomer}>
+        <button className='small-button1' onClick={handleContactCustomer}>
         Request
         </button>
         {showPopup && (
@@ -1793,10 +1793,10 @@ const isAvailabilityMatch = (availability, selected) => {
           
           {/* Container for service description */}
           <div className='info-item pink'>
-            <p>Service Provider Name</p>
+           
            <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
            <p className="customer-name">Lumen</p>
-           <button className='small-button' onClick={handleContactCustomer}>
+           <button className='small-button1' onClick={handleContactCustomer}>
           Request
         </button>
       
@@ -1805,10 +1805,10 @@ const isAvailabilityMatch = (availability, selected) => {
          
           {/* Container for information description */}
           <div className='info-item pink'>
-            <p>Service Provider Name</p>
+          
             <img src="person_Icon1.png" alt="Picture Icon" className="icon1" />
             <p className="customer-name">Thabang</p>
-             <button className='small-button' onClick={handleContactCustomer}>
+             <button className='small-button1' onClick={handleContactCustomer}>
           Request
           </button>
           
@@ -2410,6 +2410,16 @@ align-items: center;
         padding: 10px;
         width: 900px;
         height: 300px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      th, td {
+        padding: 8px 16px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
       }
 
 
@@ -3561,6 +3571,21 @@ margin-left: -19px;
   gap:100px;
   justify-content: space-between; /* Distribute space between the containers */
 }
+.close-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #40E0D0;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  width: 90px;
+  margin-top: 395px;
+}
+
 
 
 
@@ -3896,6 +3921,19 @@ color: blue;
   .set:nth-child(3) .accounts-Container {
     width: 200px; /* Width of the containers on the left and right */
   }
+
+  .small-button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+.small-button1 {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #40E0D0;
+}
+
+
   
   
   
@@ -3913,11 +3951,23 @@ color: blue;
 .dashboard-section-header {
   color:#fff;
   padding: 10px;
-  width: 90px;
+  width: 30px;
   border-radius: 5px;
   border: 2px solid #fff;
   margin: 0;
   margin-right: 20px;
+}
+.dashboard-container {
+         
+  padding: 15px;
+ 
+  background-color: #ff0068;
+  border: solid light-red 5px;
+  width: 80px;
+  height: 100%;
+  left: 0;
+
+
 }
 
     
@@ -3933,31 +3983,29 @@ color: blue;
 
 
 .dashcontent{
-  width: 50px;
+  width: 10px;
 }
 
 .dashboard-content {
   display: block;
-  width: 90px;
+  width: 50px;
   position: relative;
   font-weight: bold;
-  margin-left: 10px;
+  margin-right: 10px;
+
 
 }
 
 
 
-  .dashboard-section-header {
-    height: auto; /* Adjust height to fit content */
-    width: 100%; /* Make it take full width on smaller screens */
-    justify-content: center; /* Center content horizontally */
-  }
+
+ 
   
 .dashboard-section.active {
   font-weight: bold;
-color: #ff0068;
+  color: #ff0068;
   background-color: #ff0068;
- z-index: 99999;
+  z-index: 99999;
   text-decoration: none;
   font-style: none;
   justify-content: space-between;
@@ -3966,19 +4014,50 @@ color: #ff0068;
   box-shadow: none;
   padding-top: 20px;
   padding-bottom: 20px;
-width: 170px;
+  width: 30px;
+}
   .dashboard-section:hover{
-background: #ff0068;
+   background: #ff0068;
   }
 
   .dashboard-section-header{
     color:#fff;
     padding: 10px;
-  width: 80px;
+    width: 50px;
     border-radius: 5px;
     border: 2px solid #fff;
     margin: 0;
     
+    
+  }
+  .profile-pic {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center; /* Center vertically */
+  text-align: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #ff0068;
+    font-size: 36px;
+    font-family: poppins;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    margin-top: 10px;
+    margin-right: 100px;
+   
+  }
+  .btn_logout{
+    width: auto;
+    align-items: left;
+    display: flex;
+    width: 70px;
+    padding: 0;
+    position: absolute;
+    bottom: 40px;
+    margin-right: 80px;
     
   }
 }
@@ -3987,7 +4066,7 @@ background: #ff0068;
   .edit_pfp{
     padding: 10px;
     margin-right: 50px;
-    width: 170px;
+    width: 200px;
     height: 200px;
     border: 2px solid #ff0068;
     border-radius: 5px;
@@ -4006,7 +4085,7 @@ background: #ff0068;
   .profile_information{
     border: 2px solid #ff0068;
     height: 700px;
-    width: 170px;
+    width: 200px;
     border-radius: 5px;
     padding: 10px;
     position: relative;
@@ -4039,12 +4118,13 @@ background: #ff0068;
     border: 1px solid #ff0068; /* Add border to each container */
     box-sizing: border-box; /* Include border in width calculation */
     border-radius: 5px ; /* Add rounded corners to each container */
-    width: 170px;
-    height: 60px;
+    width: 250px;
+    height 60px;
+  
   }
   .cus_inbox{
     display: flex;
-    width: 190px;
+    width: 200px;
     padding: 10px;
     height: 100%;
     flex-direction: column;
@@ -4055,14 +4135,481 @@ background: #ff0068;
  }
  .all_msg{
   border: 1px solid #ff0068;
-  width: 200px;
+  width: 265px;
   border-radius: 5px;
+  margin-right: 30px;
   
+}
+.heading_footer_msg{
+  padding: 5px;
+  margin: 0;
+  width: 100px;
+  height: 20px;
+}
+.default_msg1{
+  margin: 0 auto;
+  margin-bottom: 100px;
 }
 
   
 
 }
+/*media view for dashboard overview*/
+
+@media (max-width: 768px){
+  
+.updates-Container2 {
+  border: 2px solid #ff0068;
+  padding: 10px;
+  margin: 1px;
+  box-shadow: 0 0 15px rgba(255, 0, 104, 0.5);
+  width: 100px; /* Adjust width */
+  height: 300px; /* Adjust height */
+  margin-top: -300px;
+  margin-right: 100px;
+  border-radius: 10px; /* Adjust the value to change the roundness */ 
+  font-family: Arial, sans-serif; /* Set font family to Arial */
+  font-weight: bold; /* Set font weight to bold */
+  color:#ff0068; /* Set text color to pink */
+  font-size: 10px; /* Set font size to 20 pixels */
+  position: relative;
+}
+
+.maindash{
+
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  justify-content: space-between;
+  margin-right: 0;
+  padding: 0;
+  
+}
+a{
+  padding: 3px;
+  font-size: 12px;
+  margin: 0;
+}
+
+.metrics{
+  margin: 0;
+  width: 100%;
+}
+.servicesdone{
+  width: 40px;
+  height: 35px;
+  font-size: 12px;
+  font-family: poppins;
+}
+.pendingservices{
+  width: 40px;
+  height: 35px;
+  font-size: 12px;
+  font-family: poppins;
+}
+.Rewards{
+  width: 40px;
+  height: 35px;
+  font-size: 12px;
+  font-family: poppins;
+}
+progress{
+  display: none;
+}
+.overlay-container{
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  margin-left: -10px;
+  height: 100vh;
+}
+.expanded-content{
+  width: 200px;
+
+}
+.totalpendingreq{
+  font-size: 12px;
+}
+.alert-box{
+
+  font-size: 10px;
+  height: 80px;
+}
+  
+
+}
+/* Mobile view adjustments for services in user dashboard*/
+@media (max-width: 768px){
+
+  .filters-search {
+    display: block;
+  }
+
+  .searchfilters,
+  .radiofilters,
+  .radiofilters2 {
+    display: block;
+  }
+
+  .filter1,
+  .filter2,
+  .filter3,
+  .filter4,
+  .filter5 {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .filterservices1 {
+    width: 10%;
+    margin-top: 20px;
+    margin-right: 600px;
+  }
+  
+.updates-Container2 {
+  border: 2px solid #ff0068;
+  padding: 10px;
+  margin: 1px;
+  box-shadow: 0 0 15px rgba(255, 0, 104, 0.5);
+  width: 200px; /* Adjust width */
+  height: 400px; /* Adjust height */
+  margin-top: -300px;
+  margin-left: 20px;
+  border-radius: 10px; /* Adjust the value to change the roundness */ 
+  font-family: Arial, sans-serif; /* Set font family to Arial */
+  font-weight: bold; /* Set font weight to bold */
+  color:#ff0068; /* Set text color to black */
+  font-size: 20px; /* Set font size to 20 pixels */
+  position: relative;
+}
+
+.updates-Container2::before
+ {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #ff0068;
+}
+
+
+.updates-Container2::before {
+  bottom: 78%;
+}
+
+  
+
+}
+
+/*MOBILE VIEW FOR FAVORITES*/
+
+@media (max-width: 768px) {
+  
+  
+.info {
+  display: column;
+  justify-content: space-between; /* Optional: Adjust this based on your layout preferences */
+  flex-direction: column;
+  
+  
+  
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+}
+
+
+
+.info-item p {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+  margin-top: 1px;
+  position: relative;
+  margin-left: auto;
+}
+
+.info-item img {
+    width: 40px; /* Set the desired width for the image */
+    height: 40px; /* Set the desired height for the image */
+    object-fit: cover; /* Adjust the object-fit property as needed (e.g., 'contain', 'fill') */
+    margin-right: 10px; /* Add some margin to separate the image from other content */
+    display: block; /* Ensure the image is a block element for centering */
+    margin-left: 70px; /* Auto margin to center the image within its container */
+    margin-right: auto; /* Auto margin to center the image within its container */
+    margin-bottom: 150px;
+   
+  }
+  .popup-container{
+    background-color: #ff0068;
+    border: 3px solid #ff0068;
+    height: 412px;
+    width: 375px; /* Adjust width as needed */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(80px); 
+    z-index: 1000; /* Ensure it appears above the overlay */
+    margin-top: 65px;
+ 
+  
+  }
+  .next-container{
+    background-color: #ff0068;
+    border: 3px solid #ff0068;
+    height: 412px;
+    width: 375px; /* Adjust width as needed */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(80px); 
+    z-index: 1000; /* Ensure it appears above the overlay */
+
+
+  }
+  .payments-container{
+    background-color: #ff0068;
+    border: 3px solid #ff0068;
+    height: 412px;
+    width: 375px; /* Adjust width as needed */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(80px); 
+    z-index: 1000; /* Ensure it appears above the overlay */
+
+
+
+  }
+  .pink {
+    display: flex;
+    background-color: #fff;
+    border: 3px solid #ff0068; /* Set the border color to dark pink */
+    width: 200px;
+    height: 200px;
+    flex-direction: row;
+    margin-top: 30px;
+    display: flex; /* Use flexbox */
+    border-radius: 10px;
+  
+  }
+  .pink-border {
+    display: column; /* Use flexbox */
+    display: grid;
+    
+  
+  }
+  .small-button1 {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-top: 90px;
+    background-color: #40E0D0;
+    position: relative; /* Ensure the button can be positioned relative to its normal position */
+    left: -130px; /* Adjust this value to move the button to the left */
+    transform: translateX(-50%); /* Center the button horizontally */
+    margin-left: 50%; /* Center the button horizontally */
+  }
+.popup-container input[type="email"],
+.popup-container input[type="text"] {
+  width: 100%; /* Make inputs take full width of the container */
+  max-width: 100%; /* Ensure they don't exceed container width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  margin-bottom: 10px; /* Adjust spacing as needed */
+}
+.popup-container button {
+  width: 60px; /* Make buttons take full width of the container */
+  max-width: 100%; /* Ensure they don't exceed container width */
+  margin-top: 5px; /* Adjust spacing as needed */
+  background-color: #40E0D0;
+}
+ .close-button {
+    top: -50px; /* Move the button up by 20px */
+  }
+
+ 
+
+}
+/*Mobile view for payments*/
+@media (max-width: 768px) {
+ 
+  .payments_container{
+    height: 450px;
+    width: 930px;
+    border-bottom: 2px solid #ff0068;
+    border-top: 2px solid #ff0068;
+    padding: 10px;
+
+  }
+  .payments_title{
+    font-family: poppins
+    font-size: 10px;
+    margin-bottom: 20px;
+  }
+
+  .receipts{
+    border: 2px solid #ff0068;
+    border-radius: 5px;
+    padding: 10px;
+    width: 230px;
+    height: 300px;
+    margin-right: 30px;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+ 
+
+  tr {
+    margin-bottom: 15px;
+  }
+
+  td {
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
+/* Specific Adjustments for Mobile View */
+@media (max-width: 768px) {
+    .mainpage {
+        width: 100%; /* Make sure it takes the full width */
+        padding: 10px; /* Add some padding for better visibility */
+    }
+
+    .servicesdone, .pendingservices, .Rewards {
+      margin: 0 5px;
+      padding: 8px;
+      flex-direction: column; /* Stacks items vertically on smaller screens */
+      width: 60px;
+      height: 40px;
+  }
+
+    .circle-progress {
+        width: 20px;
+        height: 20px;
+    }
+
+    .set h2 {
+        font-size: 1.2rem;
+    }
+
+    .set p {
+        font-size: 0.9rem;
+    }
+
+    .set button.small-button {
+        padding: 8px;
+        max-width: 150px;
+    }
+
+    .popup-content input[type="email"], .popup-content input[type="text"] {
+        padding: 8px;
+    }
+
+    .popup-content button {
+        padding: 8px;
+        max-width: 150px;
+    }
+
+    .close-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    .updates-Container {
+      margin-left: 10px;
+      width: 200px
+    
+
+ 
+    }
+    .metrics {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .small-button {
+      padding: 8px 16px;
+      font-size: 14px;
+      margin-top: 90px;
+      background-color: #40E0D0;
+      position: relative; /* Ensure the button can be positioned relative to its normal position */
+      left: 30px; /* Adjust this value to move the button to the left */
+      transform: translateX(-50%); /* Center the button horizontally */
+      margin-left: 50%; /* Center the button horizontally */
+  }
+    
+  
+
+   
+}
+/* Mobile view for accounts */
+@media (max-width: 768px) {
+  .accounts-Container {
+    flex: 1 1 100%;
+    border: 3px solid #ff0068;
+    padding: 10px;
+    margin: 10px 0; /* Reduced margin to bring containers closer */
+    width: calc(100% - 20px); /* Adjust width to be responsive */
+    height: auto; /* Adjust height to be auto */
+    border-radius: 10px; /* Adjust the value to change the roundness */ 
+    font-family: Arial, sans-serif; /* Set font family to Arial */
+    font-weight: bold; /* Set font weight to bold */
+    color: black; /* Set text color to black */
+    font-size: 20px; /* Set font size to 20 pixels */
+    position: relative;
+  }
+
+  .accounts-Container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 3px solid #ff0068;
+    bottom: 78%;
+  }
+
+  .set {
+    margin: 5px 0; /* Reduce space between sets */
+    padding: -20px;
+  }
+
+  .set:nth-child(2) .accounts-Container {
+    width: calc(100% - 20px); /* Width of the containers in the middle */
+  }
+
+  .set:nth-child(1) .accounts-Container,
+  .set:nth-child(3) .accounts-Container {
+    width: calc(100% - 20px); /* Width of the containers on the left and right */
+  }
+}
+
+
+
+
+
+
+
+
       
 
 

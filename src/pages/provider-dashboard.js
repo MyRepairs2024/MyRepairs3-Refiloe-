@@ -1614,6 +1614,8 @@ const handleProcessDone = () => {
               </select>
               <label htmlFor="hourlyRate">Hourly Rate:</label>
               <input type="text" id="hourlyRate" name="hourlyRate" />
+              <label htmlFor="hourlyRate">Location:</label>
+              <input type="text" id="hourlyRate" name="hourlyRate" />
             </div>
           </div>
         </div>
@@ -1653,6 +1655,8 @@ const handleProcessDone = () => {
                 {/* Add other availability options as needed */}
               </select>
               <label htmlFor="hourlyRate">Hourly Rate:</label>
+              <input type="text" id="hourlyRate" name="hourlyRate" />
+              <label htmlFor="hourlyRate">Location:</label>
               <input type="text" id="hourlyRate" name="hourlyRate" />
             </div>
           </div>
@@ -4217,144 +4221,38 @@ right: -30px;
   padding-top: 25px; /* Adjust as needed to provide space for the stars */
 }
 /* Responsive design adjustments for the provider dashboard */
-@media (max-width: 600px) {
-  .maindash {
-    width: auto; /* Take full width on smaller screens */
-    max-width: none; /* Remove maximum width limit */
-    margin-top: -80px; /* Adjust margin top for smaller screens */
+@media screen and (max-width: 600px) {
+  .metrics {
+    flex-direction: row;
+    width: 100%;
+    margin-left: 0;
   }
-}
 
-/* Responsive design adjustments for dashboard in the provider dashboard */
-@media (max-width: 600px) {
-  
- .progress-circle {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin: 0 auto;
-}
+ .servicesdone, .pendingservices, .Rewards {
+    flex: 1 1 30%; /* Allow the items to grow, shrink, and take 30% of the container width */
+    margin-left: 0;
+    margin-bottom: 10px;
+    height: 60px;
+    margin-right: 10px; /* Add margin to the right for spacing */
+    width: 55px;
+  }
 
-.circle-progress {
-  width: 5%; /* Adjust the width to make the circle smaller */
-  height: 5%; /* Adjust the height accordingly */
-  border: 6px solid #fff; /* Adjust the border width and color */
-  border-top-color: ; /* Set the color for the progress */
-  border-radius: 50%;
-  background: transparent;
-  position: absolute;
-  top: -50px; /* Adjust the top position */
-  left: 50px; /* Adjust the left position */
-  padding: 30px; /* Adjust padding accordingly */
-  transform: rotate(0deg);
-  transform-origin: center;
-}
 
-.circle-progress::-webkit-progress-value {
-  border-radius: 50%;
-  background-color: transparent;
-}
+  .progress-circle {
+   display:none;
+  }
 
-.circle-progress::-moz-progress-bar {
-  border-radius: 50%;
-  background-color: transparent; 
-}
-.progress-circle span {
-  position: absolute;
-  top: -20%;
-  left: 90px;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  color: #fff;
+  .progress-circle span {
+    display:none;
+  }
+
+  .popular_heading {
+    margin-left: 0;
+    margin-top: 10px;
+    padding-top: 0;
+  }
   
 }
-.servicesdone{
-    padding-left: 8px;
-height: 70px;
-width: 60px;
-font-size: 12px;
-color: azure;
-border-radius: 10px;
-background-color:#ff0068;
-cursor: pointer;
-margin-left: -90px
- }
-
-
-
- .pendingservices{
-  color: azure;
-  height: 70px;
-  width: 60px;
-  border-radius: 10px;
-  background-color:#ff0068;
-  cursor: pointer;
-  margin-right: 750px;
-}
-.Rewards{
- color: azure;
-  height: 100px;
-  width: 20px;
-  border-radius: 10px;
-  background-color:#ff0068;
-  cursor: pointer;
-}
-.popular_heading{
-  margin-left: -740px;
-  padding-top: -50px;
-  margin-top: -20px;
-  clear: both;
-  
-}
-
-
-.set {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  background-color: #fff;
-  margin-right: auto; /* Push updates container to the left */
-}
-
-.updates-Container {
-  border: 3px solid #ff0068;
-  padding: 10px;
-  margin: 5px;
-  width: 280px; /* Adjust width */
-  height: 150px; /* Adjust height */
-  margin-top: 30px;
-  border-radius: 10px; /* Adjust the value to change the roundness */ 
-  font-family: Arial, sans-serif; /* Set font family to Arial */
-  font-weight: bold; /* Set font weight to bold */
-  color: black; /* Set text color to black */
-  font-size: 13px; /* Set font size to 20 pixels */
-  position: relative;
-}
-
-.updates-Container::before
- {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  border-top: 3px solid #ff0068;
-}
-
-
-.updates-Container::before {
-  bottom: 78%;
-}
-
-.set:nth-child(2) .updates-Container {
-  width: 80px; /* Width of the containers in the middle */
-}
-
-.set:nth-child(1) .updates-Container,
-.set:nth-child(3) .updates-Container {
-  width: 50px; /* Width of the containers on the left and right */
-}
-}
-
 
 
 /* Responsive design adjustments */
@@ -4507,6 +4405,7 @@ margin-left: -90px
     grid-template-columns: 1fr; /* Single column layout for mobile */
     gap: 10px; /* Gap between grid items */
   }
+  
 
   .orders_container1 {
     display: grid;
@@ -4848,6 +4747,26 @@ border-radius: 5px;
     
       
     }
+    /*Mobile view for profile picture*/
+    @media only screen and (max-width: 768px) {
+      .img-and-title {
+        width: 60px;
+        margin-bottom: 30px;
+      }
+    
+      .profile-pic {
+        background: #fff;
+        color: #ff0068;
+        width: 50px;
+        height: 50px;
+        margin-top: 25px;
+        font-size: 25px;
+        margin-left: 5px;
+        border-radius: 50%; /* Makes the element a circle */
+        overflow: hidden; /* Ensures content within the circle is clipped */
+      }
+    }
+    
    
 
 }
